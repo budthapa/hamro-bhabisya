@@ -1,12 +1,14 @@
 package models;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
-
-public class ContactUs {
+@Entity
+public class ContactUs extends BaseDomain{
 	@Size(min=5, max=50)
 	@NotEmpty
 	String name;
@@ -14,6 +16,7 @@ public class ContactUs {
 	String email;
 	@Size(min=20)
 	@NotEmpty
+	@Column(length=5000)
 	String message;
 	
 	public ContactUs(){}

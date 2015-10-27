@@ -28,6 +28,7 @@ import controllers.ApplicationController;
 import controllers.ArticleController;
 import controllers.ContactUsController;
 import controllers.LoginLogoutController;
+import controllers.ProjectController;
 
 public class Routes implements ApplicationRoutes {
     
@@ -69,10 +70,14 @@ public class Routes implements ApplicationRoutes {
         ///////////////////////////////////////////////////////////////////////
         router.GET().route("/article/{id}").with(ArticleController.class, "articleShow");
         
-        //////contact us routing
-        router.GET().route("/contact/new").with(ContactUsController.class, "index");
+        ////// Contact Us routing
+        router.GET().route("/contact/new").with(ContactUsController.class, "newContactUs");
         router.POST().route("/contact").with(ContactUsController.class, "create");
+        router.GET().route("/contact").with(ContactUsController.class, "index");
 
+        ////// Project routing
+        router.GET().route("/project/new").with(ProjectController.class, "newProject");
+        
         ///////////////////////////////////////////////////////////////////////
         // Api for management of software
         ///////////////////////////////////////////////////////////////////////

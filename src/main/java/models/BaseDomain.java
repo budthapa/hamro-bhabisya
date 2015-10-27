@@ -13,9 +13,9 @@ public class BaseDomain{
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
  	private int id;
 	@Column(name="created_date")
-	private Date createdDate;
+	private Date createdDate=new Date();
 	@Column(name="updated_date")
-	private Date updatedDate;
+	private Date updatedDate=new Date();
 	@Column(name="created_by")
 	private String createdBy;
 	@Column(name="updated_by")

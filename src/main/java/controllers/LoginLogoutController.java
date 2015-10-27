@@ -46,7 +46,6 @@ public class LoginLogoutController {
     public Result loginPost(@Param("username") String username,
                             @Param("password") String password,
                             Context context) {
-    	System.out.print("u : "+username);
     	if(username!=null || password!=null){
     		if(!username.trim().isEmpty() || !password.trim().isEmpty()){
 		        boolean isUserNameAndPasswordValid = userDao.isUserAndPasswordValid(username, password);

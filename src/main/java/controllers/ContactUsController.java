@@ -1,34 +1,54 @@
 package controllers;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import models.ContactUs;
+import ninja.AuthenticityFilter;
 import ninja.Context;
+import ninja.FilterWith;
 import ninja.Result;
 import ninja.Results;
+import ninja.SecureFilter;
+import ninja.session.Session;
 import ninja.validation.JSR303Validation;
 import ninja.validation.Validation;
 
+import com.google.common.collect.Maps;
+import com.google.inject.Inject;
 import com.google.inject.Singleton;
+
+import dao.ContactUsDao;
 
 @Singleton
 public class ContactUsController {
 	
-	public Result index(){
+	@Inject
+	ContactUsDao contactUsDao;
+	@Inject
+	ContactUs contactUs;
+	Context context;
+	@FilterWith(SecureFilter.class)
+	public Result index(Session session){
+		String name=session.get("username");
+		System.out.println("name : "+name);
+		System.out.println("t : "+session.getAuthenticityToken());
+		return getAll();
+	}
+	
+	public Result newContactUs(){
 		return Results.html();
 	}
 	
+	@FilterWith(AuthenticityFilter.class)
 	public Result create(Context context,@JSR303Validation ContactUs contactUs, Validation validation) throws IOException{
 		if(validation.hasViolations()){
 			flashError(context,contactUs);
 			return Results.redirect("contact/new");
 		}
 		
-		//TODO: do something with the value
-		
+		contactUsDao.save(contactUs);
 		context.getFlashScope().put("success", "Message sent successfully.");
 		return Results.redirect("/contact/new");
 	}
@@ -45,5 +65,12 @@ public class ContactUsController {
 			context.getFlashScope().put("message", contactUs.getMessage());
 		}
 		return Results.redirect("contact/new");
+	}
+	
+	public Result getAll(){
+		List<ContactUs> list=contactUsDao.findAll();
+		Map<String, Object> map=Maps.newHashMap();
+		map.put("contactUsList", list);
+		return Results.html().render("contactUsList",list);
 	}
 }
