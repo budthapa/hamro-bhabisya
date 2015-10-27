@@ -1,0 +1,25 @@
+<#import "../layout/defaultLayout.ftl.html" as layout>
+<@layout.myLayout "Contact Us">
+	<div class="container">
+		<div class="col-md-4 col-md-offset-4">
+			<h2>${i18n("contact.title")}</h2>
+			<form class="form-group" action="/contact" method="post">
+				<div class="contact-form">
+					<label>${i18n("name")}</label><span class="required">*</span><h5 class="contact-us-form-error">${(flash.invalidName!)}</h5>
+					<input class="form-control" type="text" id="name" name="name" value="${(flash.name!)}" placeholder="Minimum 3 characters"/>
+				</div>
+				<div class="contact-form">
+					<label>${i18n("email")}</label>
+					<input class="form-control" type="email" name="email" value="${(flash.email!)}" placeholder="email"/>
+				</div>
+				<div class="contact-form">
+					<label>${i18n("message")}</label><span class="required">*</span><h5 class="contact-us-form-error">${(flash.invalidMessage!)}</h5>
+					<textarea rows="10" cols="5" class="form-control" name="message" placeholder="Minimum 20 characters">${(flash.message!)}</textarea>
+				</div>
+				<div class="contact-form">
+					<button type="submit" class="btn btn-success form-control">${i18n("contactUs.sendBtn")}</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</@layout.myLayout>

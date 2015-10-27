@@ -1,0 +1,46 @@
+/* Add additional stylesheets below
+-------------------------------------------------- */
+/* Add additional stylesheets below
+-------------------------------------------------- */
+body{
+	padding-top: 70px;
+    padding-bottom: 40px;
+}
+      
+.error-template {padding: 40px 15px;text-align: center;}
+
+/*header starts*/
+.navbar-header{
+	width:200px; !important	
+}
+.company-name{
+	color:#fff;
+}
+.company-slogan{
+	margin-top: -12px;
+	color:#fff;
+}
+.hblogo{margin-top:-5px;width: 32px;height: 32px;}
+.contact-form{margin-top:10px;}
+/* footer starts */
+.footer{list-style:none;}
+/* footer ends */
+
+/* navigation link */
+.nav > li > a{
+	padding:15px 13px; !important
+}
+
+/* contact-us form*/
+.contact-us-form-error{
+	float: right;
+	margin-top: 0px;
+	color: #FF0000;
+}
+.contact-us-form-input-error{
+	border: 1px solid #FF0000;
+}
+.required{
+	margin-top: 0px;
+	color: #FF0000;
+}
