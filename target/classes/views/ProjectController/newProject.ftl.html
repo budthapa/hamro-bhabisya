@@ -1,0 +1,61 @@
+<#import "../layout/defaultLayout.ftl.html" as layout>
+<@layout.myLayout "Project :: New">
+	<div class="container">
+		<div class="col-lg-9">
+			<h3>New Project</h3>
+			<form class="form-group" action="/project" method="post">
+			<@authenticityForm/>
+				<div class="contact-form">
+					<label>Title</label><span class="required">*</span><h5 class="contact-us-form-error">${(flash.invalidName!)}</h5>
+					<input type="text" id="title" name="title" class="form-control" placeholder="Minimum 15 characters">
+				</div>
+				<div class="contact-form">
+					<label>Description</label><span class="required">*</span><h5 class="contact-us-form-error">${(flash.invalidMessage!)}</h5>
+					<textarea rows="10" cols="10" id="description" name="description" class="form-control" placeholder="Minimum 30 characters"></textarea>
+				</div>
+				<div class="contact-form">
+					<input type="submit" name="Submit" class="btn btn-success" onclick="saveProject()" value="Save Project"/>
+				</div>
+			</form>
+		</div>
+		<div class="col-lg-3">
+			<#if flash.noFileSelected??>
+				<p class="alert alert-danger">${(flash.noFileSelected)}</p>
+			</#if>
+			<#if flash.alreadyExists??>
+				<p class="alert alert-danger">${(flash.alreadyExists)}</p>
+			</#if>
+			<p id="fileExists" class="alert alert-danger" hidden="true">This file already exists.</p>
+			<form id="uploadForm" class="form-group" action="/project/upload" method="post" enctype="multipart/form-data">
+				<div class="contact-form">
+					<label>Select image (*.jpg, *.jpeg, .png)</label>
+					<input type="file" name="pictureName"/>
+					<input type="file" name="pictureName"/>
+					<input type="file" name="pictureName"/>
+					<input type="file" name="pictureName"/>
+				</div>			
+				<div class="contact-form">
+					<input type="submit" class="btn btn-success" value="Attach Pictures" onclick="send()"/>
+				</div>
+			</form>
+		</div>
+	</div>
+	
+	<script>
+	function send(){
+    	//$("#uploadForm").ajaxForm({url: '/project/upload'})
+    	$("#uploadForm").ajaxForm(function(){
+			success: successMessage(); 
+    	});
+	}
+	function successMessage(){
+			document.getElementById("fileExists").style.display='block';
+	}
+	function showError(){
+	}
+	function saveProject(){
+		var title=document.getElementById("title").innerHtml;
+		alert(title)
+	}
+    </script>
+</@layout.myLayout>

@@ -77,6 +77,8 @@ public class Routes implements ApplicationRoutes {
 
         ////// Project routing
         router.GET().route("/project/new").with(ProjectController.class, "newProject");
+        router.POST().route("/project").with(ProjectController.class, "create");
+        router.POST().route("/project/upload").with(ProjectController.class, "upload");
         
         ///////////////////////////////////////////////////////////////////////
         // Api for management of software
