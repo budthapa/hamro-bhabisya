@@ -2,6 +2,7 @@ package controllers;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.UUID;
 
 import models.Project;
 import ninja.Context;
@@ -29,33 +30,13 @@ public class ProjectController {
 	}
 	
 //	@FilterWith(AuthenticityFilter.class)
-//	@FileProvider(DiskFileItemProvider.class)
-	public Result create(Context context, @JSR303Validation Project project, Validation validation){
+	public Result create(Context context, @JSR303Validation Project project, Validation validation, @Params("pictureName") FileItem uploadedfile[]){
 		if(validation.hasViolations()){
 			flashError(context,project);
 			return Results.redirect("project/new");
 		}
 		
-		/*if(context.isMultipart()){
-			for(FileItem fi:uploadedfile){
-//			   if (fi.getContentType().equals("image/jpeg") || fi.getContentType().equals("image/jpg") || fi.getContentType().equals("image/png")) {
-				System.out.println("FileName "+fi.getFileName());
-				if(!fi.getFileName().isEmpty()){
-					
-				try {
-					   FileUtils.moveFile(fi.getFile(), new File("../hbjpa/src/main/java/assets/image/"+fi.getFileName()));
-				   } catch (IOException e) {
-					   context.getFlashScope().put("alreadyExists", "File with name "+fi.getFileName()+" already exists");
-				   }
-				}
-//			   } else{
-//				   context.getFlashScope().put("noFileSelected", "Not a valid file or no file(s) selected");
-//				   break;
-//			   }
-			}
-		}*/
-		
-		//TODO: do something with the project
+			//TODO: do something with the project
 //		context.getFlashScope().put("success", "Project created successfully.");
 		return Results.redirect("/project/new");
 	}
@@ -65,18 +46,23 @@ public class ProjectController {
 		if(context.isMultipart()){
 			System.out.println(uploadedfile.length);
 			if(uploadedfile.length==0){
-				return Results.noContent();
+				return Results.status(400);
 			}
 			for(FileItem fi:uploadedfile){
-			   if (fi.getContentType().equals("image/jpeg") || fi.getContentType().equals("image/jpg") || fi.getContentType().equals("image/png")) {
-				   try {
-					   FileUtils.moveFile(fi.getFile(), new File("../hbjpa/src/main/java/assets/image/"+fi.getFileName()));
-				   } catch (IOException e) {
-					   context.getFlashScope().put("alreadyExists", "File with name "+fi.getFileName()+" already exists");
+				if(!fi.getFileName().isEmpty()){
+				   if (fi.getContentType().equals("image/jpeg") || fi.getContentType().equals("image/jpg") || fi.getContentType().equals("image/png")) {
+						String uuid=UUID.randomUUID().toString();
+						try {
+							FileUtils.moveFile(fi.getFile(), new File("../hbjpa/src/main/java/assets/image/"+uuid+".jpg"));
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+				   }else{
+					   context.getFlashScope().put("noFileSelected", "Not a valid file or no file(s) selected");
+					   break;
 				   }
-			   } else{
-				   context.getFlashScope().put("noFileSelected", "Not a valid file or no file(s) selected");
-			   }
+				   
+				}
 			}
 		}
 		return Results.redirect("/project/new");

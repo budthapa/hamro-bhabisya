@@ -2,19 +2,24 @@
 <@layout.myLayout "Project :: New">
 	<div class="container">
 		<div class="col-lg-9">
-			<h3>New Project</h3>
+			<h3>${i18n('project.new')}</h3>
 			<form class="form-group" action="/project" method="post">
 			<@authenticityForm/>
 				<div class="contact-form">
-					<label>Title</label><span class="required">*</span><h5 class="contact-us-form-error">${(flash.invalidName!)}</h5>
-					<input type="text" id="title" name="title" class="form-control" placeholder="Minimum 15 characters">
+					<label>${i18n('project.title')}</label><span class="required">*</span><h5 
+					class="contact-us-form-error">${(flash.invalidName!)}</h5>
+					<input type="text" id="title" name="title" class="form-control" 
+					placeholder="${i18n('project.title.placeholder')}">
 				</div>
 				<div class="contact-form">
-					<label>Description</label><span class="required">*</span><h5 class="contact-us-form-error">${(flash.invalidMessage!)}</h5>
-					<textarea rows="10" cols="10" id="description" name="description" class="form-control" placeholder="Minimum 30 characters"></textarea>
+					<label>${i18n('project.description')}</label><span class="required">*</span><h5 
+					class="contact-us-form-error">${(flash.invalidMessage!)}</h5>
+					<textarea rows="10" cols="10" id="description" name="description" class="form-control" 
+					placeholder="${i18n('project.description.placeholder')}"></textarea>
 				</div>
 				<div class="contact-form">
-					<input type="submit" name="Submit" class="btn btn-success" onclick="saveProject()" value="Save Project"/>
+					<input type="submit" class="btn btn-success" value="${(i18n('button.save'))}" 
+					onclick="return confirm('${(i18n('event.confirm'))}')" />
 				</div>
 			</form>
 		</div>
@@ -22,20 +27,18 @@
 			<#if flash.noFileSelected??>
 				<p class="alert alert-danger">${(flash.noFileSelected)}</p>
 			</#if>
-			<#if flash.alreadyExists??>
-				<p class="alert alert-danger">${(flash.alreadyExists)}</p>
-			</#if>
-			<p id="fileExists" class="alert alert-danger" hidden="true">This file already exists.</p>
+			
+			<p id="uploading" class="alert alert-info" hidden="true">${(i18n('uploading'))}</p>
 			<form id="uploadForm" class="form-group" action="/project/upload" method="post" enctype="multipart/form-data">
 				<div class="contact-form">
-					<label>Select image (*.jpg, *.jpeg, .png)</label>
+					<label>${(i18n('select.image'))}</label>
 					<input type="file" name="pictureName"/>
 					<input type="file" name="pictureName"/>
 					<input type="file" name="pictureName"/>
 					<input type="file" name="pictureName"/>
 				</div>			
 				<div class="contact-form">
-					<input type="submit" class="btn btn-success" value="Attach Pictures" onclick="send()"/>
+					<input type="submit" class="btn btn-success" value="${(i18n('button.upload'))}" onclick="send()"/>
 				</div>
 			</form>
 		</div>
@@ -43,19 +46,12 @@
 	
 	<script>
 	function send(){
-    	//$("#uploadForm").ajaxForm({url: '/project/upload'})
-    	$("#uploadForm").ajaxForm(function(){
-			success: successMessage(); 
-    	});
+	    	$("#uploadForm").ajaxForm(function(){
+	    		success: successMessage();
+	    	});
 	}
 	function successMessage(){
-			document.getElementById("fileExists").style.display='block';
-	}
-	function showError(){
-	}
-	function saveProject(){
-		var title=document.getElementById("title").innerHtml;
-		alert(title)
+			document.getElementById("uploading").style.display='block';
 	}
     </script>
 </@layout.myLayout>
