@@ -22,6 +22,10 @@ public class Project extends BaseDomain{
 	private String description;
 	@OneToMany(cascade=CascadeType.MERGE, mappedBy="project")
 	private List<Picture> picture=new ArrayList<>();
+	
+	@Column(name="project_category")
+	private String projectCategory;
+	
 	public String getTitle() {
 		return title;
 	}
@@ -40,4 +44,11 @@ public class Project extends BaseDomain{
 	public void setPicture(List<Picture> picture) {
 		this.picture = picture;
 	}
+	public String getProjectCategory() {
+		return projectCategory;
+	}
+	public void setProjectCategory(String projectCategory) {
+		this.projectCategory = projectCategory;
+	}
+	
 }

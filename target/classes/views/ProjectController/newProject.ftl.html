@@ -12,6 +12,13 @@
 					placeholder="${i18n('project.title.placeholder')}">
 				</div>
 				<div class="contact-form">
+					<label>${i18n('project.category')}</label>
+					<select name="projectCategory">
+						<option value="Project" selected="selected">Project</option>
+						<option value="News & Events">News & Events</option>
+					</select>
+				</div>
+				<div class="contact-form">
 					<label>${i18n('project.description')}</label><span class="required">*</span><h5 
 					class="contact-us-form-error">${(flash.invalidMessage!)}</h5>
 					<textarea rows="10" cols="10" id="description" name="description" class="form-control" 
