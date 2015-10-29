@@ -4,27 +4,26 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
+import models.Project;
 import ninja.jpa.UnitOfWork;
-import models.ContactUs;
 
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.google.inject.persist.Transactional;
 
-public class ContactUsDao implements IBaseDao{
+public class ProjectDao implements IBaseDao{
 	@Inject
 	Provider<EntityManager> entityManagerProvider;
-	
-	@SuppressWarnings("unchecked")
+
 	@Override
 	@UnitOfWork
 	public <T> List<T> findAll() {
-		EntityManager entityManager=entityManagerProvider.get();
-		List<ContactUs> list=entityManager.createQuery("select x from ContactUs x", ContactUs.class).getResultList();
-		return (List<T>) list;
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
+	@Transactional
 	public <T> boolean delete(T object) {
 		// TODO Auto-generated method stub
 		return false;
@@ -34,11 +33,14 @@ public class ContactUsDao implements IBaseDao{
 	@Transactional
 	public <T> int save(T object) {
 		EntityManager entityManager=entityManagerProvider.get();
+		Project project=(Project)object;
 		entityManager.persist(object);
-		return 1;
+		
+		return project.getId();
 	}
 
 	@Override
+	@Transactional
 	public <T> boolean saveOrUpdate(T object) {
 		// TODO Auto-generated method stub
 		return false;

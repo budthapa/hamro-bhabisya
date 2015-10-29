@@ -26,8 +26,6 @@ public class ContactUsController {
 	
 	@Inject
 	ContactUsDao contactUsDao;
-	@Inject
-	ContactUs contactUs;
 	Context context;
 	@FilterWith(SecureFilter.class)
 	public Result index(Session session){

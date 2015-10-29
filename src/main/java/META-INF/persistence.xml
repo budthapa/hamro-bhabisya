@@ -140,8 +140,8 @@
 		    <property name="hibernate.c3p0.idle_test_period" value="1500" />
 		    <property name="hibernate.c3p0.max_statements" value="25" />
 		    <property name="hibernate.c3p0.timeout" value="1000" />
-		    
-		    <!-- <property name="hibernate.hbm2ddl.auto" value="update"/> -->
+		    <!-- <property name="hibernate.show_sql" value="true"/> -->
+		    <property name="hibernate.hbm2ddl.auto" value="update"/>
 		 </properties>
 		 
 	</persistence-unit>
