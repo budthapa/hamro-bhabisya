@@ -16,11 +16,13 @@ public class ProjectDao implements IBaseDao{
 	@Inject
 	Provider<EntityManager> entityManagerProvider;
 
+	@SuppressWarnings("unchecked")
 	@Override
 	@UnitOfWork
 	public <T> List<T> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		EntityManager em=entityManagerProvider.get();
+		List<Project> list=em.createQuery("SELECT x FROM Project x WHERE x.projectCategory='Project' ORDER BY x.id DESC").getResultList();
+		return (List<T>) list;
 	}
 
 	@Override

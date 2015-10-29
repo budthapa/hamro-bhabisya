@@ -50,12 +50,9 @@ public class PictureDao implements IBaseDao{
 	public Picture getLatestProjectPictureFrontPage(Project project) {
 		EntityManager em=entityManagerProvider.get();
 		Query q=em.createQuery("SELECT x FROM Picture x WHERE x.project = :param");
-		System.out.println("p id "+project.getId());
-		
 		Picture picture=null;
 		try{
 			picture=(Picture) q.setParameter("param", project).getSingleResult();
-			
 		}catch(Exception e){
 			
 		}

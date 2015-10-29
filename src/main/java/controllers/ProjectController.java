@@ -41,6 +41,12 @@ public class ProjectController {
 	PictureDao pictureDao;
 	@Inject
 	Picture picture;
+	
+	public Result index(){
+		List<Project> projectList=projectDao.findAll();
+		return Results.html().render("projectList",projectList);
+	}
+	
 	@FilterWith(SecureFilter.class)
 	public Result newProject(){
 		return Results.html();
@@ -73,7 +79,6 @@ public class ProjectController {
 	@FileProvider(DiskFileItemProvider.class)
 	public Result upload(Context context, @Params("pictureName") FileItem uploadedfile[]){
 		if(context.isMultipart()){
-			System.out.println(uploadedfile.length);
 			if(uploadedfile.length==0){
 				return Results.status(400);
 			}
@@ -112,10 +117,8 @@ public class ProjectController {
 	}
 	
 	public Result showProject(@PathParam("id") int projectId){
-		System.out.println("project id "+projectId);
 		Project project=projectDao.getProject(projectId);
 		Picture picture = pictureDao.getLatestProjectPictureFrontPage(project);
-		System.out.println("pc "+picture);
 		if(picture!=null){
 			return Results.html().render(project).render(picture);			
 		}else{

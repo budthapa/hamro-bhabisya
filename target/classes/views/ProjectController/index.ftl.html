@@ -1,0 +1,11 @@
+<#import "../layout/defaultLayout.ftl.html" as layout>
+<@layout.myLayout "Project :: All">
+	<h2>${i18n("project.list.all")}</h2>
+	<#if projectList??>
+		<#list projectList as list>
+			<h4><a href="/project/${(list.id)}">${(list.title)}</a></h4>
+		</#list>
+	<#else>
+		<p>${i18n("project.list.empty")}</p>
+	</#if>
+</@layout.myLayout>

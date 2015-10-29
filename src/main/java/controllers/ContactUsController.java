@@ -29,9 +29,6 @@ public class ContactUsController {
 	Context context;
 	@FilterWith(SecureFilter.class)
 	public Result index(Session session){
-		String name=session.get("username");
-		System.out.println("name : "+name);
-		System.out.println("t : "+session.getAuthenticityToken());
 		return getAll();
 	}
 	
