@@ -1,0 +1,11 @@
+<#import "../layout/defaultLayout.ftl.html" as layout>
+<@layout.myLayout "Project :: View">
+<#if project??>
+	<h2>${(project.title)}</h2>
+		<#if picture??>
+			<img class="img-responsive" src="/assets/image/${(picture.pictureName)}.jpg" alt="${(project.title)}"/>
+		</#if>
+	<p>${(project.description)}</p>
+</#if>
+
+</@layout.myLayout>

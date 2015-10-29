@@ -20,6 +20,8 @@ import java.util.List;
 import java.util.Map;
 
 import models.Article;
+import models.Picture;
+import models.Project;
 import ninja.Result;
 import ninja.Results;
 import ninja.utils.NinjaProperties;
@@ -28,12 +30,18 @@ import com.google.common.collect.Maps;
 import com.google.inject.Inject;
 
 import dao.ArticleDao;
+import dao.PictureDao;
+import dao.ProjectDao;
 import dao.SetupDao;
 
 public class ApplicationController {
 
     @Inject
     ArticleDao articleDao;
+    @Inject
+    ProjectDao projectDao;
+    @Inject
+    PictureDao pictureDao;
 
     @Inject
     SetupDao setupDao;
@@ -59,16 +67,26 @@ public class ApplicationController {
     NinjaProperties np;
     
     public Result index() {
+    	Project project = projectDao.getLatestProjectFrontPage();
+    	Picture picture = pictureDao.getLatestProjectPictureFrontPage(project);
         Article frontPost = articleDao.getFirstArticleForFrontPage();
+        String desc=project.getDescription();
 
+        if(desc.length()>300){
+        	desc=desc.substring(0, 299);
+        	project.setDescription(desc);
+        }
+        
         List<Article> olderPosts = articleDao.getOlderArticlesForFrontPage();
         
         Map<String, Object> map = Maps.newHashMap();
         map.put("frontArticle", frontPost);
         map.put("olderArticles", olderPosts);
+        map.put("frontProject", project);
+        map.put("picture", picture);
 
-        return Results.html().render("frontArticle", frontPost)
-                .render("olderArticles", olderPosts);
+        return Results.html().render("frontArticle", frontPost).render("olderArticles", olderPosts).render("frontProject", project)
+        		.render("picture", picture);
 
     }
 }

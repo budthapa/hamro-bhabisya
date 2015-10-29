@@ -15,6 +15,7 @@ import ninja.Result;
 import ninja.Results;
 import ninja.SecureFilter;
 import ninja.params.Params;
+import ninja.params.PathParam;
 import ninja.session.Session;
 import ninja.uploads.DiskFileItemProvider;
 import ninja.uploads.FileItem;
@@ -96,6 +97,7 @@ public class ProjectController {
 		}
 		return Results.redirect("/project/new");
 	}
+	
 	private Result flashError(Context context, Project project){
 		context.getFlashScope().put("error", "Missing required fields.");
 		if(project.getTitle().trim().length()<20){
@@ -107,6 +109,18 @@ public class ProjectController {
 			context.getFlashScope().put("message", project.getDescription());
 		}
 		return Results.redirect("project/new");
+	}
+	
+	public Result showProject(@PathParam("id") int projectId){
+		System.out.println("project id "+projectId);
+		Project project=projectDao.getProject(projectId);
+		Picture picture = pictureDao.getLatestProjectPictureFrontPage(project);
+		System.out.println("pc "+picture);
+		if(picture!=null){
+			return Results.html().render(project).render(picture);			
+		}else{
+			return Results.html().render(project);
+		}
 	}
 	
 }

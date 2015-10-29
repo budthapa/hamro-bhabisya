@@ -1,42 +1,52 @@
 <#import "../layout/defaultLayout.ftl.html" as layout> 
-<@layout.myLayout "Home page">    
-
-<img src="" height="300px">
+<@layout.myLayout "Home page">
+<div class="row">
+	<#if frontProject??>
+		<div class="col-md-3">
+			<#if picture??>
+				<img class="img-responsive" src="/assets/image/${(picture.pictureName)}.jpg" alt="hamrobhabisya latest project"/>
+			<#else>
+			</#if>
+		</div>
+		<div class="col-md-9">
+				<h3><a href="project/${(frontProject.id)}">${(frontProject.title)}</a></h3>
+				<p>${(frontProject.description)} ...</p>
+		</div>
+	</#if>
+</div>
 <div class="row">
 	<div class="col-md-4">
 		<img src="/assets/image/donation.png"/>
-		<h1>Donate</h1>
+		<h2>Donate</h2>
 		<p>Your small donations can help a lot to a children </p>
 		<a href="" class="btn btn-primary">More</a>
 	</div>
 	<div class="col-md-4">
 		<img src="/assets/image/project.png"/>
-		<h1>Projects</h1>
+		<h2>Projects</h2>
 		<p>view the list of projects we have done</p>
 		<a href="" class="btn btn-primary">More</a>
 	</div>
 	<div class="col-md-4">
 		<img src="/assets/image/connect.png"/>
-		<h1>Connect</h1>
+		<h2>Connect</h2>
 		<p>You can connect with us </p>
 		<a href="" class="btn btn-primary">More</a>
 	</div>
 </div>
 <div class="row">
-	<h2>New and Events</h2>
 	<div class="col-md-6">
-		<h3>We donated some books to children</h3>
+		<h2>New and Events</h2>
+		<h3><a href="">We donated some books to children</a></h3>
 		<img src="">
 		<p>Last sunday a program organized in Saraswati
 			Pra. vi. distributed books</p>
-		<a href="" class="btn btn-info">More</a>
 	</div>
 	<div class="col-md-6">
-		<h3>Scholarship distrubuted</h3>
+		<h3><a href="">Scholarship distrubuted</a></h3>
 		<img src="">
 		<p>Last sunday a program organized in Saraswati
 			Pra. vi. distributed books</p>
-		<a href="" class="btn btn-info">More</a>
 	</div>
 </div>
 <div class="row">
@@ -61,9 +71,9 @@
 <#if frontArticle??>
 
     <div class="jumbotron">
-        <h1>
+        <h2>
             <a href="/article/${frontArticle.id}">${frontArticle.title}</a>    
-        </h1>  
+        </h2>  
         <p>${frontArticle.postedAt?date}</p>  
         <p><#noescape>${frontArticle.content}</#noescape></p>
     </div>
