@@ -2,11 +2,11 @@
 -------------------------------------------------- */
 /* Add additional stylesheets below
 -------------------------------------------------- */
-body{
+/* body{
 	padding-top: 70px;
     padding-bottom: 40px;
 }
-  
+ */
 .error-template {padding: 40px 15px;text-align: center;}
 
 /*header starts*/
@@ -21,6 +21,12 @@ body{
 	color:#fff;
 }
 .hblogo{margin-top:-5px;width: 32px;height: 32px;}
+.navbar-bottom-color{
+	border-bottom: 2px solid rgb(213, 24, 24)
+}
+
+.navbar{border-radius: 0px;}
+
 .contact-form{margin-top:10px;}
 /* footer starts */
 .footer{list-style:none;}
@@ -56,14 +62,10 @@ body{
 	border: 1px solid #C6C4C4;
 	background-color: #D1D1D1;
 }
-.news-row{
-	margin-top:20px;
-}
-.news-header{
-	margin-left:14px;
-}
+.news-row{margin-top:20px;}
+.news-header{margin: 5px 0 10px 14px;font-weight: 600;}
+.news-margin{margin-top:32px;}
 
-.
 
 /* form validation*/
 .form-error-label label.error{
