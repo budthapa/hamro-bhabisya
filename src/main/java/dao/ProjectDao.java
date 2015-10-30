@@ -75,9 +75,7 @@ public class ProjectDao implements IBaseDao{
 	@UnitOfWork
 	public List<Project> findAllNewsEvent() {
 		EntityManager em=entityManagerProvider.get();
-		List<Project> list=em.createQuery("SELECT x FROM Project x WHERE x.projectCategory='Project' ORDER BY x.id DESC").getResultList();
-//		List<Project> list=em.createQuery("SELECT x FROM Project x WHERE x.projectCategory='News & Events' ORDER BY x.id DESC").getResultList();
-		System.out.println("n l"+list.size());
+		List<Project> list=em.createQuery("SELECT x FROM Project x WHERE x.projectCategory='News & Events' ORDER BY x.id DESC").getResultList();
 		return list;
 	}
 

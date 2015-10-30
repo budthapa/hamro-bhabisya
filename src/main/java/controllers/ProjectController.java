@@ -127,7 +127,8 @@ public class ProjectController {
 	}
 	
 	public Result showNewsEvent(){
-		return Results.html();
+		List<Project> newsList=projectDao.findAllNewsEvent();
+		return Results.html().render("newsList", newsList);
 	}
 	
 }
