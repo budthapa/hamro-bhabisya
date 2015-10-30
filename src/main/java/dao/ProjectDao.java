@@ -52,7 +52,8 @@ public class ProjectDao implements IBaseDao{
 	@Transactional
 	public <T> boolean saveOrUpdate(T object) {
 		EntityManager em=entityManagerProvider.get();
-		em.persist(object);
+		Project project=(Project)object;
+		em.merge(project);
 		return false;
 	}
 

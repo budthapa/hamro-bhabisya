@@ -155,7 +155,7 @@ public class ProjectController {
 			flashError(context,project);
 			return Results.redirect("/project/edit/"+this.id);
 		}
-		
+		project.setId(id);
 		project.setUpdatedBy(session.get("username"));
 		projectDao.saveOrUpdate(project);
 		
@@ -168,7 +168,7 @@ public class ProjectController {
 			pictureDao.save(picture);
 			imageNameList.clear();			
 		}
-		context.getFlashScope().put("success", "Project created successfully.");
+		context.getFlashScope().put("success", "Project updated successfully.");
 		return Results.redirect("/project");
 	}
 

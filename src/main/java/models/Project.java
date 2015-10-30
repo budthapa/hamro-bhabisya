@@ -20,7 +20,7 @@ public class Project extends BaseDomain{
 	@NotEmpty
 	@Size(min=30)
 	private String description;
-	@OneToMany(cascade=CascadeType.MERGE, mappedBy="project")
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="project")
 	private List<Picture> picture=new ArrayList<>();
 	
 	@Column(name="project_category")
