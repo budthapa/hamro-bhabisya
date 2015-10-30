@@ -58,3 +58,10 @@ body{
 .news-header{
 	margin-left:14px;
 }
+
+/* form validation*/
+.form-error-label label.error{
+	width:auto;
+	display:inline;
+	color:#FF0000;
+}

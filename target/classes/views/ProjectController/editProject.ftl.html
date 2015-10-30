@@ -4,7 +4,7 @@
 		<div class="col-lg-9">
 			<h3>${i18n('project.edit')}</h3>
 			<button class="btn btn-danger" onclick="return confirm('Are you sure?');"><span class="glyphicon glyphicon-trash"></span></button>
-			<form class="form-group" action="/project/update" method="post">
+			<form id="editProjectForm" class="form-group form-error-label" action="/project/update" method="post">
 			<@authenticityForm/>
 				<div class="contact-form">
 					<label>${i18n('project.title')}</label><span class="required">*</span><h5 
@@ -37,7 +37,7 @@
 			</#if>
 			
 			<p id="uploading" class="alert alert-info" hidden="true">${(i18n('uploading'))}</p>
-			<form id="uploadForm" class="form-group" action="/project/upload" method="post" enctype="multipart/form-data">
+			<form id="uploadForm" class="form-group form-error-label" action="/project/upload" method="post" enctype="multipart/form-data">
 				<div class="contact-form">
 					<label>${(i18n('select.image'))}</label>
 					<input type="file" name="pictureName"/>
@@ -56,7 +56,48 @@
 		</div>
 	</div>
 	
+</@layout.myLayout>
 	<script>
+	$().ready(function() {editProjectForm
+		$("#uploadForm").validate({
+			rules:{
+				pictureName: "required",
+				pictureName: {
+					required: true,
+				}
+			},
+			messages: {
+				pictureName: {
+					required: "Please select picture"
+				}
+			}
+		});
+		// validate form on keyup and submit
+		$("#editProjectForm").validate({
+			rules: {
+				title: "required",
+				description: "required",
+				title: {
+					required: true,
+					minlength: 15
+				},
+				description: {
+					required: true,
+					minlength: 20
+				}
+			},
+			messages: {
+				title: {
+					required: "Please enter project title",
+					minlength: "Title must be at least 20 characters"
+				},
+				description: {
+					required: "Please enter description",
+					minlength: "Description must be at least 30 characters long"
+				}
+			}
+		});
+	});
 	function send(){
 	    	$("#uploadForm").ajaxForm(function(){
 	    		success: successMessage();
@@ -66,4 +107,3 @@
 			document.getElementById("uploading").style.display='block';
 	}
     </script>
-</@layout.myLayout>

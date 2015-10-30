@@ -1,21 +1,15 @@
 <#import "../layout/defaultLayout.ftl.html" as layout>
-<style>
-#contactUsForm label.error{
-	width:auto;
-	display:inline;
-	color:#FF0000;
-}
-</style>
+
 <@layout.myLayout "Contact Us">
 	<div class="container">
 		<div class="col-md-6 col-md-offset-3">
 			<h2>${i18n("contact.title")}</h2>
-			<form id="contactUsForm" class="form-group" action="/contact" method="post">
+			<form id="contactUsForm" class="form-group form-error-label" action="/contact" method="post">
 				<@authenticityForm/>
 				<div class="contact-form">
 					<label>${i18n("name")}</label><span class="required">*</span><h5 class="contact-us-form-error">${(flash.invalidName!)}</h5>
 					<input class="form-control" type="text" id="name" name="name" value="${(flash.name!)}" 
-					required="required" placeholder="Minimum 3 characters" minlength="3"/>
+					required="required" placeholder="Minimum 3 characters" />
 				</div>
 				<div class="contact-form">
 					<label>${i18n("email")}</label>
