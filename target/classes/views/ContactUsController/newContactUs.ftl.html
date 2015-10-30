@@ -1,13 +1,21 @@
 <#import "../layout/defaultLayout.ftl.html" as layout>
+<style>
+#contactUsForm label.error{
+	width:auto;
+	display:inline;
+	color:#FF0000;
+}
+</style>
 <@layout.myLayout "Contact Us">
 	<div class="container">
 		<div class="col-md-6 col-md-offset-3">
 			<h2>${i18n("contact.title")}</h2>
-			<form class="form-group" action="/contact" method="post">
+			<form id="contactUsForm" class="form-group" action="/contact" method="post">
 				<@authenticityForm/>
 				<div class="contact-form">
 					<label>${i18n("name")}</label><span class="required">*</span><h5 class="contact-us-form-error">${(flash.invalidName!)}</h5>
-					<input class="form-control" type="text" id="name" name="name" value="${(flash.name!)}" placeholder="Minimum 3 characters"/>
+					<input class="form-control" type="text" id="name" name="name" value="${(flash.name!)}" 
+					required="required" placeholder="Minimum 3 characters" minlength="3"/>
 				</div>
 				<div class="contact-form">
 					<label>${i18n("email")}</label>
@@ -15,7 +23,8 @@
 				</div>
 				<div class="contact-form">
 					<label>${i18n("message")}</label><span class="required">*</span><h5 class="contact-us-form-error">${(flash.invalidMessage!)}</h5>
-					<textarea rows="10" cols="5" class="form-control" name="message" placeholder="Minimum 20 characters">${(flash.message!)}</textarea>
+					<textarea rows="10" cols="5" class="form-control" name="message" required="required" 
+					placeholder="Minimum 20 characters">${(flash.message!)}</textarea>
 				</div>
 				<div class="contact-form">
 					<button type="submit" class="btn btn-success form-control">${i18n("contactUs.sendBtn")}</button>
@@ -24,3 +33,32 @@
 		</div>
 	</div>
 </@layout.myLayout>
+<script>
+$().ready(function() {
+	// validate contact us form on keyup and submit
+	$("#contactUsForm").validate({
+		rules: {
+			name: "required",
+			message: "required",
+			name: {
+				required: true,
+				minlength: 3
+			},
+			message: {
+				required: true,
+				minlength: 20
+			}
+		},
+		messages: {
+			name: {
+				required: "Please enter your name",
+				minlength: "Your name must consist of at least 3 characters"
+			},
+			message: {
+				required: "Please enter your message",
+				minlength: "Your message must be at least 20 characters long"
+			}
+		}
+	});
+});
+</script>
