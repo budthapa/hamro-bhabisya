@@ -51,7 +51,8 @@ public class ProjectDao implements IBaseDao{
 	@Override
 	@Transactional
 	public <T> boolean saveOrUpdate(T object) {
-		// TODO Auto-generated method stub
+		EntityManager em=entityManagerProvider.get();
+		em.persist(object);
 		return false;
 	}
 

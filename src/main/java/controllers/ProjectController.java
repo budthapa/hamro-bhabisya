@@ -41,6 +41,10 @@ public class ProjectController {
 	PictureDao pictureDao;
 	@Inject
 	Picture picture;
+	@Inject 
+	Project proj;
+
+	private int id;
 	
 	public Result index(){
 		List<Project> projectList=projectDao.findAllProject();
@@ -49,6 +53,7 @@ public class ProjectController {
 	
 	@FilterWith(SecureFilter.class)
 	public Result newProject(){
+		System.out.println("editi");
 		return Results.html();
 	}
 	
@@ -116,9 +121,27 @@ public class ProjectController {
 		return Results.redirect("project/new");
 	}
 	
-	public Result showProject(@PathParam("id") int projectId){
+	public Result showProject(@PathParam("id") int projectId, Session session){
 		Project project=projectDao.getProject(projectId);
 		Picture picture = pictureDao.getLatestProjectPictureFrontPage(project);
+		
+		if(session.get("username")!=null){
+			return Results.redirect("/project/edit/"+projectId);
+		}else{
+			if(picture!=null){
+				return Results.html().render(project).render(picture);			
+			}else{
+				return Results.html().render(project);
+			}			
+		}
+		
+	}
+	
+	@FilterWith(SecureFilter.class)
+	public Result editProject(@PathParam("id") int projectId) {
+		Project project=projectDao.getProject(projectId);
+		Picture picture = pictureDao.getLatestProjectPictureFrontPage(project);
+		id=projectId;
 		if(picture!=null){
 			return Results.html().render(project).render(picture);			
 		}else{
@@ -126,6 +149,29 @@ public class ProjectController {
 		}
 	}
 	
+	public Result update(Context context, @JSR303Validation Project project, Validation validation, 
+			@Params("pictureName") FileItem uploadedfile[], Session session){
+		if(validation.hasViolations()){
+			flashError(context,project);
+			return Results.redirect("/project/edit/"+this.id);
+		}
+		
+		project.setUpdatedBy(session.get("username"));
+		projectDao.saveOrUpdate(project);
+		
+		picture.setProject(project);
+		//need to work on this later for multiple images
+//		for(String name:imageNameList){
+//		}
+		if(imageNameList.size()>0){
+			picture.setPictureName(imageNameList.get(0));
+			pictureDao.save(picture);
+			imageNameList.clear();			
+		}
+		context.getFlashScope().put("success", "Project created successfully.");
+		return Results.redirect("/project");
+	}
+
 	public Result showNewsEvent(){
 		List<Project> newsList=projectDao.findAllNewsEvent();
 		return Results.html().render("newsList", newsList);

@@ -17,16 +17,17 @@
 package controllers;
 
 import java.util.List;
-import java.util.Map;
 
 import models.Article;
 import models.Picture;
 import models.Project;
+import ninja.FilterWith;
 import ninja.Result;
 import ninja.Results;
+import ninja.SecureFilter;
+import ninja.session.Session;
 import ninja.utils.NinjaProperties;
 
-import com.google.common.collect.Maps;
 import com.google.inject.Inject;
 
 import dao.ArticleDao;
@@ -86,16 +87,13 @@ public class ApplicationController {
         }
         
         List<Article> olderPosts = articleDao.getOlderArticlesForFrontPage();
-        
-/*        Map<String, Object> map = Maps.newHashMap();
-        map.put("frontArticle", frontPost);
-        map.put("olderArticles", olderPosts);
-        map.put("frontProject", project);
-        map.put("picture", picture);
-        map.put("newsEvent",newsEvent);
-*/
         return Results.html().render("frontArticle", frontPost).render("olderArticles", olderPosts).render("frontProject", project)
         		.render("picture", picture).render("newsEvent",newsEvent).render("newsPicture", newsPicture).render("imageList", imageList);
 
+    }
+    
+    @FilterWith(SecureFilter.class)
+    public Result dashboard(){
+    	return Results.html();    		
     }
 }

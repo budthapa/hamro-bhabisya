@@ -50,6 +50,7 @@ public class Routes implements ApplicationRoutes {
         // puts test data into db:
         if (!ninjaProperties.isProd()) {
             router.GET().route("/setup").with(ApplicationController.class, "setup");
+            router.GET().route("/app/dashboard").with(ApplicationController.class, "dashboard");
         }
         
         ///////////////////////////////////////////////////////////////////////
@@ -82,6 +83,8 @@ public class Routes implements ApplicationRoutes {
         router.POST().route("/project/upload").with(ProjectController.class, "upload");
         router.GET().route("/project/events").with(ProjectController.class, "showNewsEvent");
         router.GET().route("/project/{id}").with(ProjectController.class, "showProject");
+        router.GET().route("/project/edit/{id}").with(ProjectController.class, "editProject");
+        router.POST().route("/project/update").with(ProjectController.class, "update");
         
         ///////////////////////////////////////////////////////////////////////
         // Api for management of software
