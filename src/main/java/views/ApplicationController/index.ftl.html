@@ -1,72 +1,72 @@
 <#import "../layout/defaultLayout.ftl.html" as layout> 
 <@layout.myLayout "Home page">
-<div class="row">
-	<#if frontProject??>
-		<div class="col-md-3">
-			<#if picture??>
-				<img class="img-responsive" src="/assets/image/${(picture.pictureName)}.jpg" alt="hamrobhabisya latest project"/>
-			<#else>
-			</#if>
+	<div class="row">
+		<#if frontProject??>
+			<div class="col-md-3">
+				<#if picture??>
+					<img class="img-responsive" src="/assets/image/${(picture.pictureName)}.jpg" alt="hamrobhabisya latest project"/>
+				<#else>
+				</#if>
+			</div>
+			<div class="col-md-9">
+					<h3><a href="project/${(frontProject.id)}">${(frontProject.title)}</a></h3>
+					<p>${(frontProject.description)} ...</p>
+			</div>
+		</#if>
+	</div>
+	<div class="row donate-project-connect">
+		<div class="col-md-4">
+			<img src="/assets/image/donation.png"/>
+			<h2>Donate</h2>
+			<p>Your small donations can help a lot to a children </p>
+			<a href="" class="btn btn-primary">More</a>
 		</div>
-		<div class="col-md-9">
-				<h3><a href="project/${(frontProject.id)}">${(frontProject.title)}</a></h3>
-				<p>${(frontProject.description)} ...</p>
+		<div class="col-md-4">
+			<img src="/assets/image/project.png"/>
+			<h2>Projects</h2>
+			<p>view the list of projects we have done</p>
+			<a href="/project" class="btn btn-primary">${i18n('homepage.project.all.btn')}</a>
 		</div>
-	</#if>
-</div>
-<div class="row">
-	<div class="col-md-4">
-		<img src="/assets/image/donation.png"/>
-		<h2>Donate</h2>
-		<p>Your small donations can help a lot to a children </p>
-		<a href="" class="btn btn-primary">More</a>
+		<div class="col-md-4">
+			<img src="/assets/image/connect.png"/>
+			<h2>Connect</h2>
+			<p>You can connect with us </p>
+			<a href="" class="btn btn-primary">More</a>
+		</div>
 	</div>
-	<div class="col-md-4">
-		<img src="/assets/image/project.png"/>
-		<h2>Projects</h2>
-		<p>view the list of projects we have done</p>
-		<a href="/project" class="btn btn-primary">${i18n('project.all.btn')}</a>
+	<div class="row news-row">
+		<h3 class="news-header">${i18n('homepage.news.events')}</h3>
+		<#if newsEvent??>
+			<div class="col-md-6">
+				<h3><a href="/project/${(newsEvent.id)}">${(newsEvent.title)}</a></h3>
+				<#if newsPicture??>
+					<img class="img-responsive" src="/assets/image/${(newsPicture.pictureName)}.jpg" alt="hamrobhabisya latest news"/>
+				</#if>
+			</div>
+			<div class="col-md-6">
+				<p>${(newsEvent.description)}</p>
+				<a href="/project/events" class="btn btn-info">${i18n('homepage.news.all.btn')}</a>				
+			</div>
+		</#if>
 	</div>
-	<div class="col-md-4">
-		<img src="/assets/image/connect.png"/>
-		<h2>Connect</h2>
-		<p>You can connect with us </p>
-		<a href="" class="btn btn-primary">More</a>
+	<div class="row donate-project-connect">
+		<div class="col-md-6">
+			<h3>Youtube video</h3>
+			<a href="https://www.youtube.com/watch?=lkajieKJIOj"></a>
+		</div>
+		<div class="col-md-6">
+			<h3>List of donators</h3>
+				<p>This is the list of people who contributed to us.
+					Latest First
+				</p>
+				<ul>
+					<li>Madhu 20$ Hongkong</li>
+					<li>Madhu 20$ Hongkong</li>
+					<li>Madhu 20$ Hongkong</li>
+				</ul>
+				<a href="" class="btn btn-info">More</a>
+		</div>
 	</div>
-</div>
-<div class="row">
-	<div class="col-md-6">
-		<h2>New and Events</h2>
-		<h3><a href="">We donated some books to children</a></h3>
-		<img src="">
-		<p>Last sunday a program organized in Saraswati
-			Pra. vi. distributed books</p>
-	</div>
-	<div class="col-md-6">
-		<h3><a href="">Scholarship distributed</a></h3>
-		<img src="">
-		<p>Last sunday a program organized in Saraswati
-			Pra. vi. distributed books</p>
-	</div>
-</div>
-<div class="row">
-	<div class="col-md-6">
-		<h3>Youtube video</h3>
-		<a href="https://www.youtube.com/watch?=lkajieKJIOj"></a>
-	</div>
-	<div class="col-md-6">
-		<h3>List of donators</h3>
-		<p>This is the list of people who contributed to us.
-			Latest First
-		</p>
-		<ul>
-			<li>Madhu 20$ Hongkong</li>
-			<li>Madhu 20$ Hongkong</li>
-			<li>Madhu 20$ Hongkong</li>
-		</ul>
-		<a href="" class="btn btn-info">More</a>
-	</div>
-</div>
         
 <#if frontArticle??>
 

@@ -43,7 +43,7 @@ public class ProjectController {
 	Picture picture;
 	
 	public Result index(){
-		List<Project> projectList=projectDao.findAll();
+		List<Project> projectList=projectDao.findAllProject();
 		return Results.html().render("projectList",projectList);
 	}
 	
@@ -124,6 +124,10 @@ public class ProjectController {
 		}else{
 			return Results.html().render(project);
 		}
+	}
+	
+	public Result showNewsEvent(){
+		return Results.html();
 	}
 	
 }

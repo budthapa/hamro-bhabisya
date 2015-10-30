@@ -69,24 +69,28 @@ public class ApplicationController {
     public Result index() {
     	Project project = projectDao.getLatestProjectFrontPage();
     	Picture picture = pictureDao.getLatestProjectPictureFrontPage(project);
-        Article frontPost = articleDao.getFirstArticleForFrontPage();
+    	Project newsEvent=projectDao.getLatestNewsEventFrontPage();
+    	System.out.println("np id "+newsEvent.getId());
+    	Picture newsPicture = pictureDao.getLatestProjectPictureFrontPage(newsEvent);
+    	Article frontPost = articleDao.getFirstArticleForFrontPage();
         String desc=project.getDescription();
 
-        if(desc.length()>300){
-        	desc=desc.substring(0, 299);
+        if(desc.length()>500){
+        	desc=desc.substring(0, 500);
         	project.setDescription(desc);
         }
         
         List<Article> olderPosts = articleDao.getOlderArticlesForFrontPage();
         
-        Map<String, Object> map = Maps.newHashMap();
+/*        Map<String, Object> map = Maps.newHashMap();
         map.put("frontArticle", frontPost);
         map.put("olderArticles", olderPosts);
         map.put("frontProject", project);
         map.put("picture", picture);
-
+        map.put("newsEvent",newsEvent);
+*/
         return Results.html().render("frontArticle", frontPost).render("olderArticles", olderPosts).render("frontProject", project)
-        		.render("picture", picture);
+        		.render("picture", picture).render("newsEvent",newsEvent).render("newsPicture", newsPicture);
 
     }
 }

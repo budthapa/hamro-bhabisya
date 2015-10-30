@@ -47,3 +47,14 @@ body{
 .contact-us-row-width{
 	width:135px;	
 }
+
+/* home page*/
+.donate-project-connect{
+	margin-top:20px;
+}
+.news-row{
+	margin-top:20px;
+}
+.news-header{
+	margin-left:14px;
+}

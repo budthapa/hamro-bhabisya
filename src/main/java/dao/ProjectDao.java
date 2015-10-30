@@ -16,13 +16,19 @@ public class ProjectDao implements IBaseDao{
 	@Inject
 	Provider<EntityManager> entityManagerProvider;
 
-	@SuppressWarnings("unchecked")
 	@Override
 	@UnitOfWork
 	public <T> List<T> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@UnitOfWork
+	public List<Project> findAllProject() {
 		EntityManager em=entityManagerProvider.get();
 		List<Project> list=em.createQuery("SELECT x FROM Project x WHERE x.projectCategory='Project' ORDER BY x.id DESC").getResultList();
-		return (List<T>) list;
+		return list;
 	}
 
 	@Override
@@ -52,7 +58,7 @@ public class ProjectDao implements IBaseDao{
 	@UnitOfWork
 	public Project getLatestProjectFrontPage() {
 		EntityManager em=entityManagerProvider.get();
-		Query query=em.createQuery("SELECT x FROM Project x WHERE project_category='Project' ORDER BY x.id DESC ");
+		Query query=em.createQuery("SELECT x FROM Project x WHERE project_category='Project' ORDER BY x.id DESC");
 		Project project=(Project) query.setMaxResults(1).getSingleResult();
 		return project;
 	}
@@ -62,6 +68,24 @@ public class ProjectDao implements IBaseDao{
 		EntityManager em=entityManagerProvider.get();
 		Query q=em.createQuery("SELECT x FROM Project x WHERE x.id = :param");
 		Project project=(Project) q.setParameter("param", projectId).getSingleResult();
+		return project;
+	}
+
+	@SuppressWarnings("unchecked")
+	@UnitOfWork
+	public List<Project> findAllNewsEvent() {
+		EntityManager em=entityManagerProvider.get();
+		List<Project> list=em.createQuery("SELECT x FROM Project x WHERE x.projectCategory='Project' ORDER BY x.id DESC").getResultList();
+//		List<Project> list=em.createQuery("SELECT x FROM Project x WHERE x.projectCategory='News & Events' ORDER BY x.id DESC").getResultList();
+		System.out.println("n l"+list.size());
+		return list;
+	}
+
+	@UnitOfWork
+	public Project getLatestNewsEventFrontPage() {
+		EntityManager em=entityManagerProvider.get();
+		Query q=em.createQuery("SELECT x FROM Project x WHERE x.projectCategory = 'News & Events' ORDER BY x.id DESC");
+		Project project=(Project) q.setMaxResults(1).getSingleResult();
 		return project;
 	}
 

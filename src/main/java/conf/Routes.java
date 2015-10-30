@@ -80,6 +80,7 @@ public class Routes implements ApplicationRoutes {
         router.POST().route("/project").with(ProjectController.class, "create");
         router.GET().route("/project/new").with(ProjectController.class, "newProject");
         router.POST().route("/project/upload").with(ProjectController.class, "upload");
+        router.GET().route("/project/events").with(ProjectController.class, "showNewsEvent");
         router.GET().route("/project/{id}").with(ProjectController.class, "showProject");
         
         ///////////////////////////////////////////////////////////////////////
