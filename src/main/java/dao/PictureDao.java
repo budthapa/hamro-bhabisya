@@ -17,11 +17,14 @@ public class PictureDao implements IBaseDao{
 	@Inject
 	Provider<EntityManager> entityManagerProvider;
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	@UnitOfWork
 	public <T> List<T> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		EntityManager em=entityManagerProvider.get();
+		Query q=em.createQuery("SELECT x FROM Picture x ORDER BY x.id DESC");
+		List<Picture> list=q.setMaxResults(4).getResultList();
+		return (List<T>) list;
 	}
 
 	@Override

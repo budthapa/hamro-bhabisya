@@ -73,6 +73,11 @@ public class ApplicationController {
     	System.out.println("np id "+newsEvent.getId());
     	Picture newsPicture = pictureDao.getLatestProjectPictureFrontPage(newsEvent);
     	Article frontPost = articleDao.getFirstArticleForFrontPage();
+    	List<Picture> imageList=pictureDao.findAll();
+    	
+    	for(Picture p:imageList){
+    		System.out.println("img "+p.getPictureName());
+    	}
         String desc=project.getDescription();
 
         if(desc.length()>500){
@@ -90,7 +95,7 @@ public class ApplicationController {
         map.put("newsEvent",newsEvent);
 */
         return Results.html().render("frontArticle", frontPost).render("olderArticles", olderPosts).render("frontProject", project)
-        		.render("picture", picture).render("newsEvent",newsEvent).render("newsPicture", newsPicture);
+        		.render("picture", picture).render("newsEvent",newsEvent).render("newsPicture", newsPicture).render("imageList", imageList);
 
     }
 }

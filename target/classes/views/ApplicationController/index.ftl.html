@@ -1,5 +1,14 @@
 <#import "../layout/defaultLayout.ftl.html" as layout> 
 <@layout.myLayout "Home page">
+		<div id="slides">
+		<#if imageList??>
+			<#list imageList as list>
+				<img src="/assets/image/${(list.pictureName)}.jpg" title="Hamrobhabisya projects www.hamrobhabisya.org"/>
+			</#list>
+			<a href="#" class="slidesjs-previous slidesjs-navigation"><i class="glyphicon glyphicon-chevron-left"></i></a>
+              <a href="#" class="slidesjs-next slidesjs-navigation"><i class="glyphicon glyphicon-chevron-right"></i></a>
+		</#if>
+		</div>
 	<div class="row">
 		<#if frontProject??>
 			<div class="col-md-3">
@@ -91,5 +100,35 @@
     </#list>
     
 </#if>
-
 </@layout.myLayout>
+<!-- <script type="text/javascript" src="/assets/js/jquery.bxslider.js"></script> -->
+
+<script>
+    $(function(){
+      $("#slides").slidesjs({
+        width: 940,
+        height: 528,
+        play: {
+            active: true,
+            auto: true,
+            interval: 5000,
+            swap: true,
+            pauseOnHover: true,
+            restartDelay: 2500,
+            effect: "slide" // [string] Can be either "slide" or "fade".            
+        },
+        pagination: {
+            active: false,
+        },
+        navigation: {
+            active: false,
+              // [boolean] Generates next and previous buttons.
+              // You can set to false and use your own buttons.
+              // User defined buttons must have the following:
+              // previous button: class="slidesjs-previous slidesjs-navigation"
+              // next button: class="slidesjs-next slidesjs-navigation"
+          }
+          
+      });
+    });
+  </script>
