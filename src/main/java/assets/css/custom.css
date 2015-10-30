@@ -6,7 +6,7 @@ body{
 	padding-top: 70px;
     padding-bottom: 40px;
 }
-      
+  
 .error-template {padding: 40px 15px;text-align: center;}
 
 /*header starts*/
@@ -52,12 +52,18 @@ body{
 .donate-project-connect{
 	margin-top:20px;
 }
+.donate-project-connect-box{
+	border: 1px solid #C6C4C4;
+	background-color: #D1D1D1;
+}
 .news-row{
 	margin-top:20px;
 }
 .news-header{
 	margin-left:14px;
 }
+
+.
 
 /* form validation*/
 .form-error-label label.error{

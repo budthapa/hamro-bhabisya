@@ -1,14 +1,14 @@
 <div class="navbar navbar-inverse navbar-fixed-top">
 	<div class="container">
-		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 				<span class="icon-bar"></span> 
 				<span class="icon-bar"></span> 
 				<span class="icon-bar"></span>
 			</button>
+		<div class="navbar-header">
 			<a class="navbar-brand" href="/"><img src="/assets/image/hblogo.jpg" class="img-responsive hblogo"/></a>
 			<h4 class="company-name">Hamro Bhabisya</h4>
-			<p class="company-slogan">Together, we can...</p>
+			<p class="company-slogan hidden-xs">Together, we can...</p>
 		</div>
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
@@ -19,7 +19,7 @@
 				<li><a href="/contact/new">${i18n("header.contact_us")}</a></li>
 				<li><a href="">${i18n("header.donate")}</a></li>
 			</ul>
-			<ul class="navbar-right nav navbar-nav">
+			<ul class="nav navbar-nav navbar-right ">
 				<#if (session.username)??>
                 	<li><a href="/app/dashboard">Dashboard</a></li>
                 	<li><a href="#">${session.username}</a></li>
