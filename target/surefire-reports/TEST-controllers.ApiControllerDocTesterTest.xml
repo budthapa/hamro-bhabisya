@@ -1,0 +1,590 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite tests="2" failures="0" name="controllers.ApiControllerDocTesterTest" time="0.562" errors="2" skipped="0">
+  <properties>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="sun.boot.library.path" value="/usr/lib/jvm/java-8-oracle/jre/lib/amd64"/>
+    <property name="java.vm.version" value="25.60-b23"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="java.vendor.url" value="http://java.oracle.com/"/>
+    <property name="path.separator" value=":"/>
+    <property name="guice.disable.misplaced.annotation.check" value="true"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="file.encoding.pkg" value="sun.io"/>
+    <property name="user.country" value="US"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.os.patch.level" value="unknown"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="user.dir" value="/home/budthapa/hbjpa"/>
+    <property name="java.runtime.version" value="1.8.0_60-b27"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment"/>
+    <property name="java.endorsed.dirs" value="/usr/lib/jvm/java-8-oracle/jre/lib/endorsed"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.io.tmpdir" value="/tmp"/>
+    <property name="line.separator" value="
+"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="os.name" value="Linux"/>
+    <property name="classworlds.conf" value="/usr/share/maven3/bin/m2.conf"/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="java.library.path" value="/usr/java/packages/lib/amd64:/usr/lib64:/lib64:/lib:/usr/lib"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.class.version" value="52.0"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="os.version" value="3.13.0-65-generic"/>
+    <property name="user.home" value="/home/budthapa"/>
+    <property name="user.timezone" value="Asia/Kathmandu"/>
+    <property name="java.awt.printerjob" value="sun.print.PSPrinterJob"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.specification.version" value="1.8"/>
+    <property name="user.name" value="budthapa"/>
+    <property name="java.class.path" value="/usr/share/maven3/boot/plexus-classworlds-2.5.1.jar"/>
+    <property name="org.slf4j.simpleLogger.defaultLogLevel" value="info"/>
+    <property name="java.vm.specification.version" value="1.8"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.home" value="/usr/lib/jvm/java-8-oracle/jre"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher clean compile package"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.language" value="en"/>
+    <property name="awt.toolkit" value="sun.awt.X11.XToolkit"/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.version" value="1.8.0_60"/>
+    <property name="java.ext.dirs" value="/usr/lib/jvm/java-8-oracle/jre/lib/ext:/usr/java/packages/lib/ext"/>
+    <property name="securerandom.source" value="file:/dev/./urandom"/>
+    <property name="sun.boot.class.path" value="/usr/lib/jvm/java-8-oracle/jre/lib/resources.jar:/usr/lib/jvm/java-8-oracle/jre/lib/rt.jar:/usr/lib/jvm/java-8-oracle/jre/lib/sunrsasign.jar:/usr/lib/jvm/java-8-oracle/jre/lib/jsse.jar:/usr/lib/jvm/java-8-oracle/jre/lib/jce.jar:/usr/lib/jvm/java-8-oracle/jre/lib/charsets.jar:/usr/lib/jvm/java-8-oracle/jre/lib/jfr.jar:/usr/lib/jvm/java-8-oracle/jre/classes"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="maven.home" value="/usr/share/maven3"/>
+    <property name="file.separator" value="/"/>
+    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="sun.desktop" value="gnome"/>
+    <property name="sun.cpu.isalist" value=""/>
+  </properties>
+  <testcase classname="controllers.ApiControllerDocTesterTest" name="testGetAndPostArticleViaJson" time="0.28">
+    <error message="ninja.lifecycle.FailedStartException: org.flywaydb.core.internal.dbsupport.FlywaySqlScriptException: 
+Migration V4__.sql failed
+-------------------------
+SQL State  : 42S02
+Error Code : 42102
+Message    : Table &quot;CONTACTUS&quot; not found; SQL statement:
+ALTER TABLE ContactUs change column message message varchar(5000) NOT NULL [42102-186]
+Location   : db/migration/V4__.sql (/home/budthapa/hbjpa/target/classes/db/migration/V4__.sql)
+Line       : 1
+Statement  : ALTER TABLE ContactUs change column message message varchar(5000) NOT NULL
+" type="java.lang.RuntimeException">java.lang.RuntimeException: ninja.lifecycle.FailedStartException: org.flywaydb.core.internal.dbsupport.FlywaySqlScriptException: 
+Migration V4__.sql failed
+-------------------------
+SQL State  : 42S02
+Error Code : 42102
+Message    : Table &quot;CONTACTUS&quot; not found; SQL statement:
+ALTER TABLE ContactUs change column message message varchar(5000) NOT NULL [42102-186]
+Location   : db/migration/V4__.sql (/home/budthapa/hbjpa/target/classes/db/migration/V4__.sql)
+Line       : 1
+Statement  : ALTER TABLE ContactUs change column message message varchar(5000) NOT NULL
+
+	at ninja.utils.NinjaTestServer.&lt;init&gt;(NinjaTestServer.java:57)
+	at ninja.NinjaDocTester.startServerInTestMode(NinjaDocTester.java:43)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:24)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
+	at org.junit.rules.TestWatcher$1.evaluate(TestWatcher.java:55)
+	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+Caused by: ninja.lifecycle.FailedStartException: org.flywaydb.core.internal.dbsupport.FlywaySqlScriptException: 
+Migration V4__.sql failed
+-------------------------
+SQL State  : 42S02
+Error Code : 42102
+Message    : Table &quot;CONTACTUS&quot; not found; SQL statement:
+ALTER TABLE ContactUs change column message message varchar(5000) NOT NULL [42102-186]
+Location   : db/migration/V4__.sql (/home/budthapa/hbjpa/target/classes/db/migration/V4__.sql)
+Line       : 1
+Statement  : ALTER TABLE ContactUs change column message message varchar(5000) NOT NULL
+
+	at ninja.lifecycle.LifecycleRegister.invokeTarget(LifecycleRegister.java:103)
+	at ninja.lifecycle.LifecycleRegister.start(LifecycleRegister.java:55)
+	at ninja.lifecycle.LifecycleServiceImpl.start(LifecycleServiceImpl.java:84)
+	at ninja.NinjaDefault.onFrameworkStart(NinjaDefault.java:149)
+	at ninja.servlet.NinjaBootstrap.boot(NinjaBootstrap.java:93)
+	at ninja.servlet.NinjaServletListener.createNinjaBootstrap(NinjaServletListener.java:134)
+	at ninja.servlet.NinjaServletListener.getInjector(NinjaServletListener.java:110)
+	at com.google.inject.servlet.GuiceServletContextListener.contextInitialized(GuiceServletContextListener.java:47)
+	at ninja.servlet.NinjaServletListener.contextInitialized(NinjaServletListener.java:62)
+	at org.eclipse.jetty.server.handler.ContextHandler.callContextInitialized(ContextHandler.java:800)
+	at org.eclipse.jetty.servlet.ServletContextHandler.callContextInitialized(ServletContextHandler.java:444)
+	at org.eclipse.jetty.server.handler.ContextHandler.startContext(ContextHandler.java:791)
+	at org.eclipse.jetty.servlet.ServletContextHandler.startContext(ServletContextHandler.java:294)
+	at org.eclipse.jetty.server.handler.ContextHandler.doStart(ContextHandler.java:741)
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68)
+	at org.eclipse.jetty.util.component.ContainerLifeCycle.start(ContainerLifeCycle.java:132)
+	at org.eclipse.jetty.server.Server.start(Server.java:387)
+	at org.eclipse.jetty.util.component.ContainerLifeCycle.doStart(ContainerLifeCycle.java:114)
+	at org.eclipse.jetty.server.handler.AbstractHandler.doStart(AbstractHandler.java:61)
+	at org.eclipse.jetty.server.Server.doStart(Server.java:354)
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68)
+	at ninja.standalone.NinjaJetty.start(NinjaJetty.java:265)
+	at ninja.utils.NinjaTestServer.&lt;init&gt;(NinjaTestServer.java:55)
+	... 34 more
+Caused by: org.flywaydb.core.internal.dbsupport.FlywaySqlScriptException: 
+Migration V4__.sql failed
+-------------------------
+SQL State  : 42S02
+Error Code : 42102
+Message    : Table &quot;CONTACTUS&quot; not found; SQL statement:
+ALTER TABLE ContactUs change column message message varchar(5000) NOT NULL [42102-186]
+Location   : db/migration/V4__.sql (/home/budthapa/hbjpa/target/classes/db/migration/V4__.sql)
+Line       : 1
+Statement  : ALTER TABLE ContactUs change column message message varchar(5000) NOT NULL
+
+	at org.flywaydb.core.internal.dbsupport.SqlScript.execute(SqlScript.java:117)
+	at org.flywaydb.core.internal.resolver.sql.SqlMigrationExecutor.execute(SqlMigrationExecutor.java:71)
+	at org.flywaydb.core.internal.command.DbMigrate$5.doInTransaction(DbMigrate.java:284)
+	at org.flywaydb.core.internal.command.DbMigrate$5.doInTransaction(DbMigrate.java:282)
+	at org.flywaydb.core.internal.util.jdbc.TransactionTemplate.execute(TransactionTemplate.java:72)
+	at org.flywaydb.core.internal.command.DbMigrate.applyMigration(DbMigrate.java:282)
+	at org.flywaydb.core.internal.command.DbMigrate.access$800(DbMigrate.java:46)
+	at org.flywaydb.core.internal.command.DbMigrate$2.doInTransaction(DbMigrate.java:207)
+	at org.flywaydb.core.internal.command.DbMigrate$2.doInTransaction(DbMigrate.java:156)
+	at org.flywaydb.core.internal.util.jdbc.TransactionTemplate.execute(TransactionTemplate.java:72)
+	at org.flywaydb.core.internal.command.DbMigrate.migrate(DbMigrate.java:156)
+	at org.flywaydb.core.Flyway$1.execute(Flyway.java:1059)
+	at org.flywaydb.core.Flyway$1.execute(Flyway.java:1006)
+	at org.flywaydb.core.Flyway.execute(Flyway.java:1418)
+	at org.flywaydb.core.Flyway.migrate(Flyway.java:1006)
+	at ninja.migrations.MigrationEngineFlyway.migrate(MigrationEngineFlyway.java:62)
+	at ninja.migrations.MigrationInitializer.start(MigrationInitializer.java:51)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at ninja.lifecycle.LifecycleRegister.invokeTarget(LifecycleRegister.java:96)
+	... 56 more
+Caused by: org.h2.jdbc.JdbcSQLException: Table &quot;CONTACTUS&quot; not found; SQL statement:
+ALTER TABLE ContactUs change column message message varchar(5000) NOT NULL [42102-186]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.command.Parser.readTableOrView(Parser.java:5251)
+	at org.h2.command.Parser.readTableOrView(Parser.java:5228)
+	at org.h2.command.Parser.parseAlterTable(Parser.java:5305)
+	at org.h2.command.Parser.parseAlter(Parser.java:4720)
+	at org.h2.command.Parser.parsePrepared(Parser.java:332)
+	at org.h2.command.Parser.parse(Parser.java:305)
+	at org.h2.command.Parser.parse(Parser.java:277)
+	at org.h2.command.Parser.prepareCommand(Parser.java:242)
+	at org.h2.engine.Session.prepareLocal(Session.java:446)
+	at org.h2.engine.Session.prepareCommand(Session.java:388)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1189)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:170)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:158)
+	at org.flywaydb.core.internal.dbsupport.JdbcTemplate.executeStatement(JdbcTemplate.java:238)
+	at org.flywaydb.core.internal.dbsupport.SqlScript.execute(SqlScript.java:114)
+	... 77 more
+</error>
+    <system-out>19:04:41.619 [main] INFO  org.eclipse.jetty.server.Server - jetty-9.2.10.v20150310
+19:04:41.620 [main] INFO  ninja.servlet.NinjaBootstrap - Successfully configured Logback.
+19:04:41.662 [main] INFO  ninja.utils.SwissKnife - Could not load file conf/messages_en.properties (not a bad thing necessarily, but I am returing null)
+19:04:41.663 [main] INFO  ninja.i18n.MessagesImpl - Did not find conf/messages_en.properties but it was specified in application.conf. Using default language instead.
+19:04:41.665 [main] INFO  n.template.TemplateEngineManagerImpl - -------------------------------------------------------------------
+19:04:41.665 [main] INFO  n.template.TemplateEngineManagerImpl - Registered response template engines
+19:04:41.665 [main] INFO  n.template.TemplateEngineManagerImpl - -------------------------------------------------------------------
+19:04:41.665 [main] INFO  n.template.TemplateEngineManagerImpl - application/javascript  =&gt;  ninja.template.TemplateEngineJsonP
+19:04:41.665 [main] INFO  n.template.TemplateEngineManagerImpl - application/json        =&gt;  ninja.template.TemplateEngineJson
+19:04:41.665 [main] INFO  n.template.TemplateEngineManagerImpl - application/xml         =&gt;  ninja.template.TemplateEngineXml
+19:04:41.665 [main] INFO  n.template.TemplateEngineManagerImpl - text/html               =&gt;  ninja.template.TemplateEngineFreemarker
+19:04:41.665 [main] INFO  n.template.TemplateEngineManagerImpl - text/plain              =&gt;  ninja.template.TemplateEngineText
+19:04:41.666 [main] INFO  Ninja - Using default eh cache implementation. (class ninja.cache.CacheEhCacheImpl) 
+19:04:41.667 [main] INFO  n.b.BodyParserEngineManagerImpl - ----------------------------------------------------------------------------
+19:04:41.667 [main] INFO  n.b.BodyParserEngineManagerImpl - Registered request bodyparser engines
+19:04:41.667 [main] INFO  n.b.BodyParserEngineManagerImpl - ----------------------------------------------------------------------------
+19:04:41.667 [main] INFO  n.b.BodyParserEngineManagerImpl - application/json                   =&gt;  ninja.bodyparser.BodyParserEngineJson
+19:04:41.667 [main] INFO  n.b.BodyParserEngineManagerImpl - application/x-www-form-urlencoded  =&gt;  ninja.bodyparser.BodyParserEnginePost
+19:04:41.667 [main] INFO  n.b.BodyParserEngineManagerImpl - application/xml                    =&gt;  ninja.bodyparser.BodyParserEngineXml
+19:04:41.692 [main] INFO  ninja.RouterImpl - ------------------------------------------------------------------------------------------
+19:04:41.692 [main] INFO  ninja.RouterImpl - Registered routes
+19:04:41.692 [main] INFO  ninja.RouterImpl - ------------------------------------------------------------------------------------------
+19:04:41.692 [main] INFO  ninja.RouterImpl - GET  /setup                             =&gt;  controllers.ApplicationController.setup()
+19:04:41.692 [main] INFO  ninja.RouterImpl - GET  /app/dashboard                     =&gt;  controllers.ApplicationController.dashboard()
+19:04:41.692 [main] INFO  ninja.RouterImpl - GET  /login                             =&gt;  controllers.LoginLogoutController.login()
+19:04:41.692 [main] INFO  ninja.RouterImpl - POST /login                             =&gt;  controllers.LoginLogoutController.loginPost()
+19:04:41.692 [main] INFO  ninja.RouterImpl - GET  /logout                            =&gt;  controllers.LoginLogoutController.logout()
+19:04:41.692 [main] INFO  ninja.RouterImpl - GET  /article/new                       =&gt;  controllers.ArticleController.articleNew()
+19:04:41.692 [main] INFO  ninja.RouterImpl - POST /article/new                       =&gt;  controllers.ArticleController.articleNewPost()
+19:04:41.693 [main] INFO  ninja.RouterImpl - GET  /article/{id}                      =&gt;  controllers.ArticleController.articleShow()
+19:04:41.693 [main] INFO  ninja.RouterImpl - GET  /contact/new                       =&gt;  controllers.ContactUsController.newContactUs()
+19:04:41.693 [main] INFO  ninja.RouterImpl - POST /contact                           =&gt;  controllers.ContactUsController.create()
+19:04:41.693 [main] INFO  ninja.RouterImpl - GET  /contact                           =&gt;  controllers.ContactUsController.index()
+19:04:41.693 [main] INFO  ninja.RouterImpl - GET  /project                           =&gt;  controllers.ProjectController.index()
+19:04:41.693 [main] INFO  ninja.RouterImpl - POST /project                           =&gt;  controllers.ProjectController.create()
+19:04:41.693 [main] INFO  ninja.RouterImpl - GET  /project/new                       =&gt;  controllers.ProjectController.newProject()
+19:04:41.693 [main] INFO  ninja.RouterImpl - POST /project/upload                    =&gt;  controllers.ProjectController.upload()
+19:04:41.693 [main] INFO  ninja.RouterImpl - GET  /project/events                    =&gt;  controllers.ProjectController.showNewsEvent()
+19:04:41.693 [main] INFO  ninja.RouterImpl - GET  /project/{id}                      =&gt;  controllers.ProjectController.showProject()
+19:04:41.693 [main] INFO  ninja.RouterImpl - GET  /project/edit/{id}                 =&gt;  controllers.ProjectController.editProject()
+19:04:41.693 [main] INFO  ninja.RouterImpl - POST /project/update                    =&gt;  controllers.ProjectController.update()
+19:04:41.693 [main] INFO  ninja.RouterImpl - GET  /api/{username}/articles.json      =&gt;  controllers.ApiController.getArticlesJson()
+19:04:41.693 [main] INFO  ninja.RouterImpl - GET  /api/{username}/article/{id}.json  =&gt;  controllers.ApiController.getArticleJson()
+19:04:41.693 [main] INFO  ninja.RouterImpl - GET  /api/{username}/articles.xml       =&gt;  controllers.ApiController.getArticlesXml()
+19:04:41.693 [main] INFO  ninja.RouterImpl - POST /api/{username}/article.json       =&gt;  controllers.ApiController.postArticleJson()
+19:04:41.693 [main] INFO  ninja.RouterImpl - POST /api/{username}/article.xml        =&gt;  controllers.ApiController.postArticleXml()
+19:04:41.693 [main] INFO  ninja.RouterImpl - GET  /assets/webjars/{fileName: .*}     =&gt;  ninja.AssetsController.serveWebJars()
+19:04:41.693 [main] INFO  ninja.RouterImpl - GET  /assets/{fileName: .*}             =&gt;  ninja.AssetsController.serveStatic()
+19:04:41.693 [main] INFO  ninja.RouterImpl - GET  /.*                                =&gt;  controllers.ApplicationController.index()
+19:04:41.693 [main] INFO  ninja.servlet.NinjaBootstrap - Ninja injector started in 73 ms.
+19:04:41.694 [main] INFO  ninja.NinjaDefault - 
+ _______  .___ _______        ____.  _____   
+ \      \ |   |\      \      |    | /  _  \  
+ /   |   \|   |/   |   \     |    |/  /_\  \ 
+/    |    \   /    |    \/\__|    /    |    \  http://www.ninjaframework.org
+\____|__  /___\____|__  /\________\____|__  /  @ninjaframework
+     web\/framework   \/                  \/   5.2.1
+
+19:04:41.695 [main] INFO  ninja.lifecycle.LifecycleServiceImpl - Starting Ninja application...
+19:04:41.717 [main] INFO  o.f.c.i.dbsupport.DbSupportFactory - Database: jdbc:h2:./target/h2database_test (H2 1.4)
+19:04:41.726 [main] INFO  o.f.core.internal.command.DbClean - Cleaned schema &quot;PUBLIC&quot; (execution time 00:00.005s)
+19:04:41.738 [main] INFO  o.f.core.internal.command.DbValidate - Validated 3 migrations (execution time 00:00.003s)
+19:04:41.742 [main] INFO  o.f.c.i.m.MetaDataTableImpl - Creating Metadata table: &quot;PUBLIC&quot;.&quot;schema_version&quot;
+19:04:41.748 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema &quot;PUBLIC&quot;: &lt;&lt; Empty Schema &gt;&gt;
+19:04:41.752 [main] INFO  o.f.core.internal.command.DbMigrate - Migrating schema &quot;PUBLIC&quot; to version 1 - 
+19:04:41.764 [main] INFO  o.f.core.internal.command.DbMigrate - Migrating schema &quot;PUBLIC&quot; to version 2 - 
+19:04:41.771 [main] INFO  o.f.core.internal.command.DbMigrate - Migrating schema &quot;PUBLIC&quot; to version 4 - 
+19:04:41.773 [main] ERROR o.f.core.internal.command.DbMigrate - Migration of schema &quot;PUBLIC&quot; to version 4 failed! Please restore backups and roll back database and code!
+19:04:41.779 [main] WARN  o.e.j.u.component.AbstractLifeCycle - FAILED o.e.j.s.ServletContextHandler@79b08632{/,null,STARTING}: ninja.lifecycle.FailedStartException: org.flywaydb.core.internal.dbsupport.FlywaySqlScriptException: 
+Migration V4__.sql failed
+-------------------------
+SQL State  : 42S02
+Error Code : 42102
+Message    : Table &quot;CONTACTUS&quot; not found; SQL statement:
+ALTER TABLE ContactUs change column message message varchar(5000) NOT NULL [42102-186]
+Location   : db/migration/V4__.sql (/home/budthapa/hbjpa/target/classes/db/migration/V4__.sql)
+Line       : 1
+Statement  : ALTER TABLE ContactUs change column message message varchar(5000) NOT NULL
+
+ninja.lifecycle.FailedStartException: org.flywaydb.core.internal.dbsupport.FlywaySqlScriptException: 
+Migration V4__.sql failed
+-------------------------
+SQL State  : 42S02
+Error Code : 42102
+Message    : Table &quot;CONTACTUS&quot; not found; SQL statement:
+ALTER TABLE ContactUs change column message message varchar(5000) NOT NULL [42102-186]
+Location   : db/migration/V4__.sql (/home/budthapa/hbjpa/target/classes/db/migration/V4__.sql)
+Line       : 1
+Statement  : ALTER TABLE ContactUs change column message message varchar(5000) NOT NULL
+
+	at ninja.lifecycle.LifecycleRegister.invokeTarget(LifecycleRegister.java:103) ~[ninja-core-5.2.1.jar:na]
+	at ninja.lifecycle.LifecycleRegister.start(LifecycleRegister.java:55) ~[ninja-core-5.2.1.jar:na]
+	at ninja.lifecycle.LifecycleServiceImpl.start(LifecycleServiceImpl.java:84) ~[ninja-core-5.2.1.jar:na]
+	at ninja.NinjaDefault.onFrameworkStart(NinjaDefault.java:149) ~[ninja-core-5.2.1.jar:na]
+	at ninja.servlet.NinjaBootstrap.boot(NinjaBootstrap.java:93) ~[ninja-servlet-5.2.1.jar:na]
+	at ninja.servlet.NinjaServletListener.createNinjaBootstrap(NinjaServletListener.java:134) ~[ninja-servlet-5.2.1.jar:na]
+	at ninja.servlet.NinjaServletListener.getInjector(NinjaServletListener.java:110) ~[ninja-servlet-5.2.1.jar:na]
+	at com.google.inject.servlet.GuiceServletContextListener.contextInitialized(GuiceServletContextListener.java:47) ~[guice-servlet-4.0.jar:na]
+	at ninja.servlet.NinjaServletListener.contextInitialized(NinjaServletListener.java:62) ~[ninja-servlet-5.2.1.jar:na]
+	at org.eclipse.jetty.server.handler.ContextHandler.callContextInitialized(ContextHandler.java:800) ~[jetty-server-9.2.10.v20150310.jar:9.2.10.v20150310]
+	at org.eclipse.jetty.servlet.ServletContextHandler.callContextInitialized(ServletContextHandler.java:444) ~[jetty-servlet-9.2.10.v20150310.jar:9.2.10.v20150310]
+	at org.eclipse.jetty.server.handler.ContextHandler.startContext(ContextHandler.java:791) ~[jetty-server-9.2.10.v20150310.jar:9.2.10.v20150310]
+	at org.eclipse.jetty.servlet.ServletContextHandler.startContext(ServletContextHandler.java:294) ~[jetty-servlet-9.2.10.v20150310.jar:9.2.10.v20150310]
+	at org.eclipse.jetty.server.handler.ContextHandler.doStart(ContextHandler.java:741) ~[jetty-server-9.2.10.v20150310.jar:9.2.10.v20150310]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) [jetty-util-9.2.10.v20150310.jar:9.2.10.v20150310]
+	at org.eclipse.jetty.util.component.ContainerLifeCycle.start(ContainerLifeCycle.java:132) [jetty-util-9.2.10.v20150310.jar:9.2.10.v20150310]
+	at org.eclipse.jetty.server.Server.start(Server.java:387) [jetty-server-9.2.10.v20150310.jar:9.2.10.v20150310]
+	at org.eclipse.jetty.util.component.ContainerLifeCycle.doStart(ContainerLifeCycle.java:114) [jetty-util-9.2.10.v20150310.jar:9.2.10.v20150310]
+	at org.eclipse.jetty.server.handler.AbstractHandler.doStart(AbstractHandler.java:61) [jetty-server-9.2.10.v20150310.jar:9.2.10.v20150310]
+	at org.eclipse.jetty.server.Server.doStart(Server.java:354) [jetty-server-9.2.10.v20150310.jar:9.2.10.v20150310]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) [jetty-util-9.2.10.v20150310.jar:9.2.10.v20150310]
+	at ninja.standalone.NinjaJetty.start(NinjaJetty.java:265) [ninja-standalone-5.2.1.jar:na]
+	at ninja.utils.NinjaTestServer.&lt;init&gt;(NinjaTestServer.java:55) [ninja-test-utilities-5.2.1.jar:na]
+	at ninja.NinjaDocTester.startServerInTestMode(NinjaDocTester.java:43) [ninja-test-utilities-5.2.1.jar:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_60]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_60]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_60]
+	at java.lang.reflect.Method.invoke(Method.java:497) ~[na:1.8.0_60]
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47) [junit-4.11.jar:na]
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12) [junit-4.11.jar:na]
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44) [junit-4.11.jar:na]
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:24) [junit-4.11.jar:na]
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27) [junit-4.11.jar:na]
+	at org.junit.rules.TestWatcher$1.evaluate(TestWatcher.java:55) [junit-4.11.jar:na]
+	at org.junit.rules.RunRules.evaluate(RunRules.java:20) [junit-4.11.jar:na]
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271) [junit-4.11.jar:na]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70) [junit-4.11.jar:na]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50) [junit-4.11.jar:na]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238) [junit-4.11.jar:na]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63) [junit-4.11.jar:na]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236) [junit-4.11.jar:na]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53) [junit-4.11.jar:na]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229) [junit-4.11.jar:na]
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27) [junit-4.11.jar:na]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309) [junit-4.11.jar:na]
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252) [surefire-junit4-2.12.4.jar:2.12.4]
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141) [surefire-junit4-2.12.4.jar:2.12.4]
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112) [surefire-junit4-2.12.4.jar:2.12.4]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_60]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_60]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_60]
+	at java.lang.reflect.Method.invoke(Method.java:497) ~[na:1.8.0_60]
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189) [surefire-api-2.12.4.jar:2.12.4]
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165) [surefire-booter-2.12.4.jar:2.12.4]
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85) [surefire-booter-2.12.4.jar:2.12.4]
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115) [surefire-booter-2.12.4.jar:2.12.4]
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75) [surefire-booter-2.12.4.jar:2.12.4]
+Caused by: org.flywaydb.core.internal.dbsupport.FlywaySqlScriptException: 
+Migration V4__.sql failed
+-------------------------
+SQL State  : 42S02
+Error Code : 42102
+Message    : Table &quot;CONTACTUS&quot; not found; SQL statement:
+ALTER TABLE ContactUs change column message message varchar(5000) NOT NULL [42102-186]
+Location   : db/migration/V4__.sql (/home/budthapa/hbjpa/target/classes/db/migration/V4__.sql)
+Line       : 1
+Statement  : ALTER TABLE ContactUs change column message message varchar(5000) NOT NULL
+
+	at org.flywaydb.core.internal.dbsupport.SqlScript.execute(SqlScript.java:117) ~[flyway-core-3.2.1.jar:na]
+	at org.flywaydb.core.internal.resolver.sql.SqlMigrationExecutor.execute(SqlMigrationExecutor.java:71) ~[flyway-core-3.2.1.jar:na]
+	at org.flywaydb.core.internal.command.DbMigrate$5.doInTransaction(DbMigrate.java:284) ~[flyway-core-3.2.1.jar:na]
+	at org.flywaydb.core.internal.command.DbMigrate$5.doInTransaction(DbMigrate.java:282) ~[flyway-core-3.2.1.jar:na]
+	at org.flywaydb.core.internal.util.jdbc.TransactionTemplate.execute(TransactionTemplate.java:72) ~[flyway-core-3.2.1.jar:na]
+	at org.flywaydb.core.internal.command.DbMigrate.applyMigration(DbMigrate.java:282) ~[flyway-core-3.2.1.jar:na]
+	at org.flywaydb.core.internal.command.DbMigrate.access$800(DbMigrate.java:46) ~[flyway-core-3.2.1.jar:na]
+	at org.flywaydb.core.internal.command.DbMigrate$2.doInTransaction(DbMigrate.java:207) ~[flyway-core-3.2.1.jar:na]
+	at org.flywaydb.core.internal.command.DbMigrate$2.doInTransaction(DbMigrate.java:156) ~[flyway-core-3.2.1.jar:na]
+	at org.flywaydb.core.internal.util.jdbc.TransactionTemplate.execute(TransactionTemplate.java:72) ~[flyway-core-3.2.1.jar:na]
+	at org.flywaydb.core.internal.command.DbMigrate.migrate(DbMigrate.java:156) ~[flyway-core-3.2.1.jar:na]
+	at org.flywaydb.core.Flyway$1.execute(Flyway.java:1059) ~[flyway-core-3.2.1.jar:na]
+	at org.flywaydb.core.Flyway$1.execute(Flyway.java:1006) ~[flyway-core-3.2.1.jar:na]
+	at org.flywaydb.core.Flyway.execute(Flyway.java:1418) ~[flyway-core-3.2.1.jar:na]
+	at org.flywaydb.core.Flyway.migrate(Flyway.java:1006) ~[flyway-core-3.2.1.jar:na]
+	at ninja.migrations.MigrationEngineFlyway.migrate(MigrationEngineFlyway.java:62) ~[ninja-core-5.2.1.jar:na]
+	at ninja.migrations.MigrationInitializer.start(MigrationInitializer.java:51) ~[ninja-core-5.2.1.jar:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_60]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_60]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_60]
+	at java.lang.reflect.Method.invoke(Method.java:497) ~[na:1.8.0_60]
+	at ninja.lifecycle.LifecycleRegister.invokeTarget(LifecycleRegister.java:96) ~[ninja-core-5.2.1.jar:na]
+	... 56 common frames omitted
+Caused by: org.h2.jdbc.JdbcSQLException: Table &quot;CONTACTUS&quot; not found; SQL statement:
+ALTER TABLE ContactUs change column message message varchar(5000) NOT NULL [42102-186]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345) ~[h2-1.4.186.jar:1.4.186]
+	at org.h2.message.DbException.get(DbException.java:179) ~[h2-1.4.186.jar:1.4.186]
+	at org.h2.message.DbException.get(DbException.java:155) ~[h2-1.4.186.jar:1.4.186]
+	at org.h2.command.Parser.readTableOrView(Parser.java:5251) ~[h2-1.4.186.jar:1.4.186]
+	at org.h2.command.Parser.readTableOrView(Parser.java:5228) ~[h2-1.4.186.jar:1.4.186]
+	at org.h2.command.Parser.parseAlterTable(Parser.java:5305) ~[h2-1.4.186.jar:1.4.186]
+	at org.h2.command.Parser.parseAlter(Parser.java:4720) ~[h2-1.4.186.jar:1.4.186]
+	at org.h2.command.Parser.parsePrepared(Parser.java:332) ~[h2-1.4.186.jar:1.4.186]
+	at org.h2.command.Parser.parse(Parser.java:305) ~[h2-1.4.186.jar:1.4.186]
+	at org.h2.command.Parser.parse(Parser.java:277) ~[h2-1.4.186.jar:1.4.186]
+	at org.h2.command.Parser.prepareCommand(Parser.java:242) ~[h2-1.4.186.jar:1.4.186]
+	at org.h2.engine.Session.prepareLocal(Session.java:446) ~[h2-1.4.186.jar:1.4.186]
+	at org.h2.engine.Session.prepareCommand(Session.java:388) ~[h2-1.4.186.jar:1.4.186]
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1189) ~[h2-1.4.186.jar:1.4.186]
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:170) ~[h2-1.4.186.jar:1.4.186]
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:158) ~[h2-1.4.186.jar:1.4.186]
+	at org.flywaydb.core.internal.dbsupport.JdbcTemplate.executeStatement(JdbcTemplate.java:238) ~[flyway-core-3.2.1.jar:na]
+	at org.flywaydb.core.internal.dbsupport.SqlScript.execute(SqlScript.java:114) ~[flyway-core-3.2.1.jar:na]
+	... 77 common frames omitted
+19:04:41.782 [main] INFO  o.e.jetty.server.ServerConnector - Started ServerConnector@787f32b7{HTTP/1.1}{0.0.0.0:1029}
+19:04:41.786 [main] WARN  o.e.j.u.component.AbstractLifeCycle - FAILED org.eclipse.jetty.server.Server@6aef4eb8: ninja.lifecycle.FailedStartException: org.flywaydb.core.internal.dbsupport.FlywaySqlScriptException: 
+Migration V4__.sql failed
+-------------------------
+SQL State  : 42S02
+Error Code : 42102
+Message    : Table &quot;CONTACTUS&quot; not found; SQL statement:
+ALTER TABLE ContactUs change column message message varchar(5000) NOT NULL [42102-186]
+Location   : db/migration/V4__.sql (/home/budthapa/hbjpa/target/classes/db/migration/V4__.sql)
+Line       : 1
+Statement  : ALTER TABLE ContactUs change column message message varchar(5000) NOT NULL
+
+ninja.lifecycle.FailedStartException: org.flywaydb.core.internal.dbsupport.FlywaySqlScriptException: 
+Migration V4__.sql failed
+-------------------------
+SQL State  : 42S02
+Error Code : 42102
+Message    : Table &quot;CONTACTUS&quot; not found; SQL statement:
+ALTER TABLE ContactUs change column message message varchar(5000) NOT NULL [42102-186]
+Location   : db/migration/V4__.sql (/home/budthapa/hbjpa/target/classes/db/migration/V4__.sql)
+Line       : 1
+Statement  : ALTER TABLE ContactUs change column message message varchar(5000) NOT NULL
+
+	at ninja.lifecycle.LifecycleRegister.invokeTarget(LifecycleRegister.java:103) ~[ninja-core-5.2.1.jar:na]
+	at ninja.lifecycle.LifecycleRegister.start(LifecycleRegister.java:55) ~[ninja-core-5.2.1.jar:na]
+	at ninja.lifecycle.LifecycleServiceImpl.start(LifecycleServiceImpl.java:84) ~[ninja-core-5.2.1.jar:na]
+	at ninja.NinjaDefault.onFrameworkStart(NinjaDefault.java:149) ~[ninja-core-5.2.1.jar:na]
+	at ninja.servlet.NinjaBootstrap.boot(NinjaBootstrap.java:93) ~[ninja-servlet-5.2.1.jar:na]
+	at ninja.servlet.NinjaServletListener.createNinjaBootstrap(NinjaServletListener.java:134) ~[ninja-servlet-5.2.1.jar:na]
+	at ninja.servlet.NinjaServletListener.getInjector(NinjaServletListener.java:110) ~[ninja-servlet-5.2.1.jar:na]
+	at com.google.inject.servlet.GuiceServletContextListener.contextInitialized(GuiceServletContextListener.java:47) ~[guice-servlet-4.0.jar:na]
+	at ninja.servlet.NinjaServletListener.contextInitialized(NinjaServletListener.java:62) ~[ninja-servlet-5.2.1.jar:na]
+	at org.eclipse.jetty.server.handler.ContextHandler.callContextInitialized(ContextHandler.java:800) ~[jetty-server-9.2.10.v20150310.jar:9.2.10.v20150310]
+	at org.eclipse.jetty.servlet.ServletContextHandler.callContextInitialized(ServletContextHandler.java:444) ~[jetty-servlet-9.2.10.v20150310.jar:9.2.10.v20150310]
+	at org.eclipse.jetty.server.handler.ContextHandler.startContext(ContextHandler.java:791) ~[jetty-server-9.2.10.v20150310.jar:9.2.10.v20150310]
+	at org.eclipse.jetty.servlet.ServletContextHandler.startContext(ServletContextHandler.java:294) ~[jetty-servlet-9.2.10.v20150310.jar:9.2.10.v20150310]
+	at org.eclipse.jetty.server.handler.ContextHandler.doStart(ContextHandler.java:741) ~[jetty-server-9.2.10.v20150310.jar:9.2.10.v20150310]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.2.10.v20150310.jar:9.2.10.v20150310]
+	at org.eclipse.jetty.util.component.ContainerLifeCycle.start(ContainerLifeCycle.java:132) ~[jetty-util-9.2.10.v20150310.jar:9.2.10.v20150310]
+	at org.eclipse.jetty.server.Server.start(Server.java:387) ~[jetty-server-9.2.10.v20150310.jar:9.2.10.v20150310]
+	at org.eclipse.jetty.util.component.ContainerLifeCycle.doStart(ContainerLifeCycle.java:114) ~[jetty-util-9.2.10.v20150310.jar:9.2.10.v20150310]
+	at org.eclipse.jetty.server.handler.AbstractHandler.doStart(AbstractHandler.java:61) ~[jetty-server-9.2.10.v20150310.jar:9.2.10.v20150310]
+	at org.eclipse.jetty.server.Server.doStart(Server.java:354) ~[jetty-server-9.2.10.v20150310.jar:9.2.10.v20150310]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.2.10.v20150310.jar:9.2.10.v20150310]
+	at ninja.standalone.NinjaJetty.start(NinjaJetty.java:265) [ninja-standalone-5.2.1.jar:na]
+	at ninja.utils.NinjaTestServer.&lt;init&gt;(NinjaTestServer.java:55) [ninja-test-utilities-5.2.1.jar:na]
+	at ninja.NinjaDocTester.startServerInTestMode(NinjaDocTester.java:43) [ninja-test-utilities-5.2.1.jar:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_60]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_60]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_60]
+	at java.lang.reflect.Method.invoke(Method.java:497) ~[na:1.8.0_60]
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47) [junit-4.11.jar:na]
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12) [junit-4.11.jar:na]
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44) [junit-4.11.jar:na]
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:24) [junit-4.11.jar:na]
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27) [junit-4.11.jar:na]
+	at org.junit.rules.TestWatcher$1.evaluate(TestWatcher.java:55) [junit-4.11.jar:na]
+	at org.junit.rules.RunRules.evaluate(RunRules.java:20) [junit-4.11.jar:na]
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271) [junit-4.11.jar:na]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70) [junit-4.11.jar:na]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50) [junit-4.11.jar:na]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238) [junit-4.11.jar:na]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63) [junit-4.11.jar:na]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236) [junit-4.11.jar:na]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53) [junit-4.11.jar:na]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229) [junit-4.11.jar:na]
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27) [junit-4.11.jar:na]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309) [junit-4.11.jar:na]
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252) [surefire-junit4-2.12.4.jar:2.12.4]
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141) [surefire-junit4-2.12.4.jar:2.12.4]
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112) [surefire-junit4-2.12.4.jar:2.12.4]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_60]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_60]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_60]
+	at java.lang.reflect.Method.invoke(Method.java:497) ~[na:1.8.0_60]
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189) [surefire-api-2.12.4.jar:2.12.4]
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165) [surefire-booter-2.12.4.jar:2.12.4]
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85) [surefire-booter-2.12.4.jar:2.12.4]
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115) [surefire-booter-2.12.4.jar:2.12.4]
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75) [surefire-booter-2.12.4.jar:2.12.4]
+Caused by: org.flywaydb.core.internal.dbsupport.FlywaySqlScriptException: 
+Migration V4__.sql failed
+-------------------------
+SQL State  : 42S02
+Error Code : 42102
+Message    : Table &quot;CONTACTUS&quot; not found; SQL statement:
+ALTER TABLE ContactUs change column message message varchar(5000) NOT NULL [42102-186]
+Location   : db/migration/V4__.sql (/home/budthapa/hbjpa/target/classes/db/migration/V4__.sql)
+Line       : 1
+Statement  : ALTER TABLE ContactUs change column message message varchar(5000) NOT NULL
+
+	at org.flywaydb.core.internal.dbsupport.SqlScript.execute(SqlScript.java:117) ~[flyway-core-3.2.1.jar:na]
+	at org.flywaydb.core.internal.resolver.sql.SqlMigrationExecutor.execute(SqlMigrationExecutor.java:71) ~[flyway-core-3.2.1.jar:na]
+	at org.flywaydb.core.internal.command.DbMigrate$5.doInTransaction(DbMigrate.java:284) ~[flyway-core-3.2.1.jar:na]
+	at org.flywaydb.core.internal.command.DbMigrate$5.doInTransaction(DbMigrate.java:282) ~[flyway-core-3.2.1.jar:na]
+	at org.flywaydb.core.internal.util.jdbc.TransactionTemplate.execute(TransactionTemplate.java:72) ~[flyway-core-3.2.1.jar:na]
+	at org.flywaydb.core.internal.command.DbMigrate.applyMigration(DbMigrate.java:282) ~[flyway-core-3.2.1.jar:na]
+	at org.flywaydb.core.internal.command.DbMigrate.access$800(DbMigrate.java:46) ~[flyway-core-3.2.1.jar:na]
+	at org.flywaydb.core.internal.command.DbMigrate$2.doInTransaction(DbMigrate.java:207) ~[flyway-core-3.2.1.jar:na]
+	at org.flywaydb.core.internal.command.DbMigrate$2.doInTransaction(DbMigrate.java:156) ~[flyway-core-3.2.1.jar:na]
+	at org.flywaydb.core.internal.util.jdbc.TransactionTemplate.execute(TransactionTemplate.java:72) ~[flyway-core-3.2.1.jar:na]
+	at org.flywaydb.core.internal.command.DbMigrate.migrate(DbMigrate.java:156) ~[flyway-core-3.2.1.jar:na]
+	at org.flywaydb.core.Flyway$1.execute(Flyway.java:1059) ~[flyway-core-3.2.1.jar:na]
+	at org.flywaydb.core.Flyway$1.execute(Flyway.java:1006) ~[flyway-core-3.2.1.jar:na]
+	at org.flywaydb.core.Flyway.execute(Flyway.java:1418) ~[flyway-core-3.2.1.jar:na]
+	at org.flywaydb.core.Flyway.migrate(Flyway.java:1006) ~[flyway-core-3.2.1.jar:na]
+	at ninja.migrations.MigrationEngineFlyway.migrate(MigrationEngineFlyway.java:62) ~[ninja-core-5.2.1.jar:na]
+	at ninja.migrations.MigrationInitializer.start(MigrationInitializer.java:51) ~[ninja-core-5.2.1.jar:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_60]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_60]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_60]
+	at java.lang.reflect.Method.invoke(Method.java:497) ~[na:1.8.0_60]
+	at ninja.lifecycle.LifecycleRegister.invokeTarget(LifecycleRegister.java:96) ~[ninja-core-5.2.1.jar:na]
+	... 56 common frames omitted
+Caused by: org.h2.jdbc.JdbcSQLException: Table &quot;CONTACTUS&quot; not found; SQL statement:
+ALTER TABLE ContactUs change column message message varchar(5000) NOT NULL [42102-186]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345) ~[h2-1.4.186.jar:1.4.186]
+	at org.h2.message.DbException.get(DbException.java:179) ~[h2-1.4.186.jar:1.4.186]
+	at org.h2.message.DbException.get(DbException.java:155) ~[h2-1.4.186.jar:1.4.186]
+	at org.h2.command.Parser.readTableOrView(Parser.java:5251) ~[h2-1.4.186.jar:1.4.186]
+	at org.h2.command.Parser.readTableOrView(Parser.java:5228) ~[h2-1.4.186.jar:1.4.186]
+	at org.h2.command.Parser.parseAlterTable(Parser.java:5305) ~[h2-1.4.186.jar:1.4.186]
+	at org.h2.command.Parser.parseAlter(Parser.java:4720) ~[h2-1.4.186.jar:1.4.186]
+	at org.h2.command.Parser.parsePrepared(Parser.java:332) ~[h2-1.4.186.jar:1.4.186]
+	at org.h2.command.Parser.parse(Parser.java:305) ~[h2-1.4.186.jar:1.4.186]
+	at org.h2.command.Parser.parse(Parser.java:277) ~[h2-1.4.186.jar:1.4.186]
+	at org.h2.command.Parser.prepareCommand(Parser.java:242) ~[h2-1.4.186.jar:1.4.186]
+	at org.h2.engine.Session.prepareLocal(Session.java:446) ~[h2-1.4.186.jar:1.4.186]
+	at org.h2.engine.Session.prepareCommand(Session.java:388) ~[h2-1.4.186.jar:1.4.186]
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1189) ~[h2-1.4.186.jar:1.4.186]
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:170) ~[h2-1.4.186.jar:1.4.186]
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:158) ~[h2-1.4.186.jar:1.4.186]
+	at org.flywaydb.core.internal.dbsupport.JdbcTemplate.executeStatement(JdbcTemplate.java:238) ~[flyway-core-3.2.1.jar:na]
+	at org.flywaydb.core.internal.dbsupport.SqlScript.execute(SqlScript.java:114) ~[flyway-core-3.2.1.jar:na]
+	... 77 common frames omitted
+</system-out>
+    <system-err>Oct 30, 2015 7:04:41 PM com.google.inject.servlet.GuiceFilter setPipeline
+WARNING: Multiple Servlet injectors detected. This is a warning indicating that you have more than one GuiceFilter running in your web application. If this is deliberate, you may safely ignore this message. If this is NOT deliberate however, your application may not work as expected.
+</system-err>
+  </testcase>
+  <testcase classname="controllers.ApiControllerDocTesterTest" name="testGetAndPostArticleViaJson" time="0.282">
+    <error type="java.lang.NullPointerException">java.lang.NullPointerException
+	at ninja.NinjaDocTester.shutdownServer(NinjaDocTester.java:48)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:33)
+	at org.junit.rules.TestWatcher$1.evaluate(TestWatcher.java:55)
+	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+</error>
+  </testcase>
+</testsuite>

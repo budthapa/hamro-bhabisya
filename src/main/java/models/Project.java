@@ -7,6 +7,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -22,6 +23,9 @@ public class Project extends BaseDomain{
 	private String description;
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="project")
 	private List<Picture> picture=new ArrayList<>();
+	
+	@Transient
+	private String buttonName;
 	
 	@Column(name="project_category")
 	private String projectCategory;
@@ -50,5 +54,11 @@ public class Project extends BaseDomain{
 	public void setProjectCategory(String projectCategory) {
 		this.projectCategory = projectCategory;
 	}
-	
+	public String getButtonName() {
+		return buttonName;
+	}
+	public void setButtonName(String buttonName) {
+		this.buttonName = buttonName;
+	}
+
 }

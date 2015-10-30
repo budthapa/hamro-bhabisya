@@ -1,0 +1,172 @@
+-------------------------------------------------------------------------------
+Test set: controllers.LoginLogoutControllerTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 0.217 sec <<< FAILURE!
+testLogingLogout(controllers.LoginLogoutControllerTest)  Time elapsed: 0.216 sec  <<< ERROR!
+java.lang.RuntimeException: ninja.lifecycle.FailedStartException: org.flywaydb.core.internal.dbsupport.FlywaySqlScriptException: 
+Migration V4__.sql failed
+-------------------------
+SQL State  : 42S02
+Error Code : 42102
+Message    : Table "CONTACTUS" not found; SQL statement:
+ALTER TABLE ContactUs change column message message varchar(5000) NOT NULL [42102-186]
+Location   : db/migration/V4__.sql (/home/budthapa/hbjpa/target/classes/db/migration/V4__.sql)
+Line       : 1
+Statement  : ALTER TABLE ContactUs change column message message varchar(5000) NOT NULL
+
+	at ninja.utils.NinjaTestServer.<init>(NinjaTestServer.java:57)
+	at ninja.NinjaTest.startupServerAndBrowser(NinjaTest.java:51)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:24)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+Caused by: ninja.lifecycle.FailedStartException: org.flywaydb.core.internal.dbsupport.FlywaySqlScriptException: 
+Migration V4__.sql failed
+-------------------------
+SQL State  : 42S02
+Error Code : 42102
+Message    : Table "CONTACTUS" not found; SQL statement:
+ALTER TABLE ContactUs change column message message varchar(5000) NOT NULL [42102-186]
+Location   : db/migration/V4__.sql (/home/budthapa/hbjpa/target/classes/db/migration/V4__.sql)
+Line       : 1
+Statement  : ALTER TABLE ContactUs change column message message varchar(5000) NOT NULL
+
+	at ninja.lifecycle.LifecycleRegister.invokeTarget(LifecycleRegister.java:103)
+	at ninja.lifecycle.LifecycleRegister.start(LifecycleRegister.java:55)
+	at ninja.lifecycle.LifecycleServiceImpl.start(LifecycleServiceImpl.java:84)
+	at ninja.NinjaDefault.onFrameworkStart(NinjaDefault.java:149)
+	at ninja.servlet.NinjaBootstrap.boot(NinjaBootstrap.java:93)
+	at ninja.servlet.NinjaServletListener.createNinjaBootstrap(NinjaServletListener.java:134)
+	at ninja.servlet.NinjaServletListener.getInjector(NinjaServletListener.java:110)
+	at com.google.inject.servlet.GuiceServletContextListener.contextInitialized(GuiceServletContextListener.java:47)
+	at ninja.servlet.NinjaServletListener.contextInitialized(NinjaServletListener.java:62)
+	at org.eclipse.jetty.server.handler.ContextHandler.callContextInitialized(ContextHandler.java:800)
+	at org.eclipse.jetty.servlet.ServletContextHandler.callContextInitialized(ServletContextHandler.java:444)
+	at org.eclipse.jetty.server.handler.ContextHandler.startContext(ContextHandler.java:791)
+	at org.eclipse.jetty.servlet.ServletContextHandler.startContext(ServletContextHandler.java:294)
+	at org.eclipse.jetty.server.handler.ContextHandler.doStart(ContextHandler.java:741)
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68)
+	at org.eclipse.jetty.util.component.ContainerLifeCycle.start(ContainerLifeCycle.java:132)
+	at org.eclipse.jetty.server.Server.start(Server.java:387)
+	at org.eclipse.jetty.util.component.ContainerLifeCycle.doStart(ContainerLifeCycle.java:114)
+	at org.eclipse.jetty.server.handler.AbstractHandler.doStart(AbstractHandler.java:61)
+	at org.eclipse.jetty.server.Server.doStart(Server.java:354)
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68)
+	at ninja.standalone.NinjaJetty.start(NinjaJetty.java:265)
+	at ninja.utils.NinjaTestServer.<init>(NinjaTestServer.java:55)
+	... 31 more
+Caused by: org.flywaydb.core.internal.dbsupport.FlywaySqlScriptException: 
+Migration V4__.sql failed
+-------------------------
+SQL State  : 42S02
+Error Code : 42102
+Message    : Table "CONTACTUS" not found; SQL statement:
+ALTER TABLE ContactUs change column message message varchar(5000) NOT NULL [42102-186]
+Location   : db/migration/V4__.sql (/home/budthapa/hbjpa/target/classes/db/migration/V4__.sql)
+Line       : 1
+Statement  : ALTER TABLE ContactUs change column message message varchar(5000) NOT NULL
+
+	at org.flywaydb.core.internal.dbsupport.SqlScript.execute(SqlScript.java:117)
+	at org.flywaydb.core.internal.resolver.sql.SqlMigrationExecutor.execute(SqlMigrationExecutor.java:71)
+	at org.flywaydb.core.internal.command.DbMigrate$5.doInTransaction(DbMigrate.java:284)
+	at org.flywaydb.core.internal.command.DbMigrate$5.doInTransaction(DbMigrate.java:282)
+	at org.flywaydb.core.internal.util.jdbc.TransactionTemplate.execute(TransactionTemplate.java:72)
+	at org.flywaydb.core.internal.command.DbMigrate.applyMigration(DbMigrate.java:282)
+	at org.flywaydb.core.internal.command.DbMigrate.access$800(DbMigrate.java:46)
+	at org.flywaydb.core.internal.command.DbMigrate$2.doInTransaction(DbMigrate.java:207)
+	at org.flywaydb.core.internal.command.DbMigrate$2.doInTransaction(DbMigrate.java:156)
+	at org.flywaydb.core.internal.util.jdbc.TransactionTemplate.execute(TransactionTemplate.java:72)
+	at org.flywaydb.core.internal.command.DbMigrate.migrate(DbMigrate.java:156)
+	at org.flywaydb.core.Flyway$1.execute(Flyway.java:1059)
+	at org.flywaydb.core.Flyway$1.execute(Flyway.java:1006)
+	at org.flywaydb.core.Flyway.execute(Flyway.java:1418)
+	at org.flywaydb.core.Flyway.migrate(Flyway.java:1006)
+	at ninja.migrations.MigrationEngineFlyway.migrate(MigrationEngineFlyway.java:62)
+	at ninja.migrations.MigrationInitializer.start(MigrationInitializer.java:51)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at ninja.lifecycle.LifecycleRegister.invokeTarget(LifecycleRegister.java:96)
+	... 53 more
+Caused by: org.h2.jdbc.JdbcSQLException: Table "CONTACTUS" not found; SQL statement:
+ALTER TABLE ContactUs change column message message varchar(5000) NOT NULL [42102-186]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.command.Parser.readTableOrView(Parser.java:5251)
+	at org.h2.command.Parser.readTableOrView(Parser.java:5228)
+	at org.h2.command.Parser.parseAlterTable(Parser.java:5305)
+	at org.h2.command.Parser.parseAlter(Parser.java:4720)
+	at org.h2.command.Parser.parsePrepared(Parser.java:332)
+	at org.h2.command.Parser.parse(Parser.java:305)
+	at org.h2.command.Parser.parse(Parser.java:277)
+	at org.h2.command.Parser.prepareCommand(Parser.java:242)
+	at org.h2.engine.Session.prepareLocal(Session.java:446)
+	at org.h2.engine.Session.prepareCommand(Session.java:388)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1189)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:170)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:158)
+	at org.flywaydb.core.internal.dbsupport.JdbcTemplate.executeStatement(JdbcTemplate.java:238)
+	at org.flywaydb.core.internal.dbsupport.SqlScript.execute(SqlScript.java:114)
+	... 74 more
+
+testLogingLogout(controllers.LoginLogoutControllerTest)  Time elapsed: 0.216 sec  <<< ERROR!
+java.lang.NullPointerException
+	at ninja.NinjaTest.shutdownServerAndBrowser(NinjaTest.java:75)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:33)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+

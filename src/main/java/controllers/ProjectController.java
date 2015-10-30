@@ -151,24 +151,35 @@ public class ProjectController {
 	
 	public Result update(Context context, @JSR303Validation Project project, Validation validation, 
 			@Params("pictureName") FileItem uploadedfile[], Session session){
-		if(validation.hasViolations()){
-			flashError(context,project);
-			return Results.redirect("/project/edit/"+this.id);
-		}
-		project.setId(id);
-		project.setUpdatedBy(session.get("username"));
-		projectDao.saveOrUpdate(project);
 		
-		picture.setProject(project);
-		//need to work on this later for multiple images
-//		for(String name:imageNameList){
-//		}
-		if(imageNameList.size()>0){
-			picture.setPictureName(imageNameList.get(0));
-			pictureDao.save(picture);
-			imageNameList.clear();			
+		System.out.println("btn "+project.getButtonName());
+		project.setId(id);
+		if(project.getButtonName().equals("Update")){
+			if(validation.hasViolations()){
+				flashError(context,project);
+				return Results.redirect("/project/edit/"+this.id);
+			}
+			project.setUpdatedBy(session.get("username"));
+			projectDao.saveOrUpdate(project);
+			
+			picture.setProject(project);
+			//need to work on this later for multiple images
+	//		for(String name:imageNameList){
+	//		}
+			if(imageNameList.size()>0){
+				picture.setPictureName(imageNameList.get(0));
+				pictureDao.save(picture);
+				imageNameList.clear();			
+			}
+			context.getFlashScope().put("success", "Project updated successfully.");
+		}else{
+			projectDao.delete(project);
+			context.getFlashScope().put("success", "Project deleted successfully.");
 		}
-		context.getFlashScope().put("success", "Project updated successfully.");
+		System.out.println("path "+project.getProjectCategory());
+		if(project.getProjectCategory().equals("News & Events")){
+			return Results.redirect("/project/events");
+		}
 		return Results.redirect("/project");
 	}
 

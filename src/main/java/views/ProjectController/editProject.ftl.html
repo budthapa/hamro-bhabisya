@@ -3,9 +3,8 @@
 	<div class="container">
 		<div class="col-lg-9">
 			<h3>${i18n('project.edit')}</h3>
-			<button class="btn btn-danger" onclick="return confirm('Are you sure?');"><span class="glyphicon glyphicon-trash"></span></button>
 			<form id="editProjectForm" class="form-group form-error-label" action="/project/update" method="post">
-			<@authenticityForm/>
+				<@authenticityForm/>
 				<div class="contact-form">
 					<label>${i18n('project.title')}</label><span class="required">*</span><h5 
 					class="contact-us-form-error">${(flash.invalidName!)}</h5>
@@ -26,10 +25,13 @@
 					placeholder="${i18n('project.description.placeholder')}"><#if project??>${(project.description)}</#if></textarea>
 				</div>
 				<div class="contact-form">
-					<input type="submit" class="btn btn-success" value="${(i18n('button.update'))}" 
+					<input type="submit" name="buttonName" class="btn btn-danger" onclick="return confirm('Are you sure?');"
+					value="${i18n('button.delete')}"/>
+					<input type="submit" name="buttonName" class="btn btn-success" value="${(i18n('button.update'))}" 
 					onclick="return confirm('${(i18n('event.confirm'))}')" />
 				</div>
 			</form>
+			
 		</div>
 		<div class="col-lg-3">
 			<#if flash.noFileSelected??>
