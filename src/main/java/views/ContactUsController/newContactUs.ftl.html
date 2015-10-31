@@ -21,13 +21,27 @@
 					placeholder="Minimum 20 characters">${(flash.message!)}</textarea>
 				</div>
 				<div class="contact-form">
-					<button type="submit" class="btn btn-success form-control">${i18n("contactUs.sendBtn")}</button>
+					<button id="submit" type="submit" class="btn btn-success form-control">${i18n("contactUs.sendBtn")}</button>
 				</div>
 			</form>
 		</div>
 	</div>
 </@layout.myLayout>
 <script>
+$("#submit").on('click', function(){
+    $.confirm({
+        title: 'Confirm!',
+        confirmButtonClass: 'btn-info',
+        cancelButtonClass: 'btn-danger',
+        confirm: function(){
+            alert('Confirmed!');
+        },
+        cancel: function(){
+            alert('Canceled!')
+        }
+    });
+});
+
 $().ready(function() {
 	// validate contact us form on keyup and submit
 	$("#contactUsForm").validate({

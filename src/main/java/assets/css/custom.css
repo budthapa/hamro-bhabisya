@@ -33,6 +33,7 @@ table{background-color: rgba(225, 225, 225, 0.89);}
 .contact-form{margin-top:10px;}
 /* footer starts */
 .footer{list-style:none;}
+
 /* footer ends */
 
 /* navigation link */
@@ -75,4 +76,21 @@ table{background-color: rgba(225, 225, 225, 0.89);}
 	width:auto;
 	display:inline;
 	color:#FF0000;
+}
+
+img {
+  /* Responsive images (ensure images don't scale beyond their parents) */
+
+  max-width: 100%;
+  /* Part 1: Set a maxium relative to the parent */
+
+  width: auto\9;
+  /* IE7-8 need help adjusting responsive images */
+
+  height: auto;
+  /* Part 2: Scale the height according to the width, otherwise you get stretching */
+
+  vertical-align: middle;
+  border: 0;
+  -ms-interpolation-mode: bicubic;
 }

@@ -13,9 +13,9 @@
     <!-- Optional theme -->
     <link rel="stylesheet" href="/assets/webjars/bootstrap/3.3.4/css/bootstrap-theme.min.css">
     <!-- CSS for slidesjs.com example -->
-  	<link rel="stylesheet" href="/assets/css/slider.min.css">
     <link rel="stylesheet" href="/assets/css/custom.css">
     <link rel="stylesheet" href="/assets/css/jquery-ui.min.css">
+    <link rel="stylesheet" href="/assets/css/jquery-confirm.min.css">
     
 <!--   	<link rel="stylesheet" href="/assets/css/font-awesome.min.css"> -->
 	<!-- End CSS for slidesjs.com example -->
@@ -54,7 +54,7 @@
     /* For larger displays */
     @media (min-width: 1200px) {
       .container {
-        width: 1170px
+        width: 1240px
       }
     }
   </style>
@@ -69,10 +69,11 @@
 
 
   <body>
-
-    <div class="container">
+  	<div class="container">
+    	<#include "header.ftl.html"/>
+  	</div>
+    <div class="container clear-fix">
         
-        <#include "header.ftl.html"/>
         
         <#if (flash.error)??>
             <div class="alert alert-danger">
@@ -98,6 +99,7 @@
     <script type="text/javascript" src="/assets/js/jquery.slides.min.js"></script>
     <script type="text/javascript" src="/assets/js/jquery.validate.min.js"></script>
     <script type="text/javascript" src="/assets/js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="/assets/js/jquery-confirm.min.js"></script>
     
 </body>
 </html>
