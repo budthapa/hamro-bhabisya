@@ -31,7 +31,7 @@
 			<div class="col-md-8">
 				<h2>Donate</h2>
 				<p>Your small donations can help a lot to a children </p>
-				<a href="" class="btn btn-primary">More</a>
+				<a href="/donation" class="btn btn-primary">More</a>
 			</div>
 		</div>
 		<div class="col-md-4 donate-project-connect-box">
@@ -76,16 +76,30 @@
 			<a href="https://www.youtube.com/watch?=lkajieKJIOj"></a>
 		</div>
 		<div class="col-md-6">
-			<h3>List of donators</h3>
-				<p>This is the list of people who contributed to us.
-					Latest First
-				</p>
-				<ul>
-					<li>Madhu 20$ Hongkong</li>
-					<li>Madhu 20$ Hongkong</li>
-					<li>Madhu 20$ Hongkong</li>
-				</ul>
-				<a href="" class="btn btn-info">More</a>
+				<div class="panel panel-default">
+				  <!-- Default panel contents -->
+					<div class="panel-heading">
+						<h3>${i18n('donation.list.title')}</h3>
+					</div>
+				  <!-- Table -->
+				  	<table class="table">
+				  		<thead>
+				  			<tr>
+				  				<th>Name</th><th>Amount</th>
+				  			</tr>
+				  		</thead>
+				  		<tbody>
+							<#if donationList??>
+								<#list donationList as list>
+						  			<tr>
+										<td>${(list.title)}</td><td>${(list.amount)}</td>		  				
+						  			</tr>
+								</#list>
+							</#if>
+				  		</tbody>
+				  	</table>
+				</div>
+				<a href="/donation" class="btn btn-info">View More</a>
 		</div>
 	</div>
         

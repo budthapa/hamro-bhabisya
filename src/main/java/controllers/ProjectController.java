@@ -152,7 +152,6 @@ public class ProjectController {
 	public Result update(Context context, @JSR303Validation Project project, Validation validation, 
 			@Params("pictureName") FileItem uploadedfile[], Session session){
 		
-		System.out.println("btn "+project.getButtonName());
 		project.setId(id);
 		if(project.getButtonName().equals("Update")){
 			if(validation.hasViolations()){

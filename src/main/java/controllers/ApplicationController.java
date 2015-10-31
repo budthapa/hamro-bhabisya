@@ -19,18 +19,19 @@ package controllers;
 import java.util.List;
 
 import models.Article;
+import models.Donation;
 import models.Picture;
 import models.Project;
 import ninja.FilterWith;
 import ninja.Result;
 import ninja.Results;
 import ninja.SecureFilter;
-import ninja.session.Session;
 import ninja.utils.NinjaProperties;
 
 import com.google.inject.Inject;
 
 import dao.ArticleDao;
+import dao.DonationDao;
 import dao.PictureDao;
 import dao.ProjectDao;
 import dao.SetupDao;
@@ -43,6 +44,8 @@ public class ApplicationController {
     ProjectDao projectDao;
     @Inject
     PictureDao pictureDao;
+    @Inject
+    DonationDao donationDao;
 
     @Inject
     SetupDao setupDao;
@@ -71,14 +74,11 @@ public class ApplicationController {
     	Project project = projectDao.getLatestProjectFrontPage();
     	Picture picture = pictureDao.getLatestProjectPictureFrontPage(project);
     	Project newsEvent=projectDao.getLatestNewsEventFrontPage();
-    	System.out.println("np id "+newsEvent.getId());
     	Picture newsPicture = pictureDao.getLatestProjectPictureFrontPage(newsEvent);
+    	List<Donation> donationList=donationDao.getLatestDonationFrontPage();
     	Article frontPost = articleDao.getFirstArticleForFrontPage();
     	List<Picture> imageList=pictureDao.findAll();
     	
-    	for(Picture p:imageList){
-    		System.out.println("img "+p.getPictureName());
-    	}
         String desc=project.getDescription();
 
         if(desc.length()>500){
@@ -88,7 +88,8 @@ public class ApplicationController {
         
         List<Article> olderPosts = articleDao.getOlderArticlesForFrontPage();
         return Results.html().render("frontArticle", frontPost).render("olderArticles", olderPosts).render("frontProject", project)
-        		.render("picture", picture).render("newsEvent",newsEvent).render("newsPicture", newsPicture).render("imageList", imageList);
+        		.render("picture", picture).render("newsEvent",newsEvent).render("newsPicture", newsPicture).render("imageList", imageList)
+        		.render("donationList", donationList);
 
     }
     

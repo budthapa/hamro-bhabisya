@@ -1,27 +1,31 @@
 <#import "../layout/defaultLayout.ftl.html" as layout>
 <@layout.myLayout "${i18n('app.name')} ${i18n('donation.list')}">
 	<div>
-		<h2>List of Donation</h2>
-		<table class="table">
-			<thead>
-				<tr>
-					<th>Name</th><th>Amount</th><th>Address</th><th>Date</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>Madhu</td><td>1000</td><td>Hongkong</td><td>2015-10-12</td>
-				</tr>
-				<tr>
-					<td>Madhu</td><td>1000</td><td>Hongkong</td><td>2015-10-12</td>
-				</tr>
-				<tr>
-					<td>Madhu</td><td>1000</td><td>Hongkong</td><td>2015-10-12</td>
-				</tr>
-				<tr>
-					<td>Madhu</td><td>1000</td><td>Hongkong</td><td>2015-10-12</td>
-				</tr>
-			</tbody>
-		</table>
+		<h2>${i18n('donation.list.title')}</h2>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Name</th><th>Amount</th><th>Address</th><th>Date</th>
+					</tr>
+				</thead>
+				<tbody>
+				<#if donationList??>
+					<#if (session.username)??>
+						<#list donationList as list>
+							<tr>
+								<td><a href="/donation/edit/${(list.id)}">${(list.title)}</a></td><td>${(list.amount)}</td><td>${(list.address)}</td><td>${(list.date)}</td>
+							</tr>				
+						</#list>
+					<#else>			
+						<#list donationList as list>
+							<tr>
+								<td>${(list.title)}</td><td>${(list.amount)}</td><td>${(list.address)}</td><td>${(list.date)}</td>
+							</tr>				
+						</#list>
+					</#if>
+				</#if>
+				</tbody>
+			</table>
+			<p><a href="/contact/new">Contact Us</a> to make a donation</p>
 	</div>
 </@layout.myLayout>

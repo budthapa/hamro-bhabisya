@@ -91,6 +91,8 @@ public class Routes implements ApplicationRoutes {
         router.GET().route("/donation").with(DonationController.class, "index");
         router.GET().route("/donation/new").with(DonationController.class, "newDonation");
         router.POST().route("/donation/new").with(DonationController.class, "create");
+        router.GET().route("/donation/edit/{id}").with(DonationController.class, "editDonation");
+        router.POST().route("/donation/update").with(DonationController.class, "update");
         
         
         ///////////////////////////////////////////////////////////////////////

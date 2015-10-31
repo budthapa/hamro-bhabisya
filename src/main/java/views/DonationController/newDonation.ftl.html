@@ -7,25 +7,25 @@
 				<div class="contact-form">
 					<label>${i18n('donation.title')}</label><span class="required">*</span><h5 
 					class="contact-us-form-error">${(flash.invalidName!)}</h5>
-					<input type="text" id="title" name="title" class="form-control" 
+					<input type="text" id="title" name="title" class="form-control" value="${(flash.title!)}" 
 					placeholder="${i18n('donation.title.placeholder')}">
 				</div>
 				<div class="contact-form">
 					<label>${i18n('donation.amount')}</label><span class="required">*</span><h5 
 					class="contact-us-form-error">${(flash.invalidAmount!)}</h5>
-					<input type="number" id="amount" name="amount" class="form-control" min="1"
+					<input type="number" id="amount" name="amount" class="form-control" min="1" value="${(flash.amount!)}"
 					placeholder="${i18n('donation.amount.placeholder')}">
 				</div>
 				<div class="contact-form">
 					<label>${i18n('donation.address')}</label><span class="required">*</span><h5 
 					class="contact-us-form-error">${(flash.invalidAddress!)}</h5>
-					<input type="text" id="address" name="address" class="form-control" 
+					<input type="text" id="address" name="address" class="form-control" value="${(flash.address!)}"
 					placeholder="${i18n('donation.address.placeholder')}">
 				</div>
 				<div class="contact-form">
 					<label>${i18n('donation.date')}</label><span class="required">*</span><h5 
 					class="contact-us-form-error">${(flash.invalidDate!)}</h5>
-					<input type="date" id="date" name="date" class="form-control" 
+					<input type="date" id="date" name="date" class="form-control" value="${(flash.date!)}"
 					placeholder="${i18n('donation.date.placeholder')}">
 				</div>
 				<div class="contact-form">
@@ -40,7 +40,7 @@ $(function() {
     $( "#date" ).datepicker({
     	altField: "#actualDate",
     	dateFormat: "yy-mm-dd",
-    	showAnim: "slideDown",
+    	showAnim: "slideDown"
     });
   });
 
