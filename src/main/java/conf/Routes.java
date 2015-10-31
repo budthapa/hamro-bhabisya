@@ -27,6 +27,7 @@ import controllers.ApiController;
 import controllers.ApplicationController;
 import controllers.ArticleController;
 import controllers.ContactUsController;
+import controllers.DonationController;
 import controllers.LoginLogoutController;
 import controllers.ProjectController;
 
@@ -85,6 +86,12 @@ public class Routes implements ApplicationRoutes {
         router.GET().route("/project/{id}").with(ProjectController.class, "showProject");
         router.GET().route("/project/edit/{id}").with(ProjectController.class, "editProject");
         router.POST().route("/project/update").with(ProjectController.class, "update");
+        
+        ////// Donate Routing
+        router.GET().route("/donation").with(DonationController.class, "index");
+        router.GET().route("/donation/new").with(DonationController.class, "newDonation");
+        router.POST().route("/donation/new").with(DonationController.class, "create");
+        
         
         ///////////////////////////////////////////////////////////////////////
         // Api for management of software
