@@ -99,11 +99,15 @@ table{background-color: rgba(225, 225, 225, 0.89);}
 .donate-project-connect-box{
 	border: 1px solid #C6C4C4;
 	background-color: #D1D1D1;
+	padding-bottom: 15px;
 }
 .news-row{margin-top:20px;}
 .news-header{margin: 5px 0 10px 14px;font-weight: 600;}
 .news-margin{margin-top:32px;}
 
+.donation-list{
+	font-size:20px;
+}
 
 /* form validation*/
 .form-error-label label.error{

@@ -87,6 +87,11 @@ public class ProjectController {
 			for(FileItem fi:uploadedfile){
 				if(!fi.getFileName().isEmpty()){
 				   if (fi.getContentType().equals("image/jpeg") || fi.getContentType().equals("image/jpg") || fi.getContentType().equals("image/png")) {
+					   long fileSize=fi.getFile().length();
+					   if((fileSize/1024)>200){
+						   return Results.status(400);
+					   }
+					   //if()
 						String uuid=UUID.randomUUID().toString();
 						try {
 							FileUtils.moveFile(fi.getFile(), new File("../hbjpa/src/main/java/assets/image/"+uuid+".jpg"));
