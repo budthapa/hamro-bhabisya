@@ -21,29 +21,59 @@ table{background-color: rgba(225, 225, 225, 0.89);}
 	width:200px; !important	
 }
 .company-name{
-	color:#fff;
+	color:#842E11;
 }
 .company-slogan{
 	margin-top: -12px;
-	color:#fff;
+	color:#486489;
 }
 .hblogo{margin-top:-5px;width: 32px;height: 32px;}
 .navbar-bottom-color{
-	border-bottom: 3px solid #00439B;
+	border-bottom: 1px solid #00439B;
 }
 
 .navbar{border-radius: 0px;}
 
 .contact-form{margin-top:10px;}
-/* footer starts */
-.footer{list-style:none;}
-
-/* footer ends */
 
 /* navigation link */
 .nav > li > a{
-	padding:15px 5px; !important
+	padding:17px 8px;
 }
+
+.navbar-default .navbar-nav > li > a {
+    color: #3F4A53;
+}
+
+.navbar-default .navbar-nav > li > a:HOVER {
+    background-color:#625D5D;
+	color:#FFF;
+}
+
+.nav {
+    padding-left: 15px;
+}
+
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+    padding-top: 2px;
+}
+
+.navbar-nav > li {
+    float: left;
+    padding: 1px;
+}
+
+/* footer starts */
+.footer{list-style:none;}
+
+.footer-right{
+	margin-top: -5px;
+}
+.footer-copyright{
+	padding-top: 10px;
+}
+/* footer ends */
+
 
 /* contact-us form*/
 .contact-us-form-error{
@@ -98,3 +128,5 @@ img {
   border: 0;
   -ms-interpolation-mode: bicubic;
 }
+
+
