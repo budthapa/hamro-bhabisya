@@ -16,7 +16,11 @@
 
 package controllers;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import models.Article;
 import models.Donation;
@@ -28,9 +32,15 @@ import ninja.FilterWith;
 import ninja.Result;
 import ninja.Results;
 import ninja.SecureFilter;
+import ninja.params.Params;
+import ninja.uploads.DiskFileItemProvider;
+import ninja.uploads.FileItem;
+import ninja.uploads.FileProvider;
 import ninja.utils.NinjaProperties;
 import ninja.validation.JSR303Validation;
 import ninja.validation.Validation;
+
+import org.apache.commons.io.FileUtils;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
@@ -45,7 +55,7 @@ import etc.Validator;
 
 @Singleton
 public class ApplicationController {
-
+	List<String> imageNameList=new ArrayList<>();
     @Inject
     ArticleDao articleDao;
     @Inject
@@ -60,6 +70,9 @@ public class ApplicationController {
     @Inject
     SetupDao setupDao;
 
+    @Inject
+	Picture picture;
+    
     public ApplicationController() {
 
     }
@@ -87,7 +100,19 @@ public class ApplicationController {
     	boolean validateDesignation = validateDesignation(user.getDesignation(), context,user);
     	
     	if(validateName && validateContactNumber && validateDesignation){
+    		if(user.getContactNumber().trim().isEmpty()){
+    			user.setContactNumber("");
+    		}
+    		if(user.getDesignation().trim().isEmpty()){
+    			user.setDesignation("");
+    		}
     		userDao.save(user);
+    		picture.setUser(user);
+    		if(imageNameList.size()>0){
+    			picture.setPictureName(imageNameList.get(0));    			
+    			pictureDao.save(picture);
+    			imageNameList.clear();
+    		}
     		context.getFlashScope().put("success", "user.create.success");
     	}
     	
@@ -140,6 +165,41 @@ public class ApplicationController {
     @Inject
     NinjaProperties np;
     
+    @FileProvider(DiskFileItemProvider.class)
+	public Result upload(Context context, @Params("pictureName") FileItem uploadedfile[]){
+		if(context.isMultipart()){
+			if(uploadedfile.length==0){
+				return Results.status(400);
+			}
+			for(FileItem fi:uploadedfile){
+				if(!fi.getFileName().isEmpty()){
+				   if (fi.getContentType().equals("image/jpeg") || fi.getContentType().equals("image/jpg") || fi.getContentType().equals("image/png")) {
+					   long fileSize=fi.getFile().length();
+					   if((fileSize/1024)>200){
+						   context.getFlashScope().put("invalidFileSize", "Invalid file size");
+						   return Results.status(400);
+//						   return Results.redirect("/project/new");
+					   }
+					   //if()
+						String uuid=UUID.randomUUID().toString();
+						try {
+							FileUtils.moveFile(fi.getFile(), new File("../hbjpa/src/main/java/assets/image/"+uuid+".jpg"));
+							imageNameList.add(uuid);
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+				   }else{
+					   context.getFlashScope().put("noFileSelected", "Not a valid file or no file(s) selected");
+					   break;
+				   }
+				   
+				}
+			}
+		}
+		System.out.println("request path : "+context.getRequestPath());
+		return Results.redirect("/project/new");
+    }
+    
     public Result index() {
     	Project project = projectDao.getLatestProjectFrontPage();
     	Picture picture = pictureDao.getLatestProjectPictureFrontPage(project);
@@ -166,5 +226,10 @@ public class ApplicationController {
     @FilterWith(SecureFilter.class)
     public Result dashboard(){
     	return Results.html();    		
+    }
+    
+    public Result memberList(){
+    	List<User> userList=userDao.findAll();
+    	return Results.html().render("userList", userList);
     }
 }

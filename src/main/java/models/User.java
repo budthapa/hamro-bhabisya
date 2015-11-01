@@ -4,17 +4,18 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
-public class User {
+public class User extends BaseDomain{
     
-    @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    public Long id;
+//    @Id
+//    @GeneratedValue(strategy=GenerationType.AUTO)
+//    public Long id;
     public String username;
     public String password;
     public String fullname;
@@ -31,6 +32,8 @@ public class User {
     private String contactNumber;
     private String designation;
     
+    @OneToOne(mappedBy="user")
+    private Picture picture;
     
     public User() {}
     
@@ -87,7 +90,13 @@ public class User {
 	public void setDesignation(String designation) {
 		this.designation = designation;
 	}
+
+	public Picture getPicture() {
+		return picture;
+	}
+
+	public void setPicture(Picture picture) {
+		this.picture = picture;
+	}
     
-    
- 
 }

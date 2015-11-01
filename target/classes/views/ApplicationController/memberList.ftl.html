@@ -1,0 +1,32 @@
+<#import "../layout/defaultLayout.ftl.html" as layout> 
+<@layout.myLayout "${i18n('app.name')} ${i18n('user.list')}"> 
+	<div class="panel panel-default">
+		<!-- Default panel contents -->
+	  	<div class="panel-heading">${i18n('contact.title')}</div>
+	  	<!-- Table -->
+		<table class="table">
+			<thead>
+				<tr>
+					<th>${i18n('user.name')}</th>
+					<th>${i18n('email')}</th>
+					<th>${i18n('donation.address')}</th>
+					<th>${i18n('user.designation')}</th>
+					<th>${i18n('user.contact.number')}</th>
+				</tr>
+			</thead>
+	  		<tbody>
+				<#if userList??>
+					<#list userList as list>
+			  			<tr>
+			  				<th scope="row" class="contact-us-row-width">${list.name}</th>
+			  				<td class="contact-us-row-width">${list.email}</td>
+			  				<td class="contact-us-row-width">${list.address}</td>
+			  				<td class="contact-us-row-width">${list.designation}</td>
+			  				<td class="contact-us-row-width">${list.contactNumber}</td>
+			  			</tr>
+					</#list>
+				</#if>
+	  		</tbody>
+		</table>
+	</div>
+</@layout.myLayout>

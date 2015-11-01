@@ -63,11 +63,14 @@ public class UserDao implements IBaseDao{
  
     }
 
+    @SuppressWarnings("unchecked")
 	@Override
 	@UnitOfWork
 	public <T> List<T> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		EntityManager em=entityManagerProvider.get();
+		Query q=em.createQuery("SELECT x FROM User x");
+		List<User> list=q.getResultList();
+		return (List<T>) list;
 	}
 
 	@Override
@@ -81,8 +84,10 @@ public class UserDao implements IBaseDao{
 	@Transactional
 	public <T> int save(T object) {
 		EntityManager em=entityManagerProvider.get();
-		em.persist(object);
-		return 0;
+		User user=(User)object;
+		em.persist(user);
+		System.out.println("uid "+user.getId());
+		return user.getId();
 	}
 
 	@Override

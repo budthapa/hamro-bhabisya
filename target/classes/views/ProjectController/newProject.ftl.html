@@ -1,5 +1,5 @@
 <#import "../layout/defaultLayout.ftl.html" as layout>
-<@layout.myLayout "Project :: New">
+<@layout.myLayout "${i18n('app.name')} ${i18n('project.new')}">
 	<div class="row">
 		<div class="col-md-9">
 			<h3>${i18n('project.new')}</h3>
@@ -35,6 +35,9 @@
 				<p class="alert alert-danger">${(flash.noFileSelected)}</p>
 			</#if>
 			
+			<#if flash.invalidFileSize??>
+				<p class="alert alert-danger">${(flash.invalidFileSize)}</p>
+			</#if>
 			<p id="uploading" class="alert alert-info" hidden="true">${(i18n('uploading'))}</p>
 			<form id="uploadForm" class="form-group form-error-label" action="/project/upload" method="post" enctype="multipart/form-data">
 				<div class="contact-form">
@@ -54,20 +57,6 @@
 	<script>
 	
 	$().ready(function() {
-		$("#uploadForm").validate({
-			rules:{
-				pictureName: "required",
-				pictureName: {
-					required: true,
-				}
-			},
-			messages: {
-				pictureName: {
-					required: "Please select picture"
-				}
-			}
-		});
-		// validate form on keyup and submit
 		$("#projectForm").validate({
 			rules: {
 				title: "required",
@@ -105,29 +94,5 @@
 			}
 		});
 	});
-	function send(){
-	    	$("#uploadForm").ajaxForm(function(){
-	    		beforeSubmit: uploadingMessage();
-	    		success: showResponse
-	    		clearForm: true;
-	    	});
-	}
-	function uploadingMessage(){
-			document.getElementById("uploading").style.display='block';
-	}
-	function showResponse(responseText, statusText, xhr, $form)  { 
-	    // for normal html responses, the first argument to the success callback 
-	    // is the XMLHttpRequest object's responseText property 
-	 
-	    // if the ajaxForm method was passed an Options Object with the dataType 
-	    // property set to 'xml' then the first argument to the success callback 
-	    // is the XMLHttpRequest object's responseXML property 
-	 
-	    // if the ajaxForm method was passed an Options Object with the dataType 
-	    // property set to 'json' then the first argument to the success callback 
-	    // is the json data object returned by the server 
-	 
-	    alert('status: ' + statusText + '\n\nresponseText: \n' + responseText + 
-	        '\n\nThe output div should have already been updated with the responseText.'); 
-	} 
+	
     </script>

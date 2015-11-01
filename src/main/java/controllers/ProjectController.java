@@ -89,7 +89,9 @@ public class ProjectController {
 				   if (fi.getContentType().equals("image/jpeg") || fi.getContentType().equals("image/jpg") || fi.getContentType().equals("image/png")) {
 					   long fileSize=fi.getFile().length();
 					   if((fileSize/1024)>200){
+						   context.getFlashScope().put("invalidFileSize", "Invalid file size");
 						   return Results.status(400);
+//						   return Results.redirect("/project/new");
 					   }
 					   //if()
 						String uuid=UUID.randomUUID().toString();
