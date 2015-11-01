@@ -21,14 +21,15 @@
 					placeholder="Minimum 20 characters">${(flash.message!)}</textarea>
 				</div>
 				<div class="contact-form">
-					<button id="submit" type="submit" class="btn btn-success form-control">${i18n("contactUs.sendBtn")}</button>
+					<button id="submitForm" class="btn btn-success form-control">${i18n("contactUs.sendBtn")}</button>
 				</div>
 			</form>
 		</div>
 	</div>
 </@layout.myLayout>
 <script>
-$("#submit").on('click', function(){
+/* 
+$("#submitForm").on('click', function(){
     $.confirm({
         title: 'Confirm!',
         confirmButtonClass: 'btn-info',
@@ -41,7 +42,7 @@ $("#submit").on('click', function(){
         }
     });
 });
-
+ */
 $().ready(function() {
 	// validate contact us form on keyup and submit
 	$("#contactUsForm").validate({
@@ -66,6 +67,18 @@ $().ready(function() {
 				required: "Please enter your message",
 				minlength: "Your message must be at least 20 characters long"
 			}
+		},
+		submitHandler: function(form) {
+			$.confirm({
+				title: 'Confirm!',
+			    confirmButtonClass: 'btn-info',
+			    cancelButtonClass: 'btn-danger',
+			    confirm: function(){
+			       form.submit();
+			    },
+			    cancel: function(){
+			    }
+			});
 		}
 	});
 });
