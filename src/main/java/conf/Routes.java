@@ -47,11 +47,17 @@ public class Routes implements ApplicationRoutes {
      */
     @Override
     public void init(Router router) {  
-        
+
+    	
         // puts test data into db:
         if (!ninjaProperties.isProd()) {
-            router.GET().route("/setup").with(ApplicationController.class, "setup");
-            router.GET().route("/app/dashboard").with(ApplicationController.class, "dashboard");
+        	router.GET().route("/app/dashboard").with(ApplicationController.class, "dashboard");
+            router.GET().route("/settings").with(ApplicationController.class, "settings");
+            router.GET().route("/settings/user/new").with(ApplicationController.class, "newUser");
+            router.POST().route("/settings/user/new").with(ApplicationController.class, "create");
+            
+//            router.GET().route("/settings/user/changepassword").with(ApplicationController.class, "settings");
+            
         }
         
         ///////////////////////////////////////////////////////////////////////
@@ -110,10 +116,10 @@ public class Routes implements ApplicationRoutes {
         router.GET().route("/assets/webjars/{fileName: .*}").with(AssetsController.class, "serveWebJars");
         router.GET().route("/assets/{fileName: .*}").with(AssetsController.class, "serveStatic");
         
-        ///////////////////////////////////////////////////////////////////////
-        // Index / Catchall shows index page
-        ///////////////////////////////////////////////////////////////////////
-        router.GET().route("/.*").with(ApplicationController.class, "index");
+		///////////////////////////////////////////////////////////////////////
+		// Index / Catchall shows index page, leave this at the end load this after all resources are loaded
+		///////////////////////////////////////////////////////////////////////
+		router.GET().route("/.*").with(ApplicationController.class, "index");
     }
 
 }

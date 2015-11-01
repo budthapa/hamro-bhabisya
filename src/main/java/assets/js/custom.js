@@ -14,3 +14,17 @@ function fileSizeAlert(){
         confirm: function(){}
     });
 }
+
+$("#uploadForm").validate({
+	rules:{
+		pictureName: "required",
+		pictureName: {
+			required: true,
+		}
+	},
+	messages: {
+		pictureName: {
+			required: "Please select picture"
+		}
+	}
+});

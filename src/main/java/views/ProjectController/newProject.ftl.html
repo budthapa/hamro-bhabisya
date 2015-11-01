@@ -1,7 +1,7 @@
 <#import "../layout/defaultLayout.ftl.html" as layout>
 <@layout.myLayout "Project :: New">
-	<div class="container">
-		<div class="col-lg-9">
+	<div class="row">
+		<div class="col-md-9">
 			<h3>${i18n('project.new')}</h3>
 			<form id="projectForm" class="form-group form-error-label" action="/project" method="post">
 			<@authenticityForm/>
@@ -30,7 +30,7 @@
 			</form>
 			<a href="/project">View all projects</a>
 		</div>
-		<div class="col-lg-3">
+		<div class="col-md-3">
 			<#if flash.noFileSelected??>
 				<p class="alert alert-danger">${(flash.noFileSelected)}</p>
 			</#if>

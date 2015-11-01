@@ -1,0 +1,9 @@
+<#import "../layout/defaultLayout.ftl.html" as layout> 
+<@layout.myLayout "${i18n('app.name')} ${i18n('settings')}"> 
+<div class="col-md-6">
+	<a href="/settings/user/changepassword">Change Password</a>
+	<a href="/settings/user/new">Add New User</a>
+	<a href="/settings/user/disable">Disable User</a>
+</div>
+
+</@layout.myLayout>

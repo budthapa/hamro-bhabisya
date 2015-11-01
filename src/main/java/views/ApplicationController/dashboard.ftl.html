@@ -1,8 +1,9 @@
 <#import "../layout/defaultLayout.ftl.html" as layout>
-<@layout.myLayout "HamroBhabisya :: Dashboard">
+<@layout.myLayout "${i18n('app.name')} ${i18n('dashboard')}">
 	<a href="/project/new">New Project</a>
 	<a href="/project">View Projects</a>
 	<a href="/donation/new">Add Donation</a>
 	<a href="/donation">View Donations</a>
 	<a href="/contact">View Contact Messages</a>
+	<a href="/settings">Settings</a>
 </@layout.myLayout>

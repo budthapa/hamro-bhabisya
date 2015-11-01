@@ -16,6 +16,8 @@
 
 package dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
@@ -24,8 +26,9 @@ import ninja.jpa.UnitOfWork;
 
 import com.google.inject.Inject;
 import com.google.inject.Provider;
+import com.google.inject.persist.Transactional;
 
-public class UserDao {
+public class UserDao implements IBaseDao{
     
     @Inject
     Provider<EntityManager> entityManagerProvider;
@@ -59,5 +62,34 @@ public class UserDao {
         return false;
  
     }
+
+	@Override
+	@UnitOfWork
+	public <T> List<T> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	@Transactional
+	public <T> boolean delete(T object) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	@Transactional
+	public <T> int save(T object) {
+		EntityManager em=entityManagerProvider.get();
+		em.persist(object);
+		return 0;
+	}
+
+	@Override
+	@Transactional
+	public <T> boolean saveOrUpdate(T object) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
 }
