@@ -25,10 +25,10 @@
 					placeholder="${i18n('project.description.placeholder')}"></textarea>
 				</div>
 				<div class="contact-form">
-					<input type="submit" class="btn btn-success" value="${(i18n('button.save'))}" 
-					onclick="return confirm('${(i18n('event.confirm'))}')" />
+					<button id="submitForm" class="btn btn-success">${(i18n('button.save'))}</button>
 				</div>
 			</form>
+			<a href="/project">View all projects</a>
 		</div>
 		<div class="col-lg-3">
 			<#if flash.noFileSelected??>
@@ -89,6 +89,18 @@
 					required: "Please enter description",
 					minlength: "Description must be at least 30 characters long"
 				}
+			},
+			submitHandler: function(form) {
+				$.confirm({
+					title: 'Confirm!',
+				    confirmButtonClass: 'btn-success',
+				    cancelButtonClass: 'btn-danger',
+				    confirm: function(){
+				       form.submit();
+				    },
+				    cancel: function(){
+				    }
+				});
 			}
 		});
 	});

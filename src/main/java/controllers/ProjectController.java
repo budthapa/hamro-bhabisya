@@ -153,7 +153,7 @@ public class ProjectController {
 			@Params("pictureName") FileItem uploadedfile[], Session session){
 		
 		project.setId(id);
-		if(project.getButtonName().equals("Update")){
+//		if(project.getButtonName().equals("Update")){
 			if(validation.hasViolations()){
 				flashError(context,project);
 				return Results.redirect("/project/edit/"+this.id);
@@ -171,11 +171,10 @@ public class ProjectController {
 				imageNameList.clear();			
 			}
 			context.getFlashScope().put("success", "Project updated successfully.");
-		}else{
-			projectDao.delete(project);
-			context.getFlashScope().put("success", "Project deleted successfully.");
-		}
-		System.out.println("path "+project.getProjectCategory());
+//		}else{
+//			projectDao.delete(project);
+//			context.getFlashScope().put("success", "Project deleted successfully.");
+//		}
 		if(project.getProjectCategory().equals("News & Events")){
 			return Results.redirect("/project/events");
 		}

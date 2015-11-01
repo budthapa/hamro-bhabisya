@@ -25,10 +25,9 @@
 					placeholder="${i18n('project.description.placeholder')}"><#if project??>${(project.description)}</#if></textarea>
 				</div>
 				<div class="contact-form">
-					<input type="submit" name="buttonName" class="btn btn-danger" onclick="return confirm('Are you sure?');"
-					value="${i18n('button.delete')}"/>
-					<input type="submit" name="buttonName" class="btn btn-success" value="${(i18n('button.update'))}" 
-					onclick="return confirm('${(i18n('event.confirm'))}')" />
+					<!-- <input type="submit" name="buttonName" class="btn btn-danger" value="${i18n('button.delete')}"/> -->
+					<!-- <input type="submit" name="buttonName" class="btn btn-success" value="${i18n('button.update')}"/> -->
+					<button id="submitForm" name="buttonName" class="btn btn-success" value="${i18n('button.update')}">${(i18n('button.update'))}</button>
 				</div>
 			</form>
 			
@@ -97,6 +96,18 @@
 					required: "Please enter description",
 					minlength: "Description must be at least 30 characters long"
 				}
+			},
+			submitHandler: function(form) {
+				$.confirm({
+					title: 'Confirm!',
+				    confirmButtonClass: 'btn-success',
+				    cancelButtonClass: 'btn-danger',
+				    confirm: function(){
+				       form.submit();
+				    },
+				    cancel: function(){
+				    }
+				});
 			}
 		});
 	});
