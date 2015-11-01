@@ -29,8 +29,7 @@
 					placeholder="${i18n('donation.date.placeholder')}">
 				</div>
 				<div class="contact-form">
-					<input type="submit" class="btn btn-success" value="${(i18n('button.save'))}" 
-					onclick="return confirm('${(i18n('event.confirm'))}')" />
+					<button id="submitForm" class="btn btn-success form-control">${(i18n('button.save'))}</button>
 				</div>
 			</form>
 		</div>
@@ -79,6 +78,18 @@ $().ready(function(){
 			date:{
 				required: "Date required"
 			}
+		},
+		submitHandler: function(form) {
+			$.confirm({
+				title: 'Confirm!',
+			    confirmButtonClass: 'btn-info',
+			    cancelButtonClass: 'btn-danger',
+			    confirm: function(){
+			       form.submit();
+			    },
+			    cancel: function(){
+			    }
+			});
 		}
 	});
 });
