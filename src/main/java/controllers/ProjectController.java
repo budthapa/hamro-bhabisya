@@ -41,8 +41,6 @@ public class ProjectController {
 	PictureDao pictureDao;
 	@Inject
 	Picture picture;
-	@Inject 
-	Project proj;
 
 	private int id;
 	
@@ -53,7 +51,6 @@ public class ProjectController {
 	
 	@FilterWith(SecureFilter.class)
 	public Result newProject(){
-		System.out.println("editi");
 		return Results.html();
 	}
 	
@@ -167,7 +164,7 @@ public class ProjectController {
 	//		}
 			if(imageNameList.size()>0){
 				picture.setPictureName(imageNameList.get(0));
-				pictureDao.save(picture);
+				pictureDao.saveOrUpdate(picture);
 				imageNameList.clear();			
 			}
 			context.getFlashScope().put("success", "Project updated successfully.");

@@ -52,7 +52,7 @@
 			</form>
 			<#if picture??>
 				<img alt="Hamrobhabisya ${(project.title)}" src="/assets/image/${(picture.pictureName)}.jpg">
-				<button class="btn btn-danger" onclick="return confirm('Are you sure?');">Delete Picture</button>
+				<button id="deleteBtn" class="btn btn-danger" onclick="return confirm('Are you sure?');">Delete Picture</button>
 			</#if>
 		</div>
 	</div>

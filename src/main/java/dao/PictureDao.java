@@ -45,8 +45,15 @@ public class PictureDao implements IBaseDao{
 	@Override
 	@Transactional
 	public <T> boolean saveOrUpdate(T object) {
-		// TODO Auto-generated method stub
-		return false;
+		EntityManager em=entityManagerProvider.get();
+		Picture pic=(Picture)object;
+		//this is inserting new value instead of updating why
+//		System.out.println("pic project id ; "+ pic.getProject().getId());
+//		em.merge(object);
+//		return true;
+		Query q=em.createQuery("UPDATE Picture x SET x.pictureName = :param WHERE x.project = :paramObject");
+		q.setParameter("param", pic.getPictureName()).setParameter("paramObject", pic.getProject()).executeUpdate();
+		return true;
 	}
 
 	@UnitOfWork
