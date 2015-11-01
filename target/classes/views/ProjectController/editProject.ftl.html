@@ -41,7 +41,7 @@
 			<form id="uploadForm" class="form-group form-error-label" action="/project/upload" method="post" enctype="multipart/form-data">
 				<div class="contact-form">
 					<label>${(i18n('select.image'))}</label>
-					<input type="file" name="pictureName"/>
+					<input type="file" name="pictureName" id="picture"/>
 					<!-- <input type="file" name="pictureName"/>
 					<input type="file" name="pictureName"/>
 					<input type="file" name="pictureName"/> -->
@@ -59,7 +59,7 @@
 	
 </@layout.myLayout>
 	<script>
-	$().ready(function() {editProjectForm
+	$().ready(function() {
 		$("#uploadForm").validate({
 			rules:{
 				pictureName: "required",
