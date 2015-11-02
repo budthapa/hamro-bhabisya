@@ -30,45 +30,49 @@ import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.google.inject.persist.Transactional;
 
-public class UserDao implements IBaseDao{
-	Logger log=Logger.getLogger(UserDao.class.getName());
-    @Inject
-    Provider<EntityManager> entityManagerProvider;
-    
-    @UnitOfWork
-    public boolean isUserAndPasswordValid(String email, String password) {
-    	EntityManager entityManager = entityManagerProvider.get();
-    	User user=null;
-    	try{
-    		Query q = entityManager.createQuery("SELECT x FROM User x WHERE x.email = :emailParam");
-    		user = (User) q.setParameter("emailParam", email).getSingleResult();   
-    		if(user!=null){
-    			Login login= null ;
-    			try{
-    				Query loginQuery = entityManager.createQuery("SELECT x FROM Login x WHERE x.user = :userParam");
-    				loginQuery.setParameter("userParam", user);
-    				login=(Login) loginQuery.getSingleResult();
-    				if (login.getPassword().equals(password)) {
-    					return true;
-    				}
-    			}catch(Exception e){
-    				log.warning("Login not found for email "+user.getEmail());
-    			}
-    		}
-    	}catch(Exception e){
-    		log.warning("User not found for submitted email : "+email);    		
-    	}
-    	
-        return false;
-    }
+import dto.UserDto;
 
-    @SuppressWarnings("unchecked")
+public class UserDao implements IBaseDao {
+	Logger log = Logger.getLogger(UserDao.class.getName());
+	@Inject
+	Provider<EntityManager> entityManagerProvider;
+
+	@UnitOfWork
+	public UserDto isUserAndPasswordValid(String email) {
+		EntityManager entityManager = entityManagerProvider.get();
+		User user = null;
+		try {
+			Query q = entityManager.createQuery("SELECT x FROM User x WHERE x.email = :emailParam");
+			user = (User) q.setParameter("emailParam", email).getSingleResult();
+			if (user != null) {
+				Login login = null;
+				try {
+					Query loginQuery = entityManager.createQuery("SELECT x FROM Login x WHERE x.user = :userParam");
+					loginQuery.setParameter("userParam", user);
+					login = (Login) loginQuery.getSingleResult();
+					UserDto userDto = new UserDto();
+					userDto.setPassword(login.getPassword());
+					userDto.setActive(login.isActive());
+					userDto.setAdmin(login.isAdmin());
+					return userDto;
+				} catch (Exception e) {
+					log.warning("Login not found for email " + user.getEmail());
+				}
+			}
+		} catch (Exception e) {
+			log.warning("User not found for submitted email : " + email);
+		}
+
+		return null;
+	}
+
+	@SuppressWarnings("unchecked")
 	@Override
 	@UnitOfWork
 	public <T> List<T> findAll() {
-		EntityManager em=entityManagerProvider.get();
-		Query q=em.createQuery("SELECT x FROM User x");
-		List<User> list=q.getResultList();
+		EntityManager em = entityManagerProvider.get();
+		Query q = em.createQuery("SELECT x FROM User x");
+		List<User> list = q.getResultList();
 		return (List<T>) list;
 	}
 
@@ -82,15 +86,15 @@ public class UserDao implements IBaseDao{
 	@Override
 	@Transactional
 	public <T> int save(T object) {
-		EntityManager em=entityManagerProvider.get();
+		EntityManager em = entityManagerProvider.get();
 		User user = null;
-		try{
-			user=(User)object;
+		try {
+			user = (User) object;
 			em.persist(user);
 			return user.getId();
-			
-		}catch(Exception e){
-			log.warning("Duplicate entry for '"+user.getEmail()+"'");
+
+		} catch (Exception e) {
+			log.warning("Duplicate entry for '" + user.getEmail() + "'");
 		}
 		return 0;
 	}
@@ -98,17 +102,17 @@ public class UserDao implements IBaseDao{
 	@Override
 	@Transactional
 	public <T> boolean saveOrUpdate(T object) {
-		EntityManager em=entityManagerProvider.get();
-		User user=(User)object;
+		EntityManager em = entityManagerProvider.get();
+		User user = (User) object;
 		em.merge(user);
 		return true;
 	}
 
 	@UnitOfWork
 	public User getUser(int userId) {
-		EntityManager em=entityManagerProvider.get();
-		Query q=em.createQuery("SELECT x FROM User x WHERE x.id = :idParam");
-		User user=(User) q.setParameter("idParam", userId).getSingleResult();
+		EntityManager em = entityManagerProvider.get();
+		Query q = em.createQuery("SELECT x FROM User x WHERE x.id = :idParam");
+		User user = (User) q.setParameter("idParam", userId).getSingleResult();
 		return user;
 	}
 

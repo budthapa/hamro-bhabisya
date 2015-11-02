@@ -46,21 +46,34 @@ public class LoginLogoutController {
     		flashError(context,user);
     		return Results.redirect("/login");
     	}
-    	boolean isUserNameAndPasswordValid = userDao.isUserAndPasswordValid(user.getEmail().trim(), user.getPassword().trim());
-		if (isUserNameAndPasswordValid) {
-	    	context.getSession().put("username", user.getEmail());
-	        context.getFlashScope().success("login.loginSuccessful");
-	        return Results.redirect("/app/dashboard");
-    	} else {
-    		if(countLoginAttempt==3){
-    			//get this user's ip and ban this user
-    			log.warning("Invalid login attempt : "+countLoginAttempt);
+    	UserDto userDto = userDao.isUserAndPasswordValid(user.getEmail().trim());
+    		
+    	if(userDto!=null){
+    		if(!userDto.isActive()){
+    			log.info("User with email address "+user.getEmail()+" is deactivated");
+    			context.getFlashScope().put("email", user.getEmail());
+    			context.getFlashScope().error("login.errorLogin");
+    			return Results.redirect("/login");
     		}
-    		countLoginAttempt++;
-    		context.getFlashScope().put("email", user.getEmail());
-    		context.getFlashScope().error("login.errorLogin");
-    		return Results.redirect("/login");
+    		
+    		if(user.getPassword().equals(userDto.getPassword())){
+    			context.getSession().put("username", user.getEmail());
+    			context.getFlashScope().success("login.loginSuccessful");
+    			return Results.redirect("/app/dashboard");    			
+    		}
+    	} 
+    	countLoginAttempt++;
+    	if(countLoginAttempt==3){
+    			//get this user's ip and ban this user
+    		log.warning("Invalid login attempt : "+countLoginAttempt+ " from "+user.getEmail());
+    		countLoginAttempt=0;
     	}
+    	
+    	context.getFlashScope().put("email", user.getEmail());
+    	context.getFlashScope().error("login.errorLogin");
+    	return Results.redirect("/login");
+    	
+    	
     }
 
     private void flashError(Context context, UserDto user) {
