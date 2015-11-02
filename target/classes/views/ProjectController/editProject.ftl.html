@@ -1,6 +1,5 @@
 <#import "../layout/defaultLayout.ftl.html" as layout>
 <@layout.myLayout "Project :: New">
-	<div class="container">
 		<div class="col-lg-9">
 			<h3>${i18n('project.edit')}</h3>
 			<form id="editProjectForm" class="form-group form-error-label" action="/project/update" method="post">
@@ -55,7 +54,6 @@
 				<button id="deleteBtn" class="btn btn-danger" onclick="return confirm('Are you sure?');">Delete Picture</button>
 			</#if>
 		</div>
-	</div>
 	
 </@layout.myLayout>
 	<script>

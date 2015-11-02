@@ -16,61 +16,61 @@
 
 package controllers;
 
+import java.util.logging.Logger;
+
 import ninja.Context;
 import ninja.Result;
 import ninja.Results;
-import ninja.params.Param;
+import ninja.validation.JSR303Validation;
+import ninja.validation.Validation;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 import dao.UserDao;
+import dto.UserDto;
 
 @Singleton
 public class LoginLogoutController {
-    
+    Logger log=Logger.getLogger(LoginLogoutController.class.getName());
     @Inject
     UserDao userDao;
+    int countLoginAttempt=0;
     
-    
-    ///////////////////////////////////////////////////////////////////////////
-    // Login
-    ///////////////////////////////////////////////////////////////////////////
     public Result login(Context context) {
-
         return Results.html();
-
     }
 
-    public Result loginPost(@Param("username") String username,
-                            @Param("password") String password,
-                            Context context) {
-    	if(username!=null || password!=null){
-    		if(!username.trim().isEmpty() || !password.trim().isEmpty()){
-		        boolean isUserNameAndPasswordValid = userDao.isUserAndPasswordValid(username, password);
-		        
-		        if (isUserNameAndPasswordValid) {
-		            context.getSession().put("username", username);
-		            context.getFlashScope().success("login.loginSuccessful");
-		            
-		            return Results.redirect("/app/dashboard");
-		            
-		        } else {
-		            
-		            // something is wrong with the input or password not found.
-		            context.getFlashScope().put("username", username);
-		            context.getFlashScope().error("login.errorLogin");
-		
-		            return Results.redirect("/login");
-		            
-		        }
-    		}
+    public Result loginPost(Context context, @JSR303Validation UserDto user, Validation validation) {
+    	if(validation.hasViolations()){
+    		flashError(context,user);
+    		return Results.redirect("/login");
     	}
-    	return Results.redirect("/login");
-        
+    	boolean isUserNameAndPasswordValid = userDao.isUserAndPasswordValid(user.getEmail().trim(), user.getPassword().trim());
+		if (isUserNameAndPasswordValid) {
+	    	context.getSession().put("username", user.getEmail());
+	        context.getFlashScope().success("login.loginSuccessful");
+	        return Results.redirect("/app/dashboard");
+    	} else {
+    		if(countLoginAttempt==3){
+    			//get this user's ip and ban this user
+    			log.warning("Invalid login attempt : "+countLoginAttempt);
+    		}
+    		countLoginAttempt++;
+    		context.getFlashScope().put("email", user.getEmail());
+    		context.getFlashScope().error("login.errorLogin");
+    		return Results.redirect("/login");
+    	}
     }
 
-    ///////////////////////////////////////////////////////////////////////////
+    private void flashError(Context context, UserDto user) {
+   		context.getFlashScope().put("email", user.getEmail());
+   		if(user.getPassword().trim().length()<8){
+   			context.getFlashScope().put("invalidPasswordLength", "invalid.password.length");			
+   		}
+	}
+
+	///////////////////////////////////////////////////////////////////////////
     // Logout
     ///////////////////////////////////////////////////////////////////////////
     public Result logout(Context context) {

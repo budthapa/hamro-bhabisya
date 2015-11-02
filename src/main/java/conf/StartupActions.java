@@ -7,14 +7,9 @@ import ninja.utils.NinjaProperties;
 
 import com.google.inject.Inject;
 
-import dao.SetupDao;
-
 @Singleton
 public class StartupActions {
     
-    @Inject
-    SetupDao setupDao;
-
     private NinjaProperties ninjaProperties;
 
     @Inject
@@ -27,7 +22,6 @@ public class StartupActions {
         
         if (!ninjaProperties.isProd()) {
             
-            setupDao.setup();
             
         }
         

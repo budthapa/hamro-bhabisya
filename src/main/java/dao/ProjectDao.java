@@ -1,6 +1,7 @@
 package dao;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -13,6 +14,7 @@ import com.google.inject.Provider;
 import com.google.inject.persist.Transactional;
 
 public class ProjectDao implements IBaseDao{
+	Logger log=Logger.getLogger(ProjectDao.class.getName());
 	@Inject
 	Provider<EntityManager> entityManagerProvider;
 
@@ -55,14 +57,20 @@ public class ProjectDao implements IBaseDao{
 		EntityManager em=entityManagerProvider.get();
 		Project project=(Project)object;
 		em.merge(project);
-		return false;
+		return true;
 	}
 
 	@UnitOfWork
 	public Project getLatestProjectFrontPage() {
 		EntityManager em=entityManagerProvider.get();
 		Query query=em.createQuery("SELECT x FROM Project x WHERE project_category='Project' ORDER BY x.id DESC");
-		Project project=(Project) query.setMaxResults(1).getSingleResult();
+		Project project = null;
+		try{
+			project=(Project) query.setMaxResults(1).getSingleResult();			
+		}catch(Exception e){
+			log.info("Project was not found while running the app for the first time in class "+ProjectDao.class.getName()
+					+" method : "+ProjectDao.class.getEnclosingMethod());
+		}
 		return project;
 	}
 
@@ -86,7 +94,12 @@ public class ProjectDao implements IBaseDao{
 	public Project getLatestNewsEventFrontPage() {
 		EntityManager em=entityManagerProvider.get();
 		Query q=em.createQuery("SELECT x FROM Project x WHERE x.projectCategory = 'News & Events' ORDER BY x.id DESC");
-		Project project=(Project) q.setMaxResults(1).getSingleResult();
+		Project project = null;
+		try{
+			project=(Project) q.setMaxResults(1).getSingleResult();
+		}catch(Exception e){
+			log.info("News and events not found while running the app for first time in class "+ProjectDao.class.getName());
+		}
 		return project;
 	}
 

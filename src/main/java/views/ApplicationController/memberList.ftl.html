@@ -10,7 +10,7 @@
 					<th>${i18n('user.name')}</th>
 					<th>${i18n('email')}</th>
 					<th>${i18n('donation.address')}</th>
-					<th>${i18n('user.designation')}</th>
+					<th class="hidden-sm">${i18n('user.designation')}</th>
 					<th>${i18n('user.contact.number')}</th>
 				</tr>
 			</thead>
@@ -18,11 +18,13 @@
 				<#if userList??>
 					<#list userList as list>
 			  			<tr>
-			  				<th scope="row" class="contact-us-row-width">${list.name}</th>
+			  				<th scope="row" class="contact-us-row-width">
+			  				<#if (session.username)??><a href="/settings/user/${list.id}">${list.name}</a><#else>${list.name}</#if>
+			  				</th>
 			  				<td class="contact-us-row-width">${list.email}</td>
 			  				<td class="contact-us-row-width">${list.address}</td>
-			  				<td class="contact-us-row-width">${list.designation}</td>
-			  				<td class="contact-us-row-width">${list.contactNumber}</td>
+			  				<td class="contact-us-row-width hidden-sm">${list.designation}</td>
+			  				<td class="contact-us-row-width hidden-sm">${list.contactNumber}</td>
 			  			</tr>
 					</#list>
 				</#if>

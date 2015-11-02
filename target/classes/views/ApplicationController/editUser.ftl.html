@@ -1,0 +1,121 @@
+<#import "../layout/defaultLayout.ftl.html" as layout> 
+<@layout.myLayout "${i18n('app.name')} ${i18n('user.edit')}"> 
+<div class="row">
+<div class="col-md-6 col-md-offset-3">
+	<h2>${i18n("user.title")}</h2>
+			<form id="memberForm" class="form-group form-error-label" action="/settings/user/update" method="post">
+				<@authenticityForm/>
+				<div class="contact-form">
+					<label>${i18n("name")}</label><span class="required">*</span><h5 class="contact-us-form-error">${(flash.invalidName!)}</h5>
+					<input class="form-control" type="text" id="name" name="name" value="<#if flash.name??>${(flash.name!)}<#else><#if user??>${(user.name)}</#if></#if>" 
+					required="required" placeholder="Minimum 3 characters" />
+				</div>
+				<div class="contact-form">
+					<label>${i18n("email")}</label><span class="required">*</span><h5 class="contact-us-form-error">${(flash.invalidEmail!)}</h5>
+					<input class="form-control" type="email" name="email" value="<#if flash.email??>${(flash.email!)}<#else><#if user??>${(user.email)}</#if></#if>" 
+					placeholder="${i18n('email')}" 	required="required"/>
+				</div>
+				<div class="contact-form">
+					<label>${i18n("donation.address")}</label><span class="required">*</span><h5 class="contact-us-form-error">${(flash.invalidAddress!)}</h5>
+					<input class="form-control" type="text" name="address" value="<#if flash.address??>${(flash.address!)}<#else><#if user??>${(user.address)}</#if></#if>" 
+					placeholder="${i18n('donation.address')}" required="required"/>
+				</div>
+				<div class="contact-form">
+					<label>${i18n("user.contact.number")}</label><h5 class="contact-us-form-error">${(flash.invalidContactNumber!)}</h5>
+					<input class="form-control" type="text" name="contactNumber" value="<#if flash.contactNumber??>${(flash.contactNumber!)}<#else><#if user??>${(user.contactNumber)}</#if></#if>" 
+					placeholder="${i18n('user.contact.number')}"/>
+				</div>
+				<div class="contact-form">
+					<label>${i18n("user.designation")}</label><h5 class="contact-us-form-error">${(flash.invalidDesignation!)}</h5>
+					<input class="form-control" type="text" name="designation" value="<#if flash.address??>${(flash.address!)}<#else><#if user??>${(user.designation)}</#if></#if>" 
+					placeholder="${i18n('user.designation')}"/>
+				</div>
+				<!-- 
+				<div class="contact-form">
+					<label>${i18n("password.new")}</label><span class="required">*</span><h5 class="contact-us-form-error">${(flash.invalidPassword!)}</h5>
+					<input class="form-control" type="text" name="password" />
+				</div>
+				<div class="contact-form">
+					<label>${i18n("password.retype")}</label><span class="required">*</span><h5 class="contact-us-form-error">${(flash.invalidAddress!)}</h5>
+					<input class="form-control" type="text" name="retypePassword" />
+				</div>
+				 -->
+				<div class="contact-form">
+					<button id="submitForm" class="btn btn-success form-control">${i18n("button.update")}</button>
+				</div>
+			</form>
+</div>
+<div class="col-md-3">
+			<#if flash.noFileSelected??>
+				<p class="alert alert-danger">${(flash.noFileSelected)}</p>
+			</#if>
+			
+			<p id="uploading" class="alert alert-info" hidden="true">${(i18n('uploading'))}</p>
+			<form id="uploadForm" class="form-group form-error-label" action="/settings/user/new/upload" method="post" enctype="multipart/form-data">
+				<div class="contact-form">
+					<label>${(i18n('select.image'))}</label>
+					<input type="file" name="pictureName" id="picture"/>
+					<!-- <input type="file" name="pictureName"/>
+					<input type="file" name="pictureName"/>
+					<input type="file" name="pictureName"/> -->
+				</div>			
+				<div class="contact-form">
+					<input type="submit" class="btn btn-success" value="${(i18n('button.upload'))}" onclick="send()"/>
+				</div>
+			</form>
+			<#if picture??>
+				<img alt="Hamrobhabisya ${(user.name)}" src="/assets/image/${(picture.pictureName)}.jpg">
+				<button id="deleteBtn" class="btn btn-danger" onclick="return confirm('Are you sure?');">Delete Picture</button>
+			</#if>
+		</div>
+</div>
+
+</@layout.myLayout>
+<script>
+
+
+$().ready(function() {
+	
+	$("#memberForm").validate({
+		rules: {
+			name: "required",
+			email: "required",
+			address: "required",
+			name: {
+				required: true,
+				minlength: 3
+			},
+			email: {
+				required: true,
+			},
+			address: {
+				required:true
+			}
+		},
+		messages: {
+			name: {
+				required: "Please enter your name",
+				minlength: "Your name must consist of at least 3 characters"
+			},
+			email: {
+				required: "Please enter your email"
+			},
+			address:{
+				required: "Please enter your address"
+			}
+		},
+		submitHandler: function(form) {
+			$.confirm({
+				title: 'Confirm!',
+			    confirmButtonClass: 'btn-info',
+			    cancelButtonClass: 'btn-danger',
+			    confirm: function(){
+			       form.submit();
+			    },
+			    cancel: function(){
+			    }
+			});
+		}
+	});
+});
+</script>

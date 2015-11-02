@@ -10,19 +10,12 @@
 				</thead>
 				<tbody>
 				<#if donationList??>
-					<#if (session.username)??>
-						<#list donationList as list>
-							<tr>
-								<td><a href="/donation/edit/${(list.id)}">${(list.title)}</a></td><td>${(list.amount)}</td><td>${(list.address)}</td><td>${(list.date)}</td>
-							</tr>				
-						</#list>
-					<#else>			
-						<#list donationList as list>
-							<tr>
-								<td>${(list.title)}</td><td>${(list.amount)}</td><td>${(list.address)}</td><td>${(list.date)}</td>
-							</tr>				
-						</#list>
-					</#if>
+					<#list donationList as list>
+						<tr>
+							<td><#if (session.username)??><a href="/donation/edit/${(list.id)}">${(list.title)}</a><#else>${(list.title)}</#if></td>
+							<td>${(list.amount)}</td><td>${(list.address)}</td><td>${(list.date)}</td>
+						</tr>				
+					</#list>
 				</#if>
 				</tbody>
 			</table>

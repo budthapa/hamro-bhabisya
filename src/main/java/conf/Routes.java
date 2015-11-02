@@ -23,9 +23,7 @@ import ninja.utils.NinjaProperties;
 
 import com.google.inject.Inject;
 
-import controllers.ApiController;
 import controllers.ApplicationController;
-import controllers.ArticleController;
 import controllers.ContactUsController;
 import controllers.DonationController;
 import controllers.LoginLogoutController;
@@ -57,6 +55,8 @@ public class Routes implements ApplicationRoutes {
             router.POST().route("/settings/user/new").with(ApplicationController.class, "create");
             router.POST().route("/settings/user/new/upload").with(ApplicationController.class, "upload");
             router.GET().route("/members").with(ApplicationController.class, "memberList");
+            router.GET().route("/settings/user/{id}").with(ApplicationController.class, "editUser");
+            router.POST().route("/settings/user/update").with(ApplicationController.class,"update");
             
             
 //            router.GET().route("/settings/user/changepassword").with(ApplicationController.class, "settings");
@@ -69,17 +69,6 @@ public class Routes implements ApplicationRoutes {
         router.GET().route("/login").with(LoginLogoutController.class, "login");
         router.POST().route("/login").with(LoginLogoutController.class, "loginPost");
         router.GET().route("/logout").with(LoginLogoutController.class, "logout");
-        
-        ///////////////////////////////////////////////////////////////////////
-        // Create new article
-        ///////////////////////////////////////////////////////////////////////
-        router.GET().route("/article/new").with(ArticleController.class, "articleNew");
-        router.POST().route("/article/new").with(ArticleController.class, "articleNewPost");
-        
-        ///////////////////////////////////////////////////////////////////////
-        // Create new article
-        ///////////////////////////////////////////////////////////////////////
-        router.GET().route("/article/{id}").with(ArticleController.class, "articleShow");
         
         ////// Contact Us routing
         router.GET().route("/contact/new").with(ContactUsController.class, "newContactUs");
@@ -103,16 +92,6 @@ public class Routes implements ApplicationRoutes {
         router.GET().route("/donation/edit/{id}").with(DonationController.class, "editDonation");
         router.POST().route("/donation/update").with(DonationController.class, "update");
         
-        
-        ///////////////////////////////////////////////////////////////////////
-        // Api for management of software
-        ///////////////////////////////////////////////////////////////////////
-        router.GET().route("/api/{username}/articles.json").with(ApiController.class, "getArticlesJson");
-        router.GET().route("/api/{username}/article/{id}.json").with(ApiController.class, "getArticleJson");
-        router.GET().route("/api/{username}/articles.xml").with(ApiController.class, "getArticlesXml");
-        router.POST().route("/api/{username}/article.json").with(ApiController.class, "postArticleJson");
-        router.POST().route("/api/{username}/article.xml").with(ApiController.class, "postArticleXml");
- 
         ///////////////////////////////////////////////////////////////////////
         // Assets (pictures / javascript)
         ///////////////////////////////////////////////////////////////////////    

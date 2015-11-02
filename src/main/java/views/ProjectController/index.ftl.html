@@ -2,31 +2,25 @@
 <@layout.myLayout "Project :: All">
 	
 	<table class="table">
-				<thead>
+		<thead>
+			<tr>
+			<#if (session.username)??>
+				<th><h4>Delete</h4></th>
+			</#if>
+				<th><h4>Title</h4></th>
+			</tr>
+		</thead>
+		<tbody>
+			<#if projectList??>
+				<#list projectList as list>
 					<tr>
-					<#if (session.username)??>
-						<th><h4>Delete</h4></th>
-					</#if>
-						<th><h4>Title</h4></th>
-					</tr>
-				</thead>
-				<tbody>
-				<#if projectList??>
-					<#if (session.username)??>
-						<#list projectList as list>
-							<tr>
-								<td><span class="btn btn-danger glyphicon glyphicon-trash"></span></td>
-								<td><a href="/project/${(list.id)}">${(list.title)}</a></td>
-							</tr>				
-						</#list>
-					<#else>			
-						<#list projectList as list>
-							<tr>
-								<td><a href="/project/${(list.id)}">${(list.title)}</a></td>
-							</tr>				
-						</#list>
-					</#if>
-				</#if>
-				</tbody>
-			</table>
+						<#if (session.username)??>
+							<td><span class="btn btn-danger glyphicon glyphicon-trash"></span></td>
+						</#if>
+							<td><a href="/project/${(list.id)}">${(list.title)}</a></td>
+					</tr>				
+				</#list>
+			</#if>
+		</tbody>
+	</table>
 </@layout.myLayout>

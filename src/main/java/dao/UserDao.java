@@ -17,10 +17,12 @@
 package dao;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import models.Login;
 import models.User;
 import ninja.jpa.UnitOfWork;
 
@@ -29,38 +31,35 @@ import com.google.inject.Provider;
 import com.google.inject.persist.Transactional;
 
 public class UserDao implements IBaseDao{
-    
+	Logger log=Logger.getLogger(UserDao.class.getName());
     @Inject
     Provider<EntityManager> entityManagerProvider;
     
     @UnitOfWork
-    public boolean isUserAndPasswordValid(String username, String password) {
-        	
-        if (username != null && password != null) {
-        	EntityManager entityManager = entityManagerProvider.get();
-        	User user = null ;
-            try{
-            	Query q = entityManager.createQuery("SELECT x FROM User x WHERE username = :usernameParam");
-            	user = (User) q.setParameter("usernameParam", username).getSingleResult();   
-            	
-            }catch(Exception e){
-            	
-            }
-
-            
-            if (user != null) {
-                
-                if (user.password.equals(password)) {
-
-                    return true;
-                }
-                
-            }
-
-        }
-        
+    public boolean isUserAndPasswordValid(String email, String password) {
+    	EntityManager entityManager = entityManagerProvider.get();
+    	User user=null;
+    	try{
+    		Query q = entityManager.createQuery("SELECT x FROM User x WHERE x.email = :emailParam");
+    		user = (User) q.setParameter("emailParam", email).getSingleResult();   
+    		if(user!=null){
+    			Login login= null ;
+    			try{
+    				Query loginQuery = entityManager.createQuery("SELECT x FROM Login x WHERE x.user = :userParam");
+    				loginQuery.setParameter("userParam", user);
+    				login=(Login) loginQuery.getSingleResult();
+    				if (login.getPassword().equals(password)) {
+    					return true;
+    				}
+    			}catch(Exception e){
+    				log.warning("Login not found for email "+user.getEmail());
+    			}
+    		}
+    	}catch(Exception e){
+    		log.warning("User not found for submitted email : "+email);    		
+    	}
+    	
         return false;
- 
     }
 
     @SuppressWarnings("unchecked")
@@ -84,17 +83,33 @@ public class UserDao implements IBaseDao{
 	@Transactional
 	public <T> int save(T object) {
 		EntityManager em=entityManagerProvider.get();
-		User user=(User)object;
-		em.persist(user);
-		System.out.println("uid "+user.getId());
-		return user.getId();
+		User user = null;
+		try{
+			user=(User)object;
+			em.persist(user);
+			return user.getId();
+			
+		}catch(Exception e){
+			log.warning("Duplicate entry for '"+user.getEmail()+"'");
+		}
+		return 0;
 	}
 
 	@Override
 	@Transactional
 	public <T> boolean saveOrUpdate(T object) {
-		// TODO Auto-generated method stub
-		return false;
+		EntityManager em=entityManagerProvider.get();
+		User user=(User)object;
+		em.merge(user);
+		return true;
+	}
+
+	@UnitOfWork
+	public User getUser(int userId) {
+		EntityManager em=entityManagerProvider.get();
+		Query q=em.createQuery("SELECT x FROM User x WHERE x.id = :idParam");
+		User user=(User) q.setParameter("idParam", userId).getSingleResult();
+		return user;
 	}
 
 }

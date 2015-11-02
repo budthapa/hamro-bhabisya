@@ -22,7 +22,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import models.Article;
 import models.Donation;
 import models.Picture;
 import models.Project;
@@ -33,6 +32,8 @@ import ninja.Result;
 import ninja.Results;
 import ninja.SecureFilter;
 import ninja.params.Params;
+import ninja.params.PathParam;
+import ninja.session.Session;
 import ninja.uploads.DiskFileItemProvider;
 import ninja.uploads.FileItem;
 import ninja.uploads.FileProvider;
@@ -45,19 +46,15 @@ import org.apache.commons.io.FileUtils;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
-import dao.ArticleDao;
 import dao.DonationDao;
 import dao.PictureDao;
 import dao.ProjectDao;
-import dao.SetupDao;
 import dao.UserDao;
 import etc.Validator;
 
 @Singleton
 public class ApplicationController {
 	List<String> imageNameList=new ArrayList<>();
-    @Inject
-    ArticleDao articleDao;
     @Inject
     ProjectDao projectDao;
     @Inject
@@ -68,10 +65,8 @@ public class ApplicationController {
     UserDao userDao;
 
     @Inject
-    SetupDao setupDao;
-
-    @Inject
 	Picture picture;
+    private int id;
     
     public ApplicationController() {
 
@@ -106,7 +101,8 @@ public class ApplicationController {
     		if(user.getDesignation().trim().isEmpty()){
     			user.setDesignation("");
     		}
-    		userDao.save(user);
+    		int status=userDao.save(user);
+    		System.out.println("staus "+status);
     		picture.setUser(user);
     		if(imageNameList.size()>0){
     			picture.setPictureName(imageNameList.get(0));    			
@@ -149,7 +145,7 @@ public class ApplicationController {
     	}
     	return true;
     }
-    private Result flashError(Context context, User user){
+    private void flashError(Context context, User user){
 		context.getFlashScope().put("error", "missing.required");
 		if(user.getName().trim().length()<3){
 			context.getFlashScope().put("invalidName", "name.short");			
@@ -159,7 +155,7 @@ public class ApplicationController {
 		context.getFlashScope().put("address", user.getAddress());
 		context.getFlashScope().put("contactNumber", user.getContactNumber());
 		context.getFlashScope().put("designation", user.getDesignation());
-		return Results.redirect("/settings/user/new");
+//		return Results.redirect("/settings/user/new");
 	}
     
     @Inject
@@ -206,19 +202,18 @@ public class ApplicationController {
     	Project newsEvent=projectDao.getLatestNewsEventFrontPage();
     	Picture newsPicture = pictureDao.getLatestProjectPictureFrontPage(newsEvent);
     	List<Donation> donationList=donationDao.getLatestDonationFrontPage();
-    	Article frontPost = articleDao.getFirstArticleForFrontPage();
     	List<Picture> imageList=pictureDao.findAll();
     	
-        String desc=project.getDescription();
-
-        if(desc.length()>500){
-        	desc=desc.substring(0, 500);
-        	project.setDescription(desc);
-        }
+    	if(project!=null){
+    		String desc=project.getDescription();
+    		if(desc.length()>500){
+    			desc=desc.substring(0, 500);
+    			project.setDescription(desc);
+    		}
+    	}
         
-        List<Article> olderPosts = articleDao.getOlderArticlesForFrontPage();
-        return Results.html().render("frontArticle", frontPost).render("olderArticles", olderPosts).render("frontProject", project)
-        		.render("picture", picture).render("newsEvent",newsEvent).render("newsPicture", newsPicture).render("imageList", imageList)
+        return Results.html().render("frontProject", project).render("picture", picture)
+        		.render("newsEvent",newsEvent).render("newsPicture", newsPicture).render("imageList", imageList)
         		.render("donationList", donationList);
 
     }
@@ -231,5 +226,51 @@ public class ApplicationController {
     public Result memberList(){
     	List<User> userList=userDao.findAll();
     	return Results.html().render("userList", userList);
+    }
+    
+    @FilterWith(SecureFilter.class)
+    public Result editUser(@PathParam("id") int userId){
+    	User user=userDao.getUser(userId);
+    	id=userId;
+    	Picture picture=pictureDao.getUserPicture(user);
+    	if(picture!=null){
+			return Results.html().render("user",user).render("picture",picture);			
+		}else{
+			return Results.html().render("user",user);
+		}
+//    	return Results.html().render("user",user);
+    }
+    
+    @FilterWith(SecureFilter.class)
+    public Result update(Context context, @JSR303Validation User user, Validation validation, Session session){
+    	if(validation.hasViolations()){
+    		flashError(context, user);
+    		return Results.redirect("/settings/user/"+this.id);
+    	}
+    	boolean validateName = validateName(user.getName(), context, user);
+    	boolean validateContactNumber = validateContactNumber(user.getContactNumber(), context,user);
+    	boolean validateDesignation = validateDesignation(user.getDesignation(), context,user);
+    	
+    	if(validateName && validateContactNumber && validateDesignation){
+    		if(user.getContactNumber().trim().isEmpty()){
+    			user.setContactNumber("");
+    		}
+    		if(user.getDesignation().trim().isEmpty()){
+    			user.setDesignation("");
+    		}
+    		user.setId(this.id);
+    		user.setUpdatedBy(session.get("username"));
+    		if(imageNameList.size()>0){
+    			picture.setPictureName(imageNameList.get(0));    			
+    			imageNameList.clear();
+    		}
+    		picture.setUser(user);
+//    		pictureDao.saveOrUpdate(picture);
+    		user.setPicture(picture);
+    		userDao.saveOrUpdate(user);
+    		context.getFlashScope().put("success", "user.update.success");
+    	}
+    	
+    	return Results.redirect("/settings/user/"+this.id);
     }
 }

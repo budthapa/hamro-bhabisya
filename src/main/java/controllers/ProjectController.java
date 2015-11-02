@@ -162,18 +162,25 @@ public class ProjectController {
 				flashError(context,project);
 				return Results.redirect("/project/edit/"+this.id);
 			}
+
+			project.setId(this.id);
 			project.setUpdatedBy(session.get("username"));
-			projectDao.saveOrUpdate(project);
-			
-			picture.setProject(project);
 			//need to work on this later for multiple images
-	//		for(String name:imageNameList){
-	//		}
+			List<Picture> pictureList=new ArrayList<Picture>();
+			for(String name:imageNameList){
+				picture.setPictureName(name);
+				pictureList.add(picture);
+			}
+			project.setPicture(pictureList);
+			picture.setProject(project);			
+			projectDao.saveOrUpdate(project);			
+			/*
 			if(imageNameList.size()>0){
 				picture.setPictureName(imageNameList.get(0));
 				pictureDao.saveOrUpdate(picture);
 				imageNameList.clear();			
 			}
+			*/
 			context.getFlashScope().put("success", "Project updated successfully.");
 //		}else{
 //			projectDao.delete(project);

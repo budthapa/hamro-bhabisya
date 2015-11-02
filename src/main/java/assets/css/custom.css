@@ -12,6 +12,10 @@ body{
 	font-size:16px;
 }
 
+.form-control{
+	border-radius: 0px;
+}
+
 table{background-color: rgba(225, 225, 225, 0.89);}
 
 .error-template {padding: 40px 15px;text-align: center;}
