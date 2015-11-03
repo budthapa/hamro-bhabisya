@@ -23,12 +23,14 @@ public class User extends BaseDomain{
     private String address;
     private String contactNumber;
     private String designation;
+    private boolean hasLoginCredentials=false;
     
     @OneToOne(mappedBy="user")
     @Cascade(value=CascadeType.ALL)
     private Picture picture;
     
     @OneToOne(mappedBy="user")
+    @Cascade(value=CascadeType.ALL)
     private Login login;
     
     public User() {}
@@ -79,6 +81,22 @@ public class User extends BaseDomain{
 
 	public void setPicture(Picture picture) {
 		this.picture = picture;
+	}
+
+	public boolean isHasLoginCredentials() {
+		return hasLoginCredentials;
+	}
+
+	public void setHasLoginCredentials(boolean hasLoginCredentials) {
+		this.hasLoginCredentials = hasLoginCredentials;
+	}
+
+	public Login getLogin() {
+		return login;
+	}
+
+	public void setLogin(Login login) {
+		this.login = login;
 	}
 
 }

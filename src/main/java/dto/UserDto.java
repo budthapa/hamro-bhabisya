@@ -14,9 +14,12 @@ public class UserDto {
 	@Size(min=8)
 	private String password;
 	@Transient
+	@NotEmpty
+	@Size(min=8)
 	private String retypePassword;
     private boolean isAdmin=false;
     private boolean isActive=true;
+    private boolean hasLoginCredentials;
 	public String getEmail() {
 		return email;
 	}
@@ -47,6 +50,11 @@ public class UserDto {
 	public void setActive(boolean isActive) {
 		this.isActive = isActive;
 	}
-    
+	public boolean isHasLoginCredentials() {
+		return hasLoginCredentials;
+	}
+	public void setHasLoginCredentials(boolean hasLoginCredentials) {
+		this.hasLoginCredentials = hasLoginCredentials;
+	}
     
 }

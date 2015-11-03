@@ -21,8 +21,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.logging.Logger;
 
 import models.Donation;
+import models.Login;
 import models.Picture;
 import models.Project;
 import models.User;
@@ -50,10 +52,13 @@ import dao.DonationDao;
 import dao.PictureDao;
 import dao.ProjectDao;
 import dao.UserDao;
+import dto.UserDto;
 import etc.Validator;
 
 @Singleton
 public class ApplicationController {
+	Logger log=Logger.getLogger(ApplicationController.class.getName());
+	
 	List<String> imageNameList=new ArrayList<>();
     @Inject
     ProjectDao projectDao;
@@ -67,6 +72,10 @@ public class ApplicationController {
     @Inject
 	Picture picture;
     private int id;
+    @Inject
+    User user;
+    @Inject
+    Login login;
     
     public ApplicationController() {
 
@@ -272,5 +281,59 @@ public class ApplicationController {
     	}
     	
     	return Results.redirect("/settings/user/"+this.id);
+    }
+    
+    List<User> listUser=new ArrayList<User>();
+    
+    @FilterWith(SecureFilter.class)
+    public Result newLoginCredentials(){
+    	listUser=userDao.findUserWithoutLoginCredentials();
+    	return Results.html().render("listUser",listUser);
+    }
+    
+    @FilterWith(SecureFilter.class)
+    public Result createLoginCredentials(Context context, @JSR303Validation UserDto userDto, Validation validation){
+    	int userId = 0;
+    	if(validation.hasViolations()){
+    		context.getFlashScope().put("error", "missing.required");
+    		if(userDto.getPassword().trim().isEmpty() || userDto.getPassword().trim().length()<8){
+    			context.getFlashScope().put("invalidPassword", "invalid.password.length");
+    		}
+    		if(userDto.getRetypePassword().trim().isEmpty() || userDto.getRetypePassword().trim().length()<8){
+    			context.getFlashScope().put("invalidRetypePassword", "invalid.password.length");
+    		}
+    		
+    		return Results.redirect("/settings/user/loginCredentials");
+    	}
+    	
+    	if(!userDto.getPassword().equals(userDto.getRetypePassword())){
+    		context.getFlashScope().put("invalidRetypePassword", "password.mismatch");
+    		return Results.redirect("/settings/user/loginCredentials");
+    	}
+    	
+    	String name="";
+    	for(User user:listUser){
+    		if(userDto.getEmail().equals(user.getEmail())){
+    			userId=user.getId();
+    			name=user.getName();
+    			break;
+    		}
+    	}
+    	
+    	user.setId(userId);
+    	login.setUpdatedBy(context.getSession().get("username"));
+    	login.setPassword(userDto.getPassword());
+    	login.setUser(user);
+    	if(userDto.isAdmin()){
+    		login.setAdmin(userDto.isAdmin());
+    	}
+    	boolean isLoginCreated = userDao.newLoginCredentials(login);
+    	if(isLoginCreated){
+    		user.setHasLoginCredentials(true);
+    		user.setEmail(userDto.getEmail());
+    		user.setName(name);
+    		userDao.updateLoginCredentialsToUser(user);
+    	}
+    	return Results.redirect("/settings/user/loginCredentials");
     }
 }

@@ -116,4 +116,25 @@ public class UserDao implements IBaseDao {
 		return user;
 	}
 
+	@SuppressWarnings("unchecked")
+	@UnitOfWork
+	public List<User> findUserWithoutLoginCredentials() {
+		EntityManager em=entityManagerProvider.get();
+		Query q=em.createQuery("SELECT x FROM User x WHERE x.hasLoginCredentials=0");
+		List<User> list=q.getResultList();
+		return list;
+	}
+	
+	@Transactional
+	public boolean newLoginCredentials(Login login) {
+		EntityManager em=entityManagerProvider.get();
+		em.persist(login);
+		return true;
+	}
+
+	@Transactional
+	public void updateLoginCredentialsToUser(User user) {
+		EntityManager em=entityManagerProvider.get();
+		em.merge(user);
+	}
 }

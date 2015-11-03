@@ -2,8 +2,13 @@
 <@layout.myLayout "${i18n('app.name')} ${i18n('settings')}"> 
 <div class="col-md-6">
 	<a href="/settings/user/changepassword">Change Password</a>
-	<a href="/settings/user/new">Add New User</a>
-	<a href="/settings/user/disable">Disable User</a>
+	<#if (session.isAdmin)??>
+		<#if (session.isAdmin=="true")>
+			<a href="/settings/user/new">Add New User</a>
+			<a href="/settings/user/disable">Disable User</a>
+			<a href="/settings/user/loginCredentials">Create Login Credentials</a>
+		</#if>
+	</#if>
 </div>
 
 </@layout.myLayout>

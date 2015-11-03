@@ -16,11 +16,13 @@
 
 package controllers;
 
+import java.util.List;
 import java.util.logging.Logger;
 
 import ninja.Context;
 import ninja.Result;
 import ninja.Results;
+import ninja.validation.FieldViolation;
 import ninja.validation.JSR303Validation;
 import ninja.validation.Validation;
 
@@ -43,14 +45,18 @@ public class LoginLogoutController {
 
     public Result loginPost(Context context, @JSR303Validation UserDto user, Validation validation) {
     	if(validation.hasViolations()){
-    		flashError(context,user);
-    		return Results.redirect("/login");
+    		List<FieldViolation> list=validation.getBeanViolations();
+    		for(FieldViolation fv:list){
+    			if(!fv.field.equals("retypePassword")){
+    				flashError(context,user);
+    				return Results.redirect("/login");
+    			}
+    			break;
+    		}
     	}
     	UserDto userDto = userDao.isUserAndPasswordValid(user.getEmail().trim());
-    		
     	if(userDto!=null){
     		if(!userDto.isActive()){
-    			log.info("User with email address "+user.getEmail()+" is deactivated");
     			context.getFlashScope().put("email", user.getEmail());
     			context.getFlashScope().error("login.errorLogin");
     			return Results.redirect("/login");
@@ -58,15 +64,17 @@ public class LoginLogoutController {
     		
     		if(user.getPassword().equals(userDto.getPassword())){
     			context.getSession().put("username", user.getEmail());
+    			context.getSession().put("isAdmin", String.valueOf(userDto.isAdmin()));
     			context.getFlashScope().success("login.loginSuccessful");
     			return Results.redirect("/app/dashboard");    			
     		}
     	} 
     	countLoginAttempt++;
     	if(countLoginAttempt==3){
-    			//get this user's ip and ban this user
     		log.warning("Invalid login attempt : "+countLoginAttempt+ " from "+user.getEmail());
     		countLoginAttempt=0;
+    		//get this user's ip and ban this user
+//    		userDao.blacklistUser();
     	}
     	
     	context.getFlashScope().put("email", user.getEmail());
