@@ -7,27 +7,27 @@
 				<@authenticityForm/>
 				<div class="contact-form">
 					<label>${i18n("name")}</label><span class="required">*</span><h5 class="contact-us-form-error">${(flash.invalidName!)}</h5>
-					<input class="form-control" type="text" id="name" name="name" value="<#if flash.name??>${(flash.name!)}<#else><#if user??>${(user.name)}</#if></#if>" 
+					<input class="form-control" type="text" id="name" name="name" value="<#if flash.name??>${(flash.name!)}<#else><#if user??>${(user.name!)}</#if></#if>" 
 					required="required" placeholder="Minimum 3 characters" />
 				</div>
 				<div class="contact-form">
 					<label>${i18n("email")}</label><span class="required">*</span><h5 class="contact-us-form-error">${(flash.invalidEmail!)}</h5>
-					<input class="form-control" type="email" name="email" value="<#if flash.email??>${(flash.email!)}<#else><#if user??>${(user.email)}</#if></#if>" 
+					<input class="form-control" type="email" name="email" value="<#if flash.email??>${(flash.email!)}<#else><#if user??>${(user.email!)}</#if></#if>" 
 					placeholder="${i18n('email')}" 	required="required"/>
 				</div>
 				<div class="contact-form">
 					<label>${i18n("donation.address")}</label><span class="required">*</span><h5 class="contact-us-form-error">${(flash.invalidAddress!)}</h5>
-					<input class="form-control" type="text" name="address" value="<#if flash.address??>${(flash.address!)}<#else><#if user??>${(user.address)}</#if></#if>" 
+					<input class="form-control" type="text" name="address" value="<#if flash.address??>${(flash.address!)}<#else><#if user??>${(user.address!)}</#if></#if>" 
 					placeholder="${i18n('donation.address')}" required="required"/>
 				</div>
 				<div class="contact-form">
 					<label>${i18n("user.contact.number")}</label><h5 class="contact-us-form-error">${(flash.invalidContactNumber!)}</h5>
-					<input class="form-control" type="text" name="contactNumber" value="<#if flash.contactNumber??>${(flash.contactNumber!)}<#else><#if user??>${(user.contactNumber)}</#if></#if>" 
+					<input class="form-control" type="text" name="contactNumber" value="<#if flash.contactNumber??>${(flash.contactNumber!)}<#else><#if user??>${(user.contactNumber!)}</#if></#if>" 
 					placeholder="${i18n('user.contact.number')}"/>
 				</div>
 				<div class="contact-form">
 					<label>${i18n("user.designation")}</label><h5 class="contact-us-form-error">${(flash.invalidDesignation!)}</h5>
-					<input class="form-control" type="text" name="designation" value="<#if flash.address??>${(flash.address!)}<#else><#if user??>${(user.designation)}</#if></#if>" 
+					<input class="form-control" type="text" name="designation" value="<#if flash.address??>${(flash.address!)}<#else><#if user??>${(user.designation!)}</#if></#if>" 
 					placeholder="${i18n('user.designation')}"/>
 				</div>
 				<!-- 

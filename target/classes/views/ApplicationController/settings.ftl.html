@@ -4,7 +4,7 @@
 	<div class="row">
 		<div class="col-md-3">
 			<div class="row text-center">
-				<label>Change Password</label>
+				<label>${i18n('change.password')}</label>
 			</div>
 			<div class="row text-center">
 				<a class="info" href="/settings/user/changepassword/${session.userId!}"><i class="fa fa-key fa-5x"></i></a>
@@ -14,7 +14,7 @@
 		<#if (session.isAdmin=="true")>
 			<div class="col-md-3">
 				<div class="row text-center">
-					<label>Add New User</label>
+					<label>${i18n('user.new')}</label>
 				</div>
 				<div class="row text-center">
 					<a class="success" href="/settings/user/new"><i class="fa fa-user-plus fa-5x"></i></a>
@@ -22,7 +22,7 @@
 			</div>
 			<div class="col-md-3">
 				<div class="row text-center">
-					<label>Disable User</label>
+					<label>${i18n('user.disable')}</label>
 				</div>	
 				<div class="row text-center">
 					<a class="danger" href="/settings/user/disable"><i class="fa fa-user-times fa-5x"></i></a>
@@ -30,7 +30,7 @@
 			</div>
 			<div class="col-md-3">
 				<div class="row text-center">
-					<label>Create Login Credentials</label>
+					<label>${i18n('login.credentials.new')}</label>
 				</div>	
 				<div class="row text-center">
 					<a class="" href="/settings/user/loginCredentials"><i class="fa fa-user-secret fa-5x"></i></a>

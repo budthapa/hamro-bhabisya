@@ -19,12 +19,12 @@
 					<#list userList as list>
 			  			<tr>
 			  				<th scope="row" class="contact-us-row-width">
-			  				<#if (session.username)??><a href="/settings/user/${list.id}">${list.name}</a><#else>${list.name}</#if>
+			  				<#if (session.username)??><a href="/settings/user/${list.id}">${list.name!}</a><#else>${list.name!}</#if>
 			  				</th>
-			  				<td class="contact-us-row-width">${list.email}</td>
-			  				<td class="contact-us-row-width">${list.address}</td>
-			  				<td class="contact-us-row-width hidden-sm">${list.designation}</td>
-			  				<td class="contact-us-row-width hidden-sm">${list.contactNumber}</td>
+			  				<td class="contact-us-row-width">${list.email!}</td>
+			  				<td class="contact-us-row-width">${list.address!}</td>
+			  				<td class="contact-us-row-width hidden-sm">${list.designation!}</td>
+			  				<td class="contact-us-row-width hidden-sm">${list.contactNumber!}</td>
 			  			</tr>
 					</#list>
 				</#if>

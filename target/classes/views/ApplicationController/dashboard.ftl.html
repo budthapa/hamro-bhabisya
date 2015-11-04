@@ -3,7 +3,7 @@
 	<div class="row">
 		<div class="col-md-3">
 			<div class="row text-center">
-				<label>New Project</label>
+				<label>${i18n('project.new')}</label>
 			</div>
 			<div class="row text-center">
 				<a href="/project/new"><i class="fa fa-file fa-5x"></i></a>
@@ -11,7 +11,7 @@
 		</div>
 		<div class="col-md-3">
 			<div class="row text-center">
-				<label>View Projects</label>
+				<label>${i18n('projects.view')}</label>
 			</div>
 			<div class="row text-center">
 				<a href="/project"><i class="fa fa-newspaper-o fa-5x"></i></a>
@@ -19,7 +19,7 @@
 		</div>
 		<div class="col-md-3">
 			<div class="row text-center">
-				<label>Add Donation</label>
+				<label>${i18n('donation.new')}</label>
 			</div>
 			<div class="row text-center">
 				<a href="/donation/new"><i class="fa fa-edit fa-5x"></i></a>
@@ -27,7 +27,7 @@
 		</div>
 		<div class="col-md-3">
 			<div class="row text-center">
-				<label>View Donations</label>
+				<label>${i18n('donation.view')}</label>
 			</div>
 			<div class="row text-center">
 				<a href="/donation"><i class="fa fa-money fa-5x"></i></a>
@@ -37,7 +37,7 @@
 	<div class="row row-margin">
 		<div class="col-md-3">
 			<div class="row text-center">
-				<label>View Contact Messages</label>
+				<label>${i18n('contact.message')}</label>
 			</div>
 			<div class="row text-center">
 				<a href="/contact"><i class="fa fa-envelope-o fa-5x"></i></a>
@@ -45,7 +45,7 @@
 		</div>
 		<div class="col-md-3">
 			<div class="row text-center">
-				<label>View Members</label>
+				<label>${i18n('user.list')}</label>
 			</div>
 			<div class="row text-center">
 				<a href="/members"><i class="fa fa-users fa-5x"></i></a>
@@ -53,7 +53,7 @@
 		</div>
 		<div class="col-md-3">
 			<div class="row text-center">
-				<label>Settings</label>
+				<label>${i18n('settings')}</label>
 			</div>
 			<div class="row text-center">
 				<a href="/settings"><i class="fa fa-cogs fa-5x"></i></a>
@@ -65,7 +65,7 @@
 		<div class="col-md-4">
 			<div class="total-projects">
 				<div class="row text-center total-projects-row">
-					<label>Total Projects</label>
+					<label>${i18n('project.total')}</label>
 				</div>
 				<div class="row text-center">
 					<h1 class="project-count">${(projectCount!)}</h1>
@@ -75,7 +75,7 @@
 		<div class="col-md-4">
 			<div class="total-projects">
 				<div class="row text-center total-projects-row">
-					<label>Total Donations</label>
+					<label>${i18n('donation.total')}</label>
 				</div>
 				<div class="row text-center">
 					<h1 class="project-count">${(donationSum!)}</h1>
@@ -85,7 +85,7 @@
 		<div class="col-md-4">
 			<div class="total-projects">
 				<div class="row text-center total-projects-row">
-					<label>Total Members</label>
+					<label>${i18n('user.total')}</label>
 				</div>
 				<div class="row text-center">
 					<h1 class="project-count">${(userCount!)}</h1>
