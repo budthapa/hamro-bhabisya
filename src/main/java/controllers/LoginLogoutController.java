@@ -19,9 +19,12 @@ package controllers;
 import java.util.List;
 import java.util.logging.Logger;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import ninja.Context;
 import ninja.Result;
 import ninja.Results;
+import ninja.session.Session;
 import ninja.validation.FieldViolation;
 import ninja.validation.JSR303Validation;
 import ninja.validation.Validation;
@@ -43,7 +46,7 @@ public class LoginLogoutController {
         return Results.html();
     }
 
-    public Result loginPost(Context context, @JSR303Validation UserDto user, Validation validation) {
+    public Result loginPost(Context context, @JSR303Validation UserDto user, Validation validation,Session session) {
     	if(validation.hasViolations()){
     		List<FieldViolation> list=validation.getBeanViolations();
     		for(FieldViolation fv:list){
@@ -61,8 +64,10 @@ public class LoginLogoutController {
     			context.getFlashScope().error("login.errorLogin");
     			return Results.redirect("/login");
     		}
-    		
-    		if(user.getPassword().equals(userDto.getPassword())){
+    		boolean validPassword=BCrypt.checkpw(user.getPassword(), userDto.getPassword());
+    		if(validPassword){
+    			context.getSession().put("userId", String.valueOf(userDto.getId()));
+    			context.getSession().put("loginId", String.valueOf(userDto.getLoginId()));
     			context.getSession().put("username", user.getEmail());
     			context.getSession().put("isAdmin", String.valueOf(userDto.isAdmin()));
     			context.getFlashScope().success("login.loginSuccessful");

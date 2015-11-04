@@ -7,6 +7,8 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 public class UserDto {
+	private int id;
+	private int loginId;
 	@NotEmpty
 	@Email
 	private String email;
@@ -56,5 +58,17 @@ public class UserDto {
 	public void setHasLoginCredentials(boolean hasLoginCredentials) {
 		this.hasLoginCredentials = hasLoginCredentials;
 	}
-    
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public int getLoginId() {
+		return loginId;
+	}
+	public void setLoginId(int loginId) {
+		this.loginId = loginId;
+	}
+	
 }

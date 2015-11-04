@@ -51,9 +51,11 @@ public class UserDao implements IBaseDao {
 					loginQuery.setParameter("userParam", user);
 					login = (Login) loginQuery.getSingleResult();
 					UserDto userDto = new UserDto();
+					userDto.setId(login.getUser().getId());
 					userDto.setPassword(login.getPassword());
 					userDto.setActive(login.isActive());
 					userDto.setAdmin(login.isAdmin());
+					userDto.setLoginId(login.getId());
 					return userDto;
 				} catch (Exception e) {
 					log.warning("Login not found for email " + user.getEmail());
@@ -136,5 +138,12 @@ public class UserDao implements IBaseDao {
 	public void updateLoginCredentialsToUser(User user) {
 		EntityManager em=entityManagerProvider.get();
 		em.merge(user);
+	}
+
+	@Transactional
+	public void updatePassword(Login login) {
+		
+		EntityManager em=entityManagerProvider.get();
+		em.merge(login);
 	}
 }

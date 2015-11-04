@@ -28,6 +28,7 @@ import models.Login;
 import models.Picture;
 import models.Project;
 import models.User;
+import ninja.AuthenticityFilter;
 import ninja.Context;
 import ninja.FilterWith;
 import ninja.Result;
@@ -40,10 +41,12 @@ import ninja.uploads.DiskFileItemProvider;
 import ninja.uploads.FileItem;
 import ninja.uploads.FileProvider;
 import ninja.utils.NinjaProperties;
+import ninja.validation.FieldViolation;
 import ninja.validation.JSR303Validation;
 import ninja.validation.Validation;
 
 import org.apache.commons.io.FileUtils;
+import org.mindrot.jbcrypt.BCrypt;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
@@ -76,15 +79,15 @@ public class ApplicationController {
     User user;
     @Inject
     Login login;
+    int changePasswordUserId=0;
     
     public ApplicationController() {
 
     }
     
     @FilterWith(SecureFilter.class)
-    public Result settings() {
+    public Result settings(Session session) {
         return Results.html();
-
     }
     
     @FilterWith(SecureFilter.class)
@@ -322,7 +325,7 @@ public class ApplicationController {
     	
     	user.setId(userId);
     	login.setUpdatedBy(context.getSession().get("username"));
-    	login.setPassword(userDto.getPassword());
+    	login.setPassword(BCrypt.hashpw(userDto.getPassword(), BCrypt.gensalt(13)));
     	login.setUser(user);
     	if(userDto.isAdmin()){
     		login.setAdmin(userDto.isAdmin());
@@ -335,5 +338,55 @@ public class ApplicationController {
     		userDao.updateLoginCredentialsToUser(user);
     	}
     	return Results.redirect("/settings/user/loginCredentials");
+    }
+    
+    @FilterWith(SecureFilter.class)
+    public Result newChangePassword(@PathParam("id") int userId, Context context, Session session){
+    	changePasswordUserId=userId;
+    	if(userId==Integer.parseInt(session.get("userId"))){
+    		return Results.html();
+    	}else{
+    		context.getFlashScope().put("error", "invalid.user");
+    		return Results.redirect("/settings");
+    	}
+    	
+    }
+    
+    @FilterWith(AuthenticityFilter.class)
+    public Result changePassword(Context context, @JSR303Validation UserDto userDto, Validation validation){
+    	if(validation.hasViolations()){
+    		if(userDto.getPassword().trim().isEmpty() || userDto.getPassword().trim().length()<8){
+    			context.getFlashScope().put("invalidPassword", "invalid.password.length");
+    		}
+    		if(userDto.getRetypePassword().trim().isEmpty() || userDto.getRetypePassword().trim().length()<8){
+    			context.getFlashScope().put("invalidRetypePassword", "invalid.password.length");
+    		}
+
+    		List<FieldViolation> fv=validation.getBeanViolations();
+    		for(FieldViolation vio:fv){
+    			if(!vio.field.equals("email")){
+    				context.getFlashScope().put("error", "missing.required");
+    				return Results.redirect("/settings/user/changepassword/"+changePasswordUserId);
+    			}
+    		}
+
+    		if(!userDto.getPassword().equals(userDto.getRetypePassword())){
+        		context.getFlashScope().put("invalidRetypePassword", "password.mismatch");
+        		return Results.redirect("/settings/user/changepassword/"+changePasswordUserId);
+        	}
+    		
+    	}
+    	
+    	String password=BCrypt.hashpw(userDto.getPassword(), BCrypt.gensalt(13));
+    	login.setPassword(password);
+    	user.setId(changePasswordUserId);
+    	login.setUser(user);
+    	login.setAdmin(true);
+    	login.setUpdatedBy(context.getSession().get("username"));
+    	login.setId(Integer.parseInt(context.getSession().get("loginId")));
+    	userDao.updatePassword(login);
+    	
+    	context.getFlashScope().put("success", "password.change.success");
+    	return Results.redirect("/settings");
     }
 }
