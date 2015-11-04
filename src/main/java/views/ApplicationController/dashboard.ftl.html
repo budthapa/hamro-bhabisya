@@ -1,5 +1,38 @@
 <#import "../layout/defaultLayout.ftl.html" as layout>
 <@layout.myLayout "${i18n('app.name')} ${i18n('dashboard')}">
+	<div class="row row-margin">
+		<div class="col-md-4">
+			<div class="total-projects">
+				<div class="row text-center total-projects-row">
+					<label>${i18n('project.total')}</label>
+				</div>
+				<div class="row text-center">
+					<h1 class="project-count">${(projectCount!)}</h1>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="total-projects">
+				<div class="row text-center total-projects-row">
+					<label>${i18n('donation.total')}</label>
+				</div>
+				<div class="row text-center">
+					<h1 class="project-count">${(donationSum!)}</h1>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="total-projects">
+				<div class="row text-center total-projects-row">
+					<label>${i18n('user.total')}</label>
+				</div>
+				<div class="row text-center">
+					<h1 class="project-count">${(userCount!)}</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+	<hr/>
 	<div class="row">
 		<div class="col-md-3">
 			<div class="row text-center">
@@ -57,39 +90,6 @@
 			</div>
 			<div class="row text-center">
 				<a href="/settings"><i class="fa fa-cogs fa-5x"></i></a>
-			</div>
-		</div>
-	</div>
-	<hr/>
-	<div class="row row-margin">
-		<div class="col-md-4">
-			<div class="total-projects">
-				<div class="row text-center total-projects-row">
-					<label>${i18n('project.total')}</label>
-				</div>
-				<div class="row text-center">
-					<h1 class="project-count">${(projectCount!)}</h1>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-4">
-			<div class="total-projects">
-				<div class="row text-center total-projects-row">
-					<label>${i18n('donation.total')}</label>
-				</div>
-				<div class="row text-center">
-					<h1 class="project-count">${(donationSum!)}</h1>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-4">
-			<div class="total-projects">
-				<div class="row text-center total-projects-row">
-					<label>${i18n('user.total')}</label>
-				</div>
-				<div class="row text-center">
-					<h1 class="project-count">${(userCount!)}</h1>
-				</div>
 			</div>
 		</div>
 	</div>

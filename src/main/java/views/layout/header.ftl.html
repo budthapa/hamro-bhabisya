@@ -6,8 +6,8 @@
 			</button>
 		<div class="navbar-header">
 			<a class="navbar-brand" href="/"><img src="/assets/image/hblogo.jpg" class="img-responsive hblogo"/></a>
-			<h4 class="company-name">Hamro Bhabisya</h4>
-			<p class="company-slogan hidden-xs">Together, we can...</p>
+			<h4 class="company-name">${i18n('app.name.home')}</h4>
+			<p class="company-slogan hidden-xs">${i18n('app.slogan')}</p>
 		</div>
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
@@ -20,7 +20,7 @@
 			</ul>
 			<ul class="nav navbar-nav navbar-right ">
 				<#if (session.username)??>
-                	<li><a href="/app/dashboard">Dashboard</a></li>
+                	<li><a href="/app/dashboard">${i18n('dashboard')}</a></li>
                 	<li><a href="#">${session.username}</a></li>
                 	<li><a href="/logout">${i18n("header.logout")}</a></li>
             	<#else>

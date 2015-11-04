@@ -29,7 +29,7 @@
 				<img src="/assets/image/donation.png"/>
 			</div>
 			<div class="col-md-8">
-				<h2>Donate</h2>
+				<h2>${i18n('donate')}</h2>
 				<p>Your small donations can help a lot to a children </p>
 				<a href="/donation" class="btn btn-primary">More</a>
 			</div>
@@ -39,7 +39,7 @@
 				<img src="/assets/image/project.png"/>
 			</div>
 			<div class="col-md-8">
-				<h2>Projects</h2>
+				<h2>${i18n('projects')}</h2>
 				<p>view the list of projects we have done</p>
 				<a href="/project" class="btn btn-primary">${i18n('homepage.project.all.btn')}</a>
 			</div>
@@ -86,7 +86,7 @@
 					  	<table class="table">
 					  		<thead>
 					  			<tr>
-					  				<th>Name</th><th>Amount</th>
+					  				<th>${i18n('name')}</th><th>${i18n('donation.amount')}</th>
 					  			</tr>
 					  		</thead>
 					  		<tbody>
@@ -100,7 +100,7 @@
 					  		</tbody>
 					  	</table>
 					</div>
-					<a href="/donation" class="btn btn-info">View More</a>
+					<a href="/donation" class="btn btn-info">${i18n('donation.view')}</a>
 			</div>
 	</div>
         
@@ -125,11 +125,6 @@
         },
         navigation: {
             active: false,
-              // [boolean] Generates next and previous buttons.
-              // You can set to false and use your own buttons.
-              // User defined buttons must have the following:
-              // previous button: class="slidesjs-previous slidesjs-navigation"
-              // next button: class="slidesjs-next slidesjs-navigation"
           }
           
       });
