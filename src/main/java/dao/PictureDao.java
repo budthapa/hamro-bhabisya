@@ -34,7 +34,8 @@ public class PictureDao implements IBaseDao{
 	@Override
 	@Transactional
 	public <T> boolean delete(T object) {
-		// TODO Auto-generated method stub
+		EntityManager em=entityManagerProvider.get();
+		em.detach(object);
 		return false;
 	}
 

@@ -113,8 +113,7 @@ public class ApplicationController {
     		if(user.getDesignation().trim().isEmpty()){
     			user.setDesignation("");
     		}
-    		int status=userDao.save(user);
-    		System.out.println("staus "+status);
+    		userDao.save(user);
     		picture.setUser(user);
     		if(imageNameList.size()>0){
     			picture.setPictureName(imageNameList.get(0));    			
@@ -249,12 +248,12 @@ public class ApplicationController {
     	User user=userDao.getUser(userId);
     	id=userId;
     	Picture picture=pictureDao.getUserPicture(user);
+    	this.picture=picture;
     	if(picture!=null){
 			return Results.html().render("user",user).render("picture",picture);			
 		}else{
 			return Results.html().render("user",user);
 		}
-//    	return Results.html().render("user",user);
     }
     
     @FilterWith(SecureFilter.class)
@@ -274,6 +273,9 @@ public class ApplicationController {
     		if(user.getDesignation().trim().isEmpty()){
     			user.setDesignation("");
     		}
+    		
+    		pictureDao.delete(this.picture);
+    		
     		user.setId(this.id);
     		user.setUpdatedBy(session.get("username"));
     		if(imageNameList.size()>0){
@@ -281,7 +283,6 @@ public class ApplicationController {
     			imageNameList.clear();
     		}
     		picture.setUser(user);
-//    		pictureDao.saveOrUpdate(picture);
     		user.setPicture(picture);
     		userDao.saveOrUpdate(user);
     		context.getFlashScope().put("success", "user.update.success");
@@ -341,6 +342,7 @@ public class ApplicationController {
     		user.setName(name);
     		userDao.updateLoginCredentialsToUser(user);
     	}
+    	context.getFlashScope().put("success", "login.credentials.Success");
     	return Results.redirect("/settings/user/loginCredentials");
     }
     

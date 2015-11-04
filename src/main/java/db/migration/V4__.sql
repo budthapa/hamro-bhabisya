@@ -1,1 +1,0 @@
-ALTER TABLE ContactUs change column message message varchar(5000) NOT NULL

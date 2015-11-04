@@ -19,3 +19,6 @@ ALTER TABLE ContactUs change column message message varchar(5000) NOT NULL [4210
 10-30 19:04:43 jdbc[4]: exception
 org.h2.jdbc.JdbcSQLException: Table "CONTACTUS" not found; SQL statement:
 ALTER TABLE ContactUs change column message message varchar(5000) NOT NULL [42102-186]
+11-04 12:53:25 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Table "CONTACTUS" not found; SQL statement:
+ALTER TABLE ContactUs change column message message varchar(5000) NOT NULL [42102-186]

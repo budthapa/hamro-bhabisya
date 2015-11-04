@@ -46,7 +46,7 @@ public class ProjectDao implements IBaseDao{
 	public <T> int save(T object) {
 		EntityManager entityManager=entityManagerProvider.get();
 		Project project=(Project)object;
-		entityManager.persist(object);
+		entityManager.persist(project);
 		
 		return project.getId();
 	}
@@ -55,8 +55,7 @@ public class ProjectDao implements IBaseDao{
 	@Transactional
 	public <T> boolean saveOrUpdate(T object) {
 		EntityManager em=entityManagerProvider.get();
-		Project project=(Project)object;
-		em.merge(project);
+		em.merge(object);
 		return true;
 	}
 
@@ -68,8 +67,7 @@ public class ProjectDao implements IBaseDao{
 		try{
 			project=(Project) query.setMaxResults(1).getSingleResult();			
 		}catch(Exception e){
-			log.info("Project was not found while running the app for the first time in class "+ProjectDao.class.getName()
-					+" method : "+ProjectDao.class.getEnclosingMethod());
+			log.info("Project was not found while running the app for the first time");
 		}
 		return project;
 	}

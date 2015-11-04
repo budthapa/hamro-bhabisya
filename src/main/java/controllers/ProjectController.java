@@ -43,7 +43,7 @@ public class ProjectController {
 	Picture picture;
 
 	private int id;
-	
+
 	public Result index(){
 		List<Project> projectList=projectDao.findAllProject();
 		return Results.html().render("projectList",projectList);
@@ -63,17 +63,24 @@ public class ProjectController {
 		}
 		
 		project.setCreatedBy(session.get("username"));
-		projectDao.save(project);
 		
 		picture.setProject(project);
 		//need to work on this later for multiple images
 //		for(String name:imageNameList){
 //		}
-		if(imageNameList.size()>0){
+		List<Picture> picList=new ArrayList<Picture>();
+		for(String list:imageNameList){
+			picture.setPictureName(list);
+			picList.add(picture);
+		}
+		project.setPicture(picList);
+		projectDao.save(project);
+		
+		/*if(imageNameList.size()>0){
 			picture.setPictureName(imageNameList.get(0));
 			pictureDao.save(picture);
-			imageNameList.clear();			
-		}
+		}*/
+		imageNameList.clear();			
 		context.getFlashScope().put("success", "Project created successfully.");
 		return Results.redirect("/project/new");
 	}
@@ -124,7 +131,7 @@ public class ProjectController {
 		}
 		return Results.redirect("project/new");
 	}
-	
+
 	public Result showProject(@PathParam("id") int projectId, Session session){
 		Project project=projectDao.getProject(projectId);
 		Picture picture = pictureDao.getLatestProjectPictureFrontPage(project);
@@ -147,6 +154,7 @@ public class ProjectController {
 		Picture picture = pictureDao.getLatestProjectPictureFrontPage(project);
 		id=projectId;
 		if(picture!=null){
+			this.picture=picture;
 			return Results.html().render(project).render(picture);			
 		}else{
 			return Results.html().render(project);
@@ -156,15 +164,19 @@ public class ProjectController {
 	public Result update(Context context, @JSR303Validation Project project, Validation validation, 
 			@Params("pictureName") FileItem uploadedfile[], Session session){
 		
-		project.setId(id);
 //		if(project.getButtonName().equals("Update")){
 			if(validation.hasViolations()){
 				flashError(context,project);
 				return Results.redirect("/project/edit/"+this.id);
 			}
-
+			
+			if(this.picture!=null){
+				pictureDao.delete(this.picture);
+			}
+			
 			project.setId(this.id);
 			project.setUpdatedBy(session.get("username"));
+			picture.setProject(project);			
 			//need to work on this later for multiple images
 			List<Picture> pictureList=new ArrayList<Picture>();
 			for(String name:imageNameList){
@@ -172,15 +184,15 @@ public class ProjectController {
 				pictureList.add(picture);
 			}
 			project.setPicture(pictureList);
-			picture.setProject(project);			
 			projectDao.saveOrUpdate(project);			
 			/*
 			if(imageNameList.size()>0){
 				picture.setPictureName(imageNameList.get(0));
 				pictureDao.saveOrUpdate(picture);
-				imageNameList.clear();			
 			}
 			*/
+			imageNameList.clear();
+			pictureList.clear();
 			context.getFlashScope().put("success", "Project updated successfully.");
 //		}else{
 //			projectDao.delete(project);

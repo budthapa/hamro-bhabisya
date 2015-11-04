@@ -89,7 +89,7 @@ public class UserDao implements IBaseDao {
 	@Transactional
 	public <T> int save(T object) {
 		EntityManager em = entityManagerProvider.get();
-		User user = null;
+		/*User user = null;
 		try {
 			user = (User) object;
 			em.persist(user);
@@ -99,6 +99,9 @@ public class UserDao implements IBaseDao {
 			log.warning("Duplicate entry for '" + user.getEmail() + "'");
 		}
 		return 0;
+		*/
+		em.persist(object);
+		return 1;
 	}
 
 	@Override

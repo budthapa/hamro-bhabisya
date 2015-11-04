@@ -44,8 +44,8 @@
 					<button id="submitForm" class="btn btn-success form-control">${i18n("button.update")}</button>
 				</div>
 			</form>
-</div>
-<div class="col-md-3">
+		</div>
+	<div class="col-md-3">
 			<#if flash.noFileSelected??>
 				<p class="alert alert-danger">${(flash.noFileSelected)}</p>
 			</#if>
@@ -65,10 +65,10 @@
 			</form>
 			<#if picture??>
 				<img alt="Hamrobhabisya ${(user.name)}" src="/assets/image/${(picture.pictureName)}.jpg">
-				<button id="deleteBtn" class="btn btn-danger" onclick="return confirm('Are you sure?');">Delete Picture</button>
+				<!-- <button id="deleteBtn" class="btn btn-danger" onclick="return confirm('Are you sure?');">Delete Picture</button> -->
 			</#if>
 		</div>
-</div>
+	</div>
 
 </@layout.myLayout>
 <script>
