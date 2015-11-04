@@ -137,4 +137,35 @@ img {
   -ms-interpolation-mode: bicubic;
 }
 
+/*common btns for dashboard, settings */
+.danger{
+	color: #C92033;
+}
+.success{
+	color: #7DC343;
+}
+.info{
+	color: #2667A0;
+}
 
+.row-margin{
+	margin-top: 35px;
+}
+.total-projects{
+	border: 1px solid rgb(137, 183, 137);
+	width: 63%;
+	margin-left: 50px;
+}
+.total-projects-row {
+	background-color: green;
+	margin-left: 0px;
+	color: rgb(219, 211, 254);
+	width: 100%;
+	height: 40px;
+}
+.total-projects-row>label{
+	margin-top: 7px;
+}
+.project-count{
+	font-size: 75px;
+}

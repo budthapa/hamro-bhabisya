@@ -146,4 +146,12 @@ public class UserDao implements IBaseDao {
 		EntityManager em=entityManagerProvider.get();
 		em.merge(login);
 	}
+
+	@UnitOfWork
+	public long countTotalUser() {
+		EntityManager em=entityManagerProvider.get();
+		Query q=em.createQuery("SELECT COUNT(*) FROM User");
+		long count=(long) q.getSingleResult();
+		return count;
+	}
 }

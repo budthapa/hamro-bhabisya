@@ -1,14 +1,44 @@
 <#import "../layout/defaultLayout.ftl.html" as layout> 
 <@layout.myLayout "${i18n('app.name')} ${i18n('settings')}"> 
-<div class="col-md-6">
-	<a href="/settings/user/changepassword/${session.userId!}">Change Password</a>
+<div class="col-md-12">
+	<div class="row">
+		<div class="col-md-3">
+			<div class="row text-center">
+				<label>Change Password</label>
+			</div>
+			<div class="row text-center">
+				<a class="info" href="/settings/user/changepassword/${session.userId!}"><i class="fa fa-key fa-5x"></i></a>
+			</div>
+		</div>		
 	<#if (session.isAdmin)??>
 		<#if (session.isAdmin=="true")>
-			<a href="/settings/user/new">Add New User</a>
-			<a href="/settings/user/disable">Disable User</a>
-			<a href="/settings/user/loginCredentials">Create Login Credentials</a>
+			<div class="col-md-3">
+				<div class="row text-center">
+					<label>Add New User</label>
+				</div>
+				<div class="row text-center">
+					<a class="success" href="/settings/user/new"><i class="fa fa-user-plus fa-5x"></i></a>
+				</div>		
+			</div>
+			<div class="col-md-3">
+				<div class="row text-center">
+					<label>Disable User</label>
+				</div>	
+				<div class="row text-center">
+					<a class="danger" href="/settings/user/disable"><i class="fa fa-user-times fa-5x"></i></a>
+				</div>		
+			</div>
+			<div class="col-md-3">
+				<div class="row text-center">
+					<label>Create Login Credentials</label>
+				</div>	
+				<div class="row text-center">
+					<a class="" href="/settings/user/loginCredentials"><i class="fa fa-user-secret fa-5x"></i></a>
+				</div>
+			</div>		
 		</#if>
 	</#if>
+	</div>
 </div>
 
 </@layout.myLayout>

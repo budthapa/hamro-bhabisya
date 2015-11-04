@@ -1,6 +1,7 @@
 package dao;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -13,6 +14,7 @@ import com.google.inject.Provider;
 import com.google.inject.persist.Transactional;
 
 public class DonationDao implements IBaseDao{
+	Logger log=Logger.getLogger(DonationDao.class.getName());
 	@Inject
 	Provider<EntityManager> entityManagerProvider;
 	
@@ -65,6 +67,19 @@ public class DonationDao implements IBaseDao{
 		Query q=em.createQuery("SELECT x FROM Donation x ORDER BY x.id DESC");
 		List<Donation> list=q.setMaxResults(5).getResultList();
 		return list;
+	}
+	
+	@UnitOfWork
+	public long sumTotalDonation() {
+		EntityManager em=entityManagerProvider.get();
+		Query q=em.createQuery("SELECT SUM(amount) FROM Donation d");
+		long sum=0;
+		try{
+			sum=(long) q.getSingleResult();
+		}catch(Exception e){
+			log.info("No Donation found");
+		}
+		return sum;
 	}
 
 }

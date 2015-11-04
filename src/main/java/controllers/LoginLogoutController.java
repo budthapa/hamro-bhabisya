@@ -19,8 +19,6 @@ package controllers;
 import java.util.List;
 import java.util.logging.Logger;
 
-import org.mindrot.jbcrypt.BCrypt;
-
 import ninja.Context;
 import ninja.Result;
 import ninja.Results;
@@ -28,6 +26,8 @@ import ninja.session.Session;
 import ninja.validation.FieldViolation;
 import ninja.validation.JSR303Validation;
 import ninja.validation.Validation;
+
+import org.mindrot.jbcrypt.BCrypt;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
@@ -40,9 +40,13 @@ public class LoginLogoutController {
     Logger log=Logger.getLogger(LoginLogoutController.class.getName());
     @Inject
     UserDao userDao;
+    
     int countLoginAttempt=0;
     
     public Result login(Context context) {
+    	if(context.getSession().get("username")!=null){
+    		return Results.redirect("/app/dashboard");
+    	}
         return Results.html();
     }
 

@@ -1,10 +1,96 @@
 <#import "../layout/defaultLayout.ftl.html" as layout>
 <@layout.myLayout "${i18n('app.name')} ${i18n('dashboard')}">
-	<a href="/project/new">New Project</a>
-	<a href="/project">View Projects</a>
-	<a href="/donation/new">Add Donation</a>
-	<a href="/donation">View Donations</a>
-	<a href="/contact">View Contact Messages</a>
-	<a href="/members">View Members</a>
-	<a href="/settings">Settings</a>
+	<div class="row">
+		<div class="col-md-3">
+			<div class="row text-center">
+				<label>New Project</label>
+			</div>
+			<div class="row text-center">
+				<a href="/project/new"><i class="fa fa-file fa-5x"></i></a>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="row text-center">
+				<label>View Projects</label>
+			</div>
+			<div class="row text-center">
+				<a href="/project"><i class="fa fa-newspaper-o fa-5x"></i></a>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="row text-center">
+				<label>Add Donation</label>
+			</div>
+			<div class="row text-center">
+				<a href="/donation/new"><i class="fa fa-edit fa-5x"></i></a>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="row text-center">
+				<label>View Donations</label>
+			</div>
+			<div class="row text-center">
+				<a href="/donation"><i class="fa fa-money fa-5x"></i></a>
+			</div>
+		</div>
+	</div>
+	<div class="row row-margin">
+		<div class="col-md-3">
+			<div class="row text-center">
+				<label>View Contact Messages</label>
+			</div>
+			<div class="row text-center">
+				<a href="/contact"><i class="fa fa-envelope-o fa-5x"></i></a>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="row text-center">
+				<label>View Members</label>
+			</div>
+			<div class="row text-center">
+				<a href="/members"><i class="fa fa-users fa-5x"></i></a>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="row text-center">
+				<label>Settings</label>
+			</div>
+			<div class="row text-center">
+				<a href="/settings"><i class="fa fa-cogs fa-5x"></i></a>
+			</div>
+		</div>
+	</div>
+	<hr/>
+	<div class="row row-margin">
+		<div class="col-md-4">
+			<div class="total-projects">
+				<div class="row text-center total-projects-row">
+					<label>Total Projects</label>
+				</div>
+				<div class="row text-center">
+					<h1 class="project-count">${(projectCount!)}</h1>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="total-projects">
+				<div class="row text-center total-projects-row">
+					<label>Total Donations</label>
+				</div>
+				<div class="row text-center">
+					<h1 class="project-count">${(donationSum!)}</h1>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="total-projects">
+				<div class="row text-center total-projects-row">
+					<label>Total Members</label>
+				</div>
+				<div class="row text-center">
+					<h1 class="project-count">${(userCount!)}</h1>
+				</div>
+			</div>
+		</div>
+	</div>
 </@layout.myLayout>

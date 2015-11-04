@@ -103,4 +103,12 @@ public class ProjectDao implements IBaseDao{
 		return project;
 	}
 
+	@UnitOfWork
+	public long countTotalProject() {
+		EntityManager em=entityManagerProvider.get();
+		Query q=em.createQuery("SELECT COUNT(*) FROM Project p");
+		long count=(long) q.getSingleResult();
+		return count;
+	}
+
 }

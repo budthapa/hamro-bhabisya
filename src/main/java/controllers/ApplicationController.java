@@ -232,7 +232,11 @@ public class ApplicationController {
     
     @FilterWith(SecureFilter.class)
     public Result dashboard(){
-    	return Results.html();    		
+		long projectCount=projectDao.countTotalProject();
+		long donationSum=donationDao.sumTotalDonation();
+		long userCount=userDao.countTotalUser();
+		
+    	return Results.html().render("projectCount", projectCount).render("donationSum",donationSum).render("userCount", userCount);    		
     }
     
     public Result memberList(){
