@@ -53,6 +53,7 @@ public class Routes implements ApplicationRoutes {
         router.POST().route("/settings/user/new").with(ApplicationController.class, "create");
         router.POST().route("/settings/user/new/upload").with(ApplicationController.class, "upload");
         router.GET().route("/members").with(ApplicationController.class, "memberList");
+        router.GET().route("/settings/user/update").with(ApplicationController.class,"index");
         router.POST().route("/settings/user/update").with(ApplicationController.class,"update");
         router.GET().route("/settings/user/loginCredentials").with(ApplicationController.class, "newLoginCredentials");
         router.POST().route("/settings/user/loginCredentials").with(ApplicationController.class, "createLoginCredentials");

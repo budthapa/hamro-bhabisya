@@ -118,6 +118,7 @@ public class ApplicationController {
     		if(user.getDesignation().trim().isEmpty()){
     			user.setDesignation("");
     		}
+    		Picture picture=new Picture();
     		userDao.save(user);
     		picture.setUser(user);
     		if(imageNameList.size()>0){
@@ -277,16 +278,30 @@ public class ApplicationController {
     			user.setDesignation("");
     		}
     		
-    		pictureDao.delete(this.picture);
-    		
-    		user.setId(this.id);
-    		user.setUpdatedBy(session.get("username"));
-    		if(imageNameList.size()>0){
-    			picture.setPictureName(imageNameList.get(0));    			
-    			imageNameList.clear();
+    		if(this.picture!=null){
+    			log.info("Updating picture for existing picture for user "+this.id);
+    			pictureDao.delete(this.picture);
+	    		user.setId(this.id);
+	    		user.setUpdatedBy(session.get("username"));
+	    		if(imageNameList.size()>0){
+	    			this.picture.setPictureName(imageNameList.get(0));    			
+	    			imageNameList.clear();
+	    		}
+	    		this.picture.setUser(user);
+	    		user.setPicture(this.picture);
+    		}else{
+    			log.info("Picture didn't exist so creating new");
+    			Picture picture=new Picture();
+	    		user.setId(this.id);
+	    		user.setUpdatedBy(session.get("username"));
+	    		if(imageNameList.size()>0){
+	    			picture.setPictureName(imageNameList.get(0));    			
+	    			imageNameList.clear();
+	    		}
+	    		picture.setUser(user);
+	    		user.setPicture(picture);
+    			
     		}
-    		picture.setUser(user);
-    		user.setPicture(picture);
     		userDao.saveOrUpdate(user);
     		context.getFlashScope().put("success", "user.update.success");
     	}
