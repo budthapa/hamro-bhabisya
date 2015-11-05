@@ -33,7 +33,6 @@ import etc.FilePathHelper;
 @Singleton
 public class FinancialReportController {
 	List<String> imageNameList=new ArrayList<>();
-	public static String fileName;
 	
 	@Inject
 	FinancialReportDao frd;
@@ -43,8 +42,7 @@ public class FinancialReportController {
 	
 	public Result index(){
 		List<FinancialReport> list=frd.findAll();
-		fileName=list.get(0).getPicture().getPictureName();
-		return Results.html().render("financialList", list);
+			return Results.html().render("financialList", list);			
 	}
 	
 	@FilterWith(SecureFilter.class)
