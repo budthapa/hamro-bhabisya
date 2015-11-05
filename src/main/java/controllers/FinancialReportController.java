@@ -1,6 +1,5 @@
 package controllers;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -29,18 +28,22 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 import dao.FinancialReportDao;
+import etc.FilePathHelper;
 
 @Singleton
 public class FinancialReportController {
 	List<String> imageNameList=new ArrayList<>();
-	private String fileName;
+	public static String fileName;
 	
 	@Inject
 	FinancialReportDao frd;
 	
+	@Inject
+    FilePathHelper filePath;
+	
 	public Result index(){
 		List<FinancialReport> list=frd.findAll();
-		this.fileName=list.get(0).getPicture().getPictureName();
+		fileName=list.get(0).getPicture().getPictureName();
 		return Results.html().render("financialList", list);
 	}
 	
@@ -103,19 +106,18 @@ public class FinancialReportController {
 				   if (fi.getContentType().equals("application/pdf")) {
 					   long fileSize=fi.getFile().length();
 					   if((fileSize/1024)>200){
-						   context.getFlashScope().put("invalidFileSize", "Invalid file size");
+						   context.getFlashScope().put("invalidFileSize", "invalid.file.size");
 						   return Results.status(400);
 					   }
-						String uuid=UUID.randomUUID().toString();
-						String fileName=uuid+" "+fi.getFileName();
+						String fileName=UUID.randomUUID().toString()+" "+fi.getFileName();
 						try {
-							FileUtils.moveFile(fi.getFile(), new File("../hbjpa/src/main/java/assets/image/"+fileName));
+							FileUtils.moveFile(fi.getFile(), new File(filePath.getFilePath()+fileName));
 							imageNameList.add(fileName);
 						} catch (IOException e) {
 							e.printStackTrace();
 						}
 				   }else{
-					   context.getFlashScope().put("noFileSelected", "Not a valid file or no file(s) selected");
+					   context.getFlashScope().put("noFileSelected", "report.file.error");
 					   return Results.status(400);
 				   }
 				   
@@ -125,27 +127,4 @@ public class FinancialReportController {
 		return Results.redirect("/report/new");
 	}
 	
-	public Result download(@PathParam("fileName") String fileName, Context context){
-		if(this.fileName.equals(fileName)){
-			byte[] fileInputByte;
-			ByteArrayOutputStream output = new ByteArrayOutputStream();
-			try {
-				File file=new File("/home/budthapa/hbjpa/src/main/java/assets/image/"+fileName);
-				fileInputByte = FileUtils.readFileToByteArray(file);
-				output.write(fileInputByte);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}finally{
-				try {
-					output.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-			return Results.ok().renderRaw(output.toByteArray()).contentType("application/pdf");
-		}else{
-			context.getFlashScope().put("error", "report.notfound");
-			return Results.redirect("/report");
-		}
-	}
 }

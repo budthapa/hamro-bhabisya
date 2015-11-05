@@ -29,6 +29,7 @@ import controllers.DonationController;
 import controllers.FinancialReportController;
 import controllers.LoginLogoutController;
 import controllers.ProjectController;
+import etc.ServeFileHelper;
 
 public class Routes implements ApplicationRoutes {
     
@@ -95,7 +96,9 @@ public class Routes implements ApplicationRoutes {
         router.GET().route("/report/edit/{id}").with(FinancialReportController.class, "editReport");
         router.POST().route("/report/edit/").with(FinancialReportController.class, "update");
         router.POST().route("/report/upload").with(FinancialReportController.class, "upload");
-        router.GET().route("/report/download/{fileName}").with(FinancialReportController.class, "download");
+        
+        ////// Serving files
+        router.GET().route("/file/download/{fileName}").with(ServeFileHelper.class, "download");
         
         ///////////////////////////////////////////////////////////////////////
         // Assets (pictures / javascript)

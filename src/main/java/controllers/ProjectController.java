@@ -30,6 +30,7 @@ import com.google.inject.Singleton;
 
 import dao.PictureDao;
 import dao.ProjectDao;
+import etc.FilePathHelper;
 
 @Singleton
 public class ProjectController {
@@ -41,7 +42,8 @@ public class ProjectController {
 	PictureDao pictureDao;
 	@Inject
 	Picture picture;
-
+	@Inject
+    FilePathHelper filePath;
 	private int id;
 
 	public Result index(){
@@ -81,7 +83,7 @@ public class ProjectController {
 			pictureDao.save(picture);
 		}*/
 		imageNameList.clear();			
-		context.getFlashScope().put("success", "Project created successfully.");
+		context.getFlashScope().put("success", "project.create.success");
 		return Results.redirect("/project/new");
 	}
 	
@@ -96,20 +98,18 @@ public class ProjectController {
 				   if (fi.getContentType().equals("image/jpeg") || fi.getContentType().equals("image/jpg") || fi.getContentType().equals("image/png")) {
 					   long fileSize=fi.getFile().length();
 					   if((fileSize/1024)>200){
-						   context.getFlashScope().put("invalidFileSize", "Invalid file size");
+						   context.getFlashScope().put("invalidFileSize", "invalid.file.size");
 						   return Results.status(400);
-//						   return Results.redirect("/project/new");
 					   }
-					   //if()
-						String uuid=UUID.randomUUID().toString();
+					   String fileName=UUID.randomUUID().toString()+fi.getFileName();
 						try {
-							FileUtils.moveFile(fi.getFile(), new File("../hbjpa/src/main/java/assets/image/"+uuid+".jpg"));
-							imageNameList.add(uuid);
+							FileUtils.moveFile(fi.getFile(), new File(filePath.getFilePath()+fileName));
+							imageNameList.add(fileName);
 						} catch (IOException e) {
 							e.printStackTrace();
 						}
 				   }else{
-					   context.getFlashScope().put("noFileSelected", "Not a valid file or no file(s) selected");
+					   context.getFlashScope().put("noFileSelected", "report.file.error");
 					   break;
 				   }
 				   
@@ -120,12 +120,12 @@ public class ProjectController {
 	}
 	
 	private Result flashError(Context context, Project project){
-		context.getFlashScope().put("error", "Missing required fields.");
+		context.getFlashScope().put("error", "missing.required");
 		if(project.getTitle().trim().length()<20){
-			context.getFlashScope().put("invalidName", "Title too short.");			
+			context.getFlashScope().put("invalidName", "project.title.short");			
 		}
 		context.getFlashScope().put("name", project.getTitle());
-		context.getFlashScope().put("invalidMessage", "Message too short.");
+		context.getFlashScope().put("invalidMessage", "project.message.short");
 		if(project.getDescription().trim().length()<100){
 			context.getFlashScope().put("message", project.getDescription());
 		}
@@ -193,7 +193,7 @@ public class ProjectController {
 			*/
 			imageNameList.clear();
 			pictureList.clear();
-			context.getFlashScope().put("success", "Project updated successfully.");
+			context.getFlashScope().put("success", "project.update.success");
 //		}else{
 //			projectDao.delete(project);
 //			context.getFlashScope().put("success", "Project deleted successfully.");

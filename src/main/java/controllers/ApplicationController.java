@@ -56,6 +56,7 @@ import dao.PictureDao;
 import dao.ProjectDao;
 import dao.UserDao;
 import dto.UserDto;
+import etc.FilePathHelper;
 import etc.Validator;
 
 @Singleton
@@ -79,6 +80,10 @@ public class ApplicationController {
     User user;
     @Inject
     Login login;
+    
+    @Inject
+    FilePathHelper filePath;
+    
     int changePasswordUserId=0;
     
     public ApplicationController() {
@@ -183,20 +188,18 @@ public class ApplicationController {
 				   if (fi.getContentType().equals("image/jpeg") || fi.getContentType().equals("image/jpg") || fi.getContentType().equals("image/png")) {
 					   long fileSize=fi.getFile().length();
 					   if((fileSize/1024)>200){
-						   context.getFlashScope().put("invalidFileSize", "Invalid file size");
+						   context.getFlashScope().put("invalidFileSize", "invalid.file.size");
 						   return Results.status(400);
-//						   return Results.redirect("/project/new");
 					   }
-					   //if()
-						String uuid=UUID.randomUUID().toString();
+						String fileName=UUID.randomUUID().toString()+fi.getFileName();
 						try {
-							FileUtils.moveFile(fi.getFile(), new File("../hbjpa/src/main/java/assets/image/"+uuid+".jpg"));
-							imageNameList.add(uuid);
+							FileUtils.moveFile(fi.getFile(), new File(filePath.getFilePath()+fileName));
+							imageNameList.add(fileName);
 						} catch (IOException e) {
 							e.printStackTrace();
 						}
 				   }else{
-					   context.getFlashScope().put("noFileSelected", "Not a valid file or no file(s) selected");
+					   context.getFlashScope().put("noFileSelected", "report.file.error");
 					   break;
 				   }
 				   
