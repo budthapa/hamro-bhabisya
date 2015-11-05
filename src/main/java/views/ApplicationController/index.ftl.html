@@ -3,7 +3,7 @@
 		<div id="slides">
 		<#if imageList??>
 			<#list imageList as list>
-				<img src="/assets/image/${(list.pictureName)}.jpg" title="Hamrobhabisya projects www.hamrobhabisya.org"/>
+				<img src="/file/download/${(list.pictureName)}" title="Hamrobhabisya projects www.hamrobhabisya.org"/>
 			</#list>
 			<a href="#" class="slidesjs-previous slidesjs-navigation"><i class="glyphicon glyphicon-chevron-left"></i></a>
               <a href="#" class="slidesjs-next slidesjs-navigation"><i class="glyphicon glyphicon-chevron-right"></i></a>
@@ -13,7 +13,7 @@
 		<#if frontProject??>
 			<div class="col-md-3">
 				<#if picture??>
-					<img class="img-responsive" src="/assets/image/${(picture.pictureName)}.jpg" alt="hamrobhabisya latest project"/>
+					<img class="img-responsive" src="/file/download/${(picture.pictureName)}" alt="hamrobhabisya latest project"/>
 				<#else>
 				</#if>
 			</div>

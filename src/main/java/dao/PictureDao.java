@@ -26,7 +26,7 @@ public class PictureDao implements IBaseDao{
 	@UnitOfWork
 	public <T> List<T> findAll() {
 		EntityManager em=entityManagerProvider.get();
-		Query q=em.createQuery("SELECT x FROM Picture x ORDER BY x.id DESC");
+		Query q=em.createQuery("SELECT x FROM Picture x WHERE x.pictureName LIKE '%.jpg' ORDER BY x.id DESC");
 		List<Picture> list=q.setMaxResults(4).getResultList();
 		return (List<T>) list;
 	}
