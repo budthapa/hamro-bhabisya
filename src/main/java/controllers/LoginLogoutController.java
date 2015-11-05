@@ -51,7 +51,6 @@ public class LoginLogoutController {
     }
 
     public Result loginPost(Context context, @JSR303Validation UserDto user, Validation validation,Session session) {
-    	System.out.println(BCrypt.hashpw("password", BCrypt.gensalt(13)));
     	if(validation.hasViolations()){
     		List<FieldViolation> list=validation.getBeanViolations();
     		for(FieldViolation fv:list){

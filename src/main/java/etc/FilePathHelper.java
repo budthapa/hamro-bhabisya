@@ -8,7 +8,7 @@ public class FilePathHelper {
 	NinjaProperties ninja;
 	public String getFilePath(){
 		if(ninja.isProd()){
-			return "../src/main/java/assets/image/";
+			return "/home/budthapa/images/";
 		}else{
 			return "../hbjpa/src/main/java/assets/image/";
 		}
