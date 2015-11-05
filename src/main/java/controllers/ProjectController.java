@@ -64,6 +64,7 @@ public class ProjectController {
 			return Results.redirect("project/new");
 		}
 		
+		Picture picture=new Picture();
 		project.setCreatedBy(session.get("username"));
 		
 		picture.setProject(project);
@@ -78,10 +79,6 @@ public class ProjectController {
 		project.setPicture(picList);
 		projectDao.save(project);
 		
-		/*if(imageNameList.size()>0){
-			picture.setPictureName(imageNameList.get(0));
-			pictureDao.save(picture);
-		}*/
 		imageNameList.clear();			
 		context.getFlashScope().put("success", "project.create.success");
 		return Results.redirect("/project/new");
