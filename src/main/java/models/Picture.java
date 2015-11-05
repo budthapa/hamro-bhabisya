@@ -15,6 +15,9 @@ public class Picture extends BaseDomain{
 	@OneToOne
 	private User user;
 	
+	@OneToOne
+	private FinancialReport report;
+	
 	public String getPictureName() {
 		return pictureName;
 	}
@@ -32,6 +35,12 @@ public class Picture extends BaseDomain{
 	}
 	public void setUser(User user) {
 		this.user = user;
+	}
+	public FinancialReport getReport() {
+		return report;
+	}
+	public void setReport(FinancialReport report) {
+		this.report = report;
 	}
 	
 }

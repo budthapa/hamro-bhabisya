@@ -1,5 +1,5 @@
 <#import "../layout/defaultLayout.ftl.html" as layout> 
-<@layout.myLayout "Home page">
+<@layout.myLayout "${i18n('app.name')} ${i18n('header.home')}">
 		<div id="slides">
 		<#if imageList??>
 			<#list imageList as list>

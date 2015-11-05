@@ -204,7 +204,7 @@ public class ApplicationController {
 			}
 		}
 		System.out.println("request path : "+context.getRequestPath());
-		return Results.redirect("/project/new");
+		return Results.redirect("/settings/user/new");
     }
     
     public Result index() {

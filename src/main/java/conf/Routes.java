@@ -26,6 +26,7 @@ import com.google.inject.Inject;
 import controllers.ApplicationController;
 import controllers.ContactUsController;
 import controllers.DonationController;
+import controllers.FinancialReportController;
 import controllers.LoginLogoutController;
 import controllers.ProjectController;
 
@@ -45,26 +46,18 @@ public class Routes implements ApplicationRoutes {
      */
     @Override
     public void init(Router router) {  
-
-    	
-        // puts test data into db:
-        if (!ninjaProperties.isProd()) {
-        	router.GET().route("/app/dashboard").with(ApplicationController.class, "dashboard");
-            router.GET().route("/settings").with(ApplicationController.class, "settings");
-            router.GET().route("/settings/user/new").with(ApplicationController.class, "newUser");
-            router.POST().route("/settings/user/new").with(ApplicationController.class, "create");
-            router.POST().route("/settings/user/new/upload").with(ApplicationController.class, "upload");
-            router.GET().route("/members").with(ApplicationController.class, "memberList");
-            router.POST().route("/settings/user/update").with(ApplicationController.class,"update");
-            router.GET().route("/settings/user/loginCredentials").with(ApplicationController.class, "newLoginCredentials");
-            router.POST().route("/settings/user/loginCredentials").with(ApplicationController.class, "createLoginCredentials");
-            router.GET().route("/settings/user/changepassword/{id}").with(ApplicationController.class, "newChangePassword");
-            router.POST().route("/settings/user/changepassword/").with(ApplicationController.class, "changePassword");
-            router.GET().route("/settings/user/{id}").with(ApplicationController.class, "editUser");
-            
-//            router.GET().route("/settings/user/changepassword").with(ApplicationController.class, "settings");
-            
-        }
+       	router.GET().route("/app/dashboard").with(ApplicationController.class, "dashboard");
+       	router.GET().route("/settings").with(ApplicationController.class, "settings");
+        router.GET().route("/settings/user/new").with(ApplicationController.class, "newUser");
+        router.POST().route("/settings/user/new").with(ApplicationController.class, "create");
+        router.POST().route("/settings/user/new/upload").with(ApplicationController.class, "upload");
+        router.GET().route("/members").with(ApplicationController.class, "memberList");
+        router.POST().route("/settings/user/update").with(ApplicationController.class,"update");
+        router.GET().route("/settings/user/loginCredentials").with(ApplicationController.class, "newLoginCredentials");
+        router.POST().route("/settings/user/loginCredentials").with(ApplicationController.class, "createLoginCredentials");
+        router.GET().route("/settings/user/changepassword/{id}").with(ApplicationController.class, "newChangePassword");
+        router.POST().route("/settings/user/changepassword/").with(ApplicationController.class, "changePassword");
+        router.GET().route("/settings/user/{id}").with(ApplicationController.class, "editUser");
         
         ///////////////////////////////////////////////////////////////////////
         // Login / Logout
@@ -94,6 +87,15 @@ public class Routes implements ApplicationRoutes {
         router.POST().route("/donation/new").with(DonationController.class, "create");
         router.GET().route("/donation/edit/{id}").with(DonationController.class, "editDonation");
         router.POST().route("/donation/update").with(DonationController.class, "update");
+        
+        ////// Financial Reports
+        router.GET().route("/report").with(FinancialReportController.class, "index");
+        router.GET().route("/report/new").with(FinancialReportController.class, "newReport");
+        router.POST().route("/report/new").with(FinancialReportController.class, "create");
+        router.GET().route("/report/edit/{id}").with(FinancialReportController.class, "editReport");
+        router.POST().route("/report/edit/").with(FinancialReportController.class, "update");
+        router.POST().route("/report/upload").with(FinancialReportController.class, "upload");
+        router.GET().route("/report/download/{fileName}").with(FinancialReportController.class, "download");
         
         ///////////////////////////////////////////////////////////////////////
         // Assets (pictures / javascript)

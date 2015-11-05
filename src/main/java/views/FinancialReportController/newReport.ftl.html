@@ -1,0 +1,68 @@
+<#import "../layout/defaultLayout.ftl.html" as layout>
+<@layout.myLayout "${i18n('app.name')} ${i18n('report.new')}">
+	<div class="row">
+		<div class="col-md-6 ">
+			<h2>${i18n("report.new")}</h2>
+				<form id="reportForm" class="form-group form-error-label" action="/report/new" method="post">
+					<@authenticityForm/>
+					<div class="contact-form">
+						<label>${i18n("project.title")}</label><span class="required">*</span><h5 class="contact-us-form-error">${(flash.invalidName!)}</h5>
+						<input class="form-control" type="text" id="title" name="title" value="${(flash.title!)}" 
+						required="required" placeholder="${i18n('report.placeholder')}" />
+					</div>
+					<div class="contact-form">
+						<button id="submitForm" class="btn btn-success form-control">${i18n("button.save")}</button>
+					</div>
+				</form>
+		</div>
+		<div class="col-md-6">
+			<#if flash.noFileSelected??>
+				<p class="alert alert-danger">${(flash.noFileSelected)}</p>
+			</#if>
+			<div id="fileuploader" class="fileUploader">Upload</div>
+		</div>
+	</div>
+</@layout.myLayout>
+<script>
+
+$(document).ready(function()
+		{
+			$("#fileuploader").uploadFile({
+			url:"/report/upload",
+			multiple:false,
+			maxFileCount:1,
+			fileName:"pictureName",
+			});
+		});
+
+$().ready(function() {
+	
+	$("#reportForm").validate({
+		rules: {
+			title: "required",
+			title: {
+				required: true,
+				minlength: 10
+			}
+		},
+		messages: {
+			title: {
+				required: "Please enter report title",
+				minlength: "Title must be of at least 10 characters"
+			}
+		},
+		submitHandler: function(form) {
+			$.confirm({
+				title: 'Confirm!',
+			    confirmButtonClass: 'btn-info',
+			    cancelButtonClass: 'btn-danger',
+			    confirm: function(){
+			       form.submit();
+			    },
+			    cancel: function(){
+			    }
+			});
+		}
+	});
+});
+</script>

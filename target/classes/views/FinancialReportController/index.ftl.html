@@ -1,0 +1,31 @@
+<#import "../layout/defaultLayout.ftl.html" as layout>
+<@layout.myLayout "${i18n('app.name')} ${i18n('report.list')}">
+	<div class="panel panel-default">
+	  <!-- Default panel contents -->
+	  <div class="panel-heading">${i18n('report.list')}</div>
+	  <!-- Table -->
+	  <table class="table">
+	  		<tr>
+		<thead>
+			<tr>
+				<th>${i18n('project.title')}</th>
+				<th>${i18n('donation.date')}</th>
+				<th>${i18n('report.download')}</th>
+			</tr>
+		</thead>
+	  	<tbody>
+		<#if financialList??>
+			<#list financialList as list>
+	  			<tr>
+	  				<th scope="row" class="contact-us-row-width">${list.title!}</th>
+	  				<td class="contact-us-row-width">${list.createdDate!}</td>
+	  				<td class="contact-us-row-width"><a href="/report/download/${list.picture.pictureName!}">Download</a></td>
+	  			</tr>
+			</#list>
+		<#else>
+			<p>${i18n('report.notfound')}</p>
+		</#if>
+	  	</tbody>
+	  </table>
+	</div>
+</@layout.myLayout>

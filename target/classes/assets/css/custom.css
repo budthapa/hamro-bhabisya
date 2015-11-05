@@ -169,3 +169,11 @@ img {
 .project-count{
 	font-size: 75px;
 }
+.fileUploader{
+	margin-top: 70px;
+	margin-left: 100px;
+}
+
+.ajax-file-upload-error{
+	color:#FF0000;
+}
