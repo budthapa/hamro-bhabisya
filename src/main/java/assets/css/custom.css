@@ -177,3 +177,7 @@ img {
 .ajax-file-upload-error{
 	color:#FF0000;
 }
+
+.upload-header{
+	margin: 80px 0 -48px 100px
+}
