@@ -1,7 +1,7 @@
 <#import "../layout/defaultLayout.ftl.html" as layout>
 <@layout.myLayout "${i18n('app.name')} ${i18n('project.new')}">
 	<div class="row">
-		<div class="col-md-9">
+		<div class="col-md-8">
 			<h3>${i18n('project.new')}</h3>
 			<form id="projectForm" class="form-group form-error-label" action="/project" method="post">
 			<@authenticityForm/>
@@ -30,31 +30,26 @@
 			</form>
 			<a href="/project">View all projects</a>
 		</div>
-		<div class="col-md-3">
+		<div class="col-md-4">
 			<#if flash.noFileSelected??>
 				<p class="alert alert-danger">${(flash.noFileSelected)}</p>
 			</#if>
-			
-			<#if flash.invalidFileSize??>
-				<p class="alert alert-danger">${(flash.invalidFileSize)}</p>
-			</#if>
-			<p id="uploading" class="alert alert-info" hidden="true">${(i18n('uploading'))}</p>
-			<form id="uploadForm" class="form-group form-error-label" action="/project/upload" method="post" enctype="multipart/form-data">
-				<div class="contact-form">
-					<label>${(i18n('select.image'))}</label>
-					<input type="file" name="pictureName" id="picture"/>
-					<!-- <input type="file" name="pictureName"/>
-					<input type="file" name="pictureName"/>
-					<input type="file" name="pictureName"/> -->
-				</div>			
-				<div class="contact-form">
-					<input type="submit" class="btn btn-success" value="${(i18n('button.upload'))}" onclick="send()"/>
-				</div>
-			</form>
+			<h4 class="upload-header-project">${i18n('select.image')}</h4>
+			<div id="fileuploader" class="fileUploader fileuploader-project">Upload</div>
 		</div>
 	</div>	
 </@layout.myLayout>
 	<script>
+	
+	$(document).ready(function()
+			{
+				$("#fileuploader").uploadFile({
+				url:"/project/upload",
+				multiple:false,
+				maxFileCount:1,
+				fileName:"pictureName",
+				});
+			});
 	
 	$().ready(function() {
 		$("#projectForm").validate({

@@ -181,3 +181,13 @@ img {
 .upload-header{
 	margin: 80px 0 -48px 100px
 }
+.ajax-file-upload-container-project{
+	margin: 20px -87px;
+}
+.fileuploader-project{
+	margin-top: 70px;
+	margin-left: 15px;
+}
+.upload-header-project{
+	margin: 80px 0px -48px 14px;
+}

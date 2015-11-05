@@ -3,6 +3,7 @@ package etc;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.Logger;
 
 import ninja.Context;
 import ninja.Result;
@@ -14,6 +15,7 @@ import org.apache.commons.io.FileUtils;
 import com.google.inject.Inject;
 
 public class ServeFileHelper {
+	Logger log=Logger.getLogger(ServeFileHelper.class.getName());
 	@Inject
     FilePathHelper filePath;
     
@@ -24,9 +26,10 @@ public class ServeFileHelper {
 			try {
 				File file=new File(filePath.getFilePath()+fileName);
 				if(file.exists()){
-					System.out.println("exists "+file.getAbsolutePath());
+					log.fine("File exists "+file.getAbsolutePath());
+				}else{
+					log.warning("File doesn't exists "+file.getAbsolutePath());
 				}
-				System.out.println("not exists "+file.getAbsolutePath());
 				fileInputByte = FileUtils.readFileToByteArray(file);
 				output.write(fileInputByte);
 			} catch (IOException e) {

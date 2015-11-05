@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.logging.Logger;
 
 import models.Picture;
 import models.Project;
@@ -34,6 +35,7 @@ import etc.FilePathHelper;
 
 @Singleton
 public class ProjectController {
+	Logger log=Logger.getLogger(ProjectController.class.getName());
 	List<String> imageNameList=new ArrayList<>();
 	
 	@Inject
@@ -80,6 +82,7 @@ public class ProjectController {
 		projectDao.save(project);
 		
 		imageNameList.clear();			
+		
 		context.getFlashScope().put("success", "project.create.success");
 		return Results.redirect("/project/new");
 	}
