@@ -28,6 +28,7 @@ import controllers.ContactUsController;
 import controllers.DonationController;
 import controllers.FinancialReportController;
 import controllers.LoginLogoutController;
+import controllers.MailController;
 import controllers.ProjectController;
 import etc.ServeFileHelper;
 
@@ -60,6 +61,8 @@ public class Routes implements ApplicationRoutes {
         router.GET().route("/settings/user/changepassword/{id}").with(ApplicationController.class, "newChangePassword");
         router.POST().route("/settings/user/changepassword/").with(ApplicationController.class, "changePassword");
         router.GET().route("/settings/user/{id}").with(ApplicationController.class, "editUser");
+        router.GET().route("/reset/password").with(MailController.class, "forgotPassword");
+        router.POST().route("/reset/password").with(MailController.class, "sendEmail");
         
         ///////////////////////////////////////////////////////////////////////
         // Login / Logout

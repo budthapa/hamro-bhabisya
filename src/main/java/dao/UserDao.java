@@ -146,4 +146,17 @@ public class UserDao implements IBaseDao {
 		long count=(long) q.getSingleResult();
 		return count;
 	}
+
+	@UnitOfWork
+	public User getUserWithEmail(String email) {
+		EntityManager em=entityManagerProvider.get();
+		Query q=em.createQuery("SELECT x FROM User x WHERE x.email = :emailParam");
+		User user = null;
+		try{
+			user=(User) q.setParameter("emailParam", email).getSingleResult();
+		}catch(Exception e){
+			log.warning("User not found with email : "+email+" while trying to reset email");
+		}
+		return user;
+	}
 }
