@@ -81,8 +81,10 @@ public class UserDao implements IBaseDao {
 	@Override
 	@Transactional
 	public <T> boolean delete(T object) {
-		// TODO Auto-generated method stub
-		return false;
+		EntityManager em=entityManagerProvider.get();
+		Login login=(Login)object;
+		em.detach(login);
+		return true;
 	}
 
 	@Override
@@ -134,7 +136,6 @@ public class UserDao implements IBaseDao {
 
 	@Transactional
 	public void updatePassword(Login login) {
-		
 		EntityManager em=entityManagerProvider.get();
 		em.merge(login);
 	}

@@ -1,12 +1,11 @@
 package models;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.Size;
 
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -25,14 +24,16 @@ public class User extends BaseDomain{
     private String designation;
     private boolean hasLoginCredentials=false;
     
-    @OneToOne(mappedBy="user")
-    @Cascade(value=CascadeType.ALL)
+    @OneToOne(cascade=CascadeType.ALL, mappedBy="user")
     private Picture picture;
     
+    @OneToOne(cascade=CascadeType.ALL, mappedBy="user")
+    private Login login;
+    /*
     @OneToOne(mappedBy="user")
     @Cascade(value=CascadeType.ALL)
-    private Login login;
-    
+    private ResetPassword resetPassword;
+    */
     public User() {}
     
 	public String getName() {
@@ -98,5 +99,13 @@ public class User extends BaseDomain{
 	public void setLogin(Login login) {
 		this.login = login;
 	}
+/*
+	public ResetPassword getResetPassword() {
+		return resetPassword;
+	}
 
+	public void setResetPassword(ResetPassword resetPassword) {
+		this.resetPassword = resetPassword;
+	}
+*/
 }
