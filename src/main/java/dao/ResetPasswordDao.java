@@ -25,10 +25,12 @@ public class ResetPasswordDao implements IBaseDao{
 	}
 
 	@Override
-	@UnitOfWork
+	@Transactional
 	public <T> boolean delete(T object) {
 		EntityManager em=entityManagerProvider.get();
-		em.detach(object);
+		ResetPassword reset=(ResetPassword)object;
+		ResetPassword toRemove=em.getReference(ResetPassword.class, reset.getId());
+		em.remove(toRemove);
 		return true;
 	}
 
