@@ -30,7 +30,7 @@
 			</div>
 			<div class="col-md-8">
 				<h2>${i18n('donate')}</h2>
-				<p>Your small donations can help a lot to a children </p>
+				<p>${i18n('message.donation')}</p>
 				<a href="/donation" class="btn btn-primary">More</a>
 			</div>
 		</div>
@@ -40,18 +40,23 @@
 			</div>
 			<div class="col-md-8">
 				<h2>${i18n('projects')}</h2>
-				<p>view the list of projects we have done</p>
+				<p>${i18n('message.project')}</p>
 				<a href="/project" class="btn btn-primary">${i18n('homepage.project.all.btn')}</a>
 			</div>
 		</div>
-		<div class="col-md-4 donate-project-connect-box">
+		<div class="col-md-4 donate-project-connect-box social">
 			<div class="col-md-4 text-center news-margin">
 				<img src="/assets/image/connect.png"/>
 			</div>
 			<div class="col-md-8">
 				<h2>Connect</h2>
-				<p>You can connect with us by following us on social</p>
-				<a href="" class="btn btn-primary">More</a>
+				<p>${i18n('message.social')}</p>
+				<ul class="nav navbar-nav">
+					<li><a class="btn btn-social-icon btn-facebook" href="https://www.facebook.com/Hamro-Bhabisya-181003218772401/">
+					<i class="fa fa-facebook"></i></a></li>
+					<li><a class="btn btn-social-icon btn-twitter"><i class="fa fa-twitter"></i></a></li>
+					<li><a class="btn btn-social-icon btn-youtube"><i class="fa fa-youtube"></i></a></li>
+				</ul>
 			</div>
 		</div>
 	</div>

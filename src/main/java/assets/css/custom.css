@@ -113,6 +113,10 @@ table{background-color: rgba(225, 225, 225, 0.89);}
 	font-size:20px;
 }
 
+.social{
+	padding-bottom: 11px;
+}
+
 /* form validation*/
 .form-error-label label.error{
 	width:auto;
