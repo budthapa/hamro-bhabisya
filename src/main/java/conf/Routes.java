@@ -49,6 +49,7 @@ public class Routes implements ApplicationRoutes {
      */
     @Override
     public void init(Router router) {  
+    	router.GET().route("/about").with(ApplicationController.class, "about");
        	router.GET().route("/app/dashboard").with(ApplicationController.class, "dashboard");
        	router.GET().route("/settings").with(ApplicationController.class, "settings");
         router.GET().route("/settings/user/new").with(ApplicationController.class, "newUser");

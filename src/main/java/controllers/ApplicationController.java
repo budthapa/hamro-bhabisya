@@ -413,4 +413,8 @@ public class ApplicationController {
     	context.getFlashScope().put("success", "password.change.success");
     	return Results.redirect("/settings");
     }
+    
+    public Result about(){
+    	return Results.html();
+    }
 }
