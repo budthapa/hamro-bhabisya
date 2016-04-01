@@ -3,7 +3,7 @@
 		<div id="slides">
 		<#if imageList??>
 			<#list imageList as list>
-				<img src="/assets/image/${(list.pictureName)}.jpg" title="Hamrobhabisya projects www.hamrobhabisya.org"/>
+				<img src="/file/download/${(list.pictureName)}" title="Hamrobhabisya projects www.hamrobhabisya.org"/>
 			</#list>
 			<a href="#" class="slidesjs-previous slidesjs-navigation"><i class="glyphicon glyphicon-chevron-left"></i></a>
               <a href="#" class="slidesjs-next slidesjs-navigation"><i class="glyphicon glyphicon-chevron-right"></i></a>
@@ -13,7 +13,7 @@
 		<#if frontProject??>
 			<div class="col-md-3">
 				<#if picture??>
-					<img class="img-responsive" src="/assets/image/${(picture.pictureName)}.jpg" alt="hamrobhabisya latest project"/>
+					<img class="img-responsive" src="/file/download/${(picture.pictureName)}" alt="hamrobhabisya latest project"/>
 				<#else>
 				</#if>
 			</div>
@@ -30,7 +30,7 @@
 			</div>
 			<div class="col-md-8">
 				<h2>${i18n('donate')}</h2>
-				<p>Your small donations can help a lot to a children </p>
+				<p>${i18n('message.donation')}</p>
 				<a href="/donation" class="btn btn-primary">More</a>
 			</div>
 		</div>
@@ -40,18 +40,23 @@
 			</div>
 			<div class="col-md-8">
 				<h2>${i18n('projects')}</h2>
-				<p>view the list of projects we have done</p>
+				<p>${i18n('message.project')}</p>
 				<a href="/project" class="btn btn-primary">${i18n('homepage.project.all.btn')}</a>
 			</div>
 		</div>
-		<div class="col-md-4 donate-project-connect-box">
+		<div class="col-md-4 donate-project-connect-box social">
 			<div class="col-md-4 text-center news-margin">
 				<img src="/assets/image/connect.png"/>
 			</div>
 			<div class="col-md-8">
 				<h2>Connect</h2>
-				<p>You can connect with us by following us on social</p>
-				<a href="" class="btn btn-primary">More</a>
+				<p>${i18n('message.social')}</p>
+				<ul class="nav navbar-nav">
+					<li><a class="btn btn-social-icon btn-facebook" href="https://www.facebook.com/Hamro-Bhabisya-181003218772401/">
+					<i class="fa fa-facebook"></i></a></li>
+					<li><a class="btn btn-social-icon btn-twitter"><i class="fa fa-twitter"></i></a></li>
+					<li><a class="btn btn-social-icon btn-youtube"><i class="fa fa-youtube"></i></a></li>
+				</ul>
 			</div>
 		</div>
 	</div>
@@ -61,7 +66,7 @@
 			<div class="col-md-6">
 				<h3><a href="/project/${(newsEvent.id)}">${(newsEvent.title)}</a></h3>
 				<#if newsPicture??>
-					<img class="img-responsive" src="/assets/image/${(newsPicture.pictureName)}.jpg" alt="hamrobhabisya latest news"/>
+					<img class="img-responsive" src="/file/download/${(newsPicture.pictureName)}" alt="hamrobhabisya latest news"/>
 				</#if>
 			</div>
 			<div class="col-md-6">
@@ -73,7 +78,7 @@
 	<div class="row donate-project-connect">
 			<div class="col-md-6">
 				<div class="embed-responsive embed-responsive-16by9">
-					<iframe class="embed-responsive-item" width="560" height="315" src="https://www.youtube.com/embed/rtOvBOTyX00"></iframe>
+					<iframe class="embed-responsive-item" width="560" height="315" src="https://www.youtube.com/embed/Jr5CU4RI62Y"></iframe>
 				</div>
 			</div>
 			<div class="col-md-6">
