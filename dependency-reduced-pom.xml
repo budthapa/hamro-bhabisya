@@ -28,8 +28,8 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.2</version>
         <configuration>
-          <source>1.7</source>
-          <target>1.7</target>
+          <source>1.8</source>
+          <target>1.8</target>
         </configuration>
       </plugin>
       <plugin>
@@ -135,9 +135,13 @@
     <dependency>
       <groupId>org.ninjaframework</groupId>
       <artifactId>ninja-test-utilities</artifactId>
-      <version>5.2.1</version>
+      <version>6.1.0</version>
       <scope>test</scope>
       <exclusions>
+        <exclusion>
+          <artifactId>java-hamcrest</artifactId>
+          <groupId>org.hamcrest</groupId>
+        </exclusion>
         <exclusion>
           <artifactId>junit</artifactId>
           <groupId>junit</groupId>
@@ -147,8 +151,12 @@
           <groupId>org.mockito</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>fluentlenium-core</artifactId>
+          <artifactId>fluentlenium-junit</artifactId>
           <groupId>org.fluentlenium</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>htmlunit-driver</artifactId>
+          <groupId>org.seleniumhq.selenium</groupId>
         </exclusion>
         <exclusion>
           <artifactId>httpclient</artifactId>
@@ -170,8 +178,8 @@
     </dependency>
   </dependencies>
   <properties>
-    <ninja.version>5.2.1</ninja.version>
-    <jetty.version>9.2.10.v20150310</jetty.version>
+    <ninja.version>6.1.0</ninja.version>
+    <jetty.version>9.3.11.v20160721</jetty.version>
   </properties>
 </project>
 
